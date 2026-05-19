@@ -6,7 +6,7 @@ import { MOCK_MODULES } from "./data/modules";
 export default function App() {
   const [modules, setModules] = useState<Module[]>([]);
   const [progress, setProgress] = useState<Progress>({ completedModules: [], totalScore: 0 });
-  const [activeTab, setActiveTab] = useState<"home" | "engineering_science" | "business_management">("home");
+  const [activeTab, setActiveTab] = useState<"home" | "engineering_science" | "business_management" | "special_topics">("home");
   const [activeModule, setActiveModule] = useState<Module | null>(null);
   const [activeTopic, setActiveTopic] = useState<string | null>(null);
   const [showSimulators, setShowSimulators] = useState(false);
@@ -301,6 +301,12 @@ export default function App() {
             >
               Business & Management
             </button>
+            <button 
+              onClick={() => setActiveTab("special_topics")}
+              className={`px-6 py-2 rounded-full text-sm font-semibold transition-all whitespace-nowrap ${activeTab === "special_topics" ? 'bg-eml-gold text-eml-dark' : 'text-eml-silver hover:text-white'}`}
+            >
+              Special Topics
+            </button>
         </nav>
         <div className="hidden lg:block w-[100px]"></div>
       </header>
@@ -339,13 +345,14 @@ export default function App() {
           </div>
         )}
 
-        {(activeTab === "engineering_science" || activeTab === "business_management") && (
+        {(activeTab === "engineering_science" || activeTab === "business_management" || activeTab === "special_topics") && (
           <div className="fade-in">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {modules
                 .filter(mod => 
                   (activeTab === "engineering_science" && mod.subject === "Engineering & Science") ||
-                  (activeTab === "business_management" && mod.subject === "Business & Management")
+                  (activeTab === "business_management" && mod.subject === "Business & Management") ||
+                  (activeTab === "special_topics" && mod.subject === "Special Topics")
                 )
                 .map((mod) => (
                   <div 
