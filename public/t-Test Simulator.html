@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Admin Stat-Lab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+    <style>
+        .card { @apply bg-white p-6 rounded-2xl shadow-sm border border-slate-200; }
+        .metric-label { @apply text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1; }
+        .metric-value { @apply text-3xl font-black text-slate-800 tabular-nums; }
+        .control-label { @apply text-[11px] font-black text-slate-500 uppercase tracking-tighter; }
+        input[type=range] { @apply w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600; }
+        .number-input { @apply w-14 border-none bg-slate-100 rounded text-right text-[11px] font-bold py-1 px-1.5 focus:ring-1 focus:ring-indigo-500 outline-none; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen font-sans text-slate-900 pb-20">
+
+    <div class="max-w-7xl mx-auto p-6 md:p-10">
+        <header class="mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div>
+                <h1 class="text-3xl font-black text-slate-900 tracking-tight">Business Admin <span class="text-indigo-600">Stat-Lab</span></h1>
+                <p class="text-slate-500 font-medium text-sm">Validating organizational interventions through evidence-based management.</p>
+            </div>
+            <button onclick="runSimulation()" class="bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-indigo-700 transition font-bold shadow-lg active:scale-95">
+                Regenerate Sample Data
+            </button>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- CONTROLS -->
+            <div class="lg:col-span-4 space-y-4">
+                <div class="card border-l-4 border-l-indigo-600">
+                    <div class="mb-8">
+                        <label class="control-label text-indigo-600">Business Case Study</label>
+                        <select id="scenarioSelect" class="w-full mt-2 border-slate-200 rounded-xl bg-slate-50 p-3 text-sm font-bold outline-none cursor-pointer" onchange="handleScenarioChange()">
+                            <option value="independent">Hybrid vs. Office Productivity</option>
+                            <option value="paired">Leadership Training (Pre/Post)</option>
+                            <option value="onesample">Current Efficiency vs. Industry Benchmark</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="control-group">
+                            <div class="control-header flex justify-between">
+                                <label id="meanLabel1" class="control-label">Hybrid Group Mean</label>
+                                <input type="number" id="mean1_num" value="7.0" step="0.1" class="number-input" oninput="sync('mean1', this.value)">
+                            </div>
+                            <input type="range" id="mean1" min="0" max="10" step="0.1" value="7.0" oninput="sync('mean1_num', this.value)">
+                        </div>
+
+                        <div id="mean2Container" class="control-group">
+                            <div class="control-header flex justify-between">
+                                <label id="meanLabel2" class="control-label">Office Group Mean</label>
+                                <input type="number" id="mean2_num" value="7.8" step="0.1" class="number-input" oninput="sync('mean2', this.value)">
+                            </div>
+                            <input type="range" id="mean2" min="0" max="10" step="0.1" value="7.8" oninput="sync('mean2_num', this.value)">
+                        </div>
+
+                        <div id="benchmarkContainer" class="control-group hidden">
+                            <div class="control-header flex justify-between">
+                                <label class="control-label">Industry Benchmark</label>
+                                <input type="number" id="benchmarkVal_num" value="7.5" step="0.1" class="number-input" oninput="sync('benchmarkVal', this.value)">
+                            </div>
+                            <input type="range" id="benchmarkVal" min="0" max="10" step="0.1" value="7.5" oninput="sync('benchmarkVal_num', this.value)">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="control-label block mb-1">Operational Variance</label>
+                                <input type="number" id="stdDev" value="1.0" min="0.1" max="5" step="0.1" class="w-full bg-slate-50 p-2 rounded-lg font-bold text-sm" oninput="runSimulation()">
+                            </div>
+                            <div>
+                                <label class="control-label block mb-1">Total Employees (n)</label>
+                                <input type="number" id="sampleSize" value="40" min="5" max="1000" class="w-full bg-slate-50 p-2 rounded-lg font-bold text-sm" oninput="runSimulation()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bg-slate-900 text-white">
+                    <span class="text-[10px] font-black text-indigo-400 tracking-widest uppercase">Decision Confidence (Power)</span>
+                    <div class="mt-2 h-2 w-full bg-slate-800 rounded-full overflow-hidden">
+                        <div id="powerBar" class="h-full bg-indigo-500 transition-all duration-500" style="width: 40%"></div>
+                    </div>
+                    <p id="powerText" class="text-[11px] mt-3 text-slate-400 leading-relaxed"></p>
+                </div>
+            </div>
+
+            <!-- RESULTS -->
+            <div class="lg:col-span-8 space-y-6">
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="card"><span class="metric-label">p-Value (Risk)</span><span id="pVal" class="metric-value">--</span></div>
+                    <div class="card"><span class="metric-label">Magnitude (d)</span><span id="effectVal" class="metric-value">--</span></div>
+                    <div class="card"><span class="metric-label">t-Stat</span><span id="tVal" class="metric-value text-slate-400 text-xl font-bold">--</span></div>
+                    <div id="sigCard" class="card flex items-center justify-center font-black text-[10px] tracking-tighter leading-none px-2 uppercase">Decision</div>
+                </div>
+
+                <!-- DYNAMIC NARRATIVE + IMPLICATIONS -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="card border-l-4 border-l-slate-400" id="narBorder">
+                        <h3 class="text-[10px] font-black text-slate-400 uppercase mb-2">Evidence Synthesis</h3>
+                        <div id="narrative" class="text-sm text-slate-700 leading-relaxed space-y-2"></div>
+                    </div>
+                    <div class="card bg-indigo-50 border border-indigo-100" id="implicationsCard">
+                        <h3 class="text-[10px] font-black text-indigo-600 uppercase mb-2 tracking-widest">Strategic Recommendations</h3>
+                        <div id="implications" class="text-sm text-slate-800 leading-relaxed space-y-3"></div>
+                    </div>
+                </div>
+
+                <!-- CANVAS CHART -->
+                <div class="card overflow-hidden">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-[10px] font-black text-slate-800 uppercase tracking-widest">KPI Performance Comparison</h3>
+                        <div id="legend" class="flex gap-4 text-[10px] font-bold text-slate-400">
+                             <span id="legLabel1" class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-indigo-500"></span> Group A</span>
+                             <span id="legLabel2" class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Group B</span>
+                        </div>
+                    </div>
+                    <div class="relative bg-slate-50 rounded-xl p-4">
+                        <canvas id="statCanvas" class="w-full h-64"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('statCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * window.devicePixelRatio;
+            canvas.height = rect.height * window.devicePixelRatio;
+            ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+            runSimulation();
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+
+        function sync(id, val) {
+            document.getElementById(id).value = val;
+            runSimulation();
+        }
+
+        function handleScenarioChange() {
+            const sc = document.getElementById('scenarioSelect').value;
+            const bCont = document.getElementById('benchmarkContainer');
+            const m2Cont = document.getElementById('mean2Container');
+            const m1L = document.getElementById('meanLabel1');
+            const m2L = document.getElementById('meanLabel2');
+            const leg1 = document.getElementById('legLabel1');
+            const leg2 = document.getElementById('legLabel2');
+
+            if (sc === 'onesample') {
+                bCont.classList.remove('hidden');
+                m2Cont.classList.add('hidden');
+                m1L.innerText = "Internal Performance Score";
+                leg1.innerHTML = `<span class="w-2 h-2 rounded-full bg-indigo-500"></span> OUR DATA`;
+                leg2.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500"></span> BENCHMARK`;
+            } else if (sc === 'paired') {
+                bCont.classList.add('hidden');
+                m2Cont.classList.remove('hidden');
+                m1L.innerText = "Competency Score (Pre-Training)";
+                m2L.innerText = "Competency Score (Post-Training)";
+                leg1.innerHTML = `<span class="w-2 h-2 rounded-full bg-indigo-500"></span> PRE-TRAINING`;
+                leg2.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500"></span> POST-TRAINING`;
+            } else {
+                bCont.classList.add('hidden');
+                m2Cont.classList.remove('hidden');
+                m1L.innerText = "Hybrid Group Productivity";
+                m2L.innerText = "Office Group Productivity";
+                leg1.innerHTML = `<span class="w-2 h-2 rounded-full bg-indigo-500"></span> HYBRID`;
+                leg2.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500"></span> OFFICE`;
+            }
+            runSimulation();
+        }
+
+        function drawBars(m1, m2, label1, label2, color1, color2) {
+            const w = canvas.width / window.devicePixelRatio;
+            const h = canvas.height / window.devicePixelRatio;
+            ctx.clearRect(0, 0, w, h);
+
+            ctx.strokeStyle = '#e2e8f0';
+            ctx.setLineDash([5, 5]);
+            for(let i=0; i<=10; i+=2) {
+                const y = h - (i/10 * (h-40)) - 20;
+                ctx.beginPath(); ctx.moveTo(40, y); ctx.lineTo(w-40, y); ctx.stroke();
+                ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 10px sans-serif'; ctx.fillText(i, 15, y + 4);
+            }
+            ctx.setLineDash([]);
+
+            const barWidth = 80; const gap = 120; const centerX = w / 2;
+            const h1 = (m1 / 10) * (h - 60);
+            ctx.fillStyle = color1;
+            drawRoundedRect(centerX - gap/2 - barWidth/2, h - 20 - h1, barWidth, h1, 8);
+            ctx.fillStyle = '#1e1b4b'; ctx.font = 'bold 16px sans-serif'; ctx.textAlign = 'center';
+            ctx.fillText(m1.toFixed(1), centerX - gap/2, h - 20 - h1 - 15);
+            ctx.fillStyle = '#64748b'; ctx.font = 'bold 10px sans-serif'; ctx.fillText(label1.toUpperCase(), centerX - gap/2, h - 5);
+
+            const h2 = (m2 / 10) * (h - 60);
+            ctx.fillStyle = color2;
+            drawRoundedRect(centerX + gap/2 - barWidth/2, h - 20 - h2, barWidth, h2, 8);
+            ctx.fillStyle = '#064e3b'; ctx.font = 'bold 16px sans-serif';
+            ctx.fillText(m2.toFixed(1), centerX + gap/2, h - 20 - h2 - 15);
+            ctx.fillStyle = '#64748b'; ctx.fillText(label2.toUpperCase(), centerX + gap/2, h - 5);
+        }
+
+        function drawRoundedRect(x, y, w, h, r) {
+            ctx.beginPath(); ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y);
+            ctx.quadraticCurveTo(x + w, y, x + w, y + r); ctx.lineTo(x + w, y + h);
+            ctx.lineTo(x, y + h); ctx.lineTo(x, y + r);
+            ctx.quadraticCurveTo(x, y, x + r, y); ctx.fill();
+        }
+
+        function runSimulation() {
+            const sc = document.getElementById('scenarioSelect').value;
+            const n = parseInt(document.getElementById('sampleSize').value) || 30;
+            const tM1 = parseFloat(document.getElementById('mean1').value);
+            const tM2 = parseFloat(document.getElementById('mean2').value);
+            const sigma = parseFloat(document.getElementById('stdDev').value) || 1;
+
+            let g1 = [], g2 = [];
+            for(let i=0; i<n; i++) {
+                g1.push(jStat.normal.sample(tM1, sigma));
+                if (sc !== 'onesample') g2.push(jStat.normal.sample(tM2, sigma));
+            }
+
+            const m1 = jStat.mean(g1);
+            const s1 = jStat.stdev(g1);
+            let t, p, d, m2Val, label1 = "Group A", label2 = "Group B";
+
+            if (sc === 'independent') {
+                const m2 = jStat.mean(g2); const s2 = jStat.stdev(g2);
+                m2Val = m2; label1 = "Hybrid"; label2 = "Office";
+                const df = (n * 2) - 2;
+                const pooledStd = Math.sqrt(((n - 1) * s1**2 + (n - 1) * s2**2) / df);
+                t = (m2 - m1) / (pooledStd * Math.sqrt(2 / n));
+                d = (m2 - m1) / pooledStd;
+                p = 2 * (1 - jStat.studentt.cdf(Math.abs(t), df));
+            } else if (sc === 'paired') {
+                const m2 = jStat.mean(g2); m2Val = m2;
+                label1 = "Pre-Train"; label2 = "Post-Train";
+                const diffs = g1.map((v, i) => g2[i] - v);
+                const mD = jStat.mean(diffs); const sD = jStat.stdev(diffs);
+                t = mD / (sD / Math.sqrt(n)); d = mD / sD;
+                p = 2 * (1 - jStat.studentt.cdf(Math.abs(t), n-1));
+            } else {
+                const bench = parseFloat(document.getElementById('benchmarkVal').value);
+                m2Val = bench; label1 = "Internal"; label2 = "Benchmark";
+                t = (m1 - bench) / (s1 / Math.sqrt(n)); d = (m1 - bench) / s1;
+                p = 2 * (1 - jStat.studentt.cdf(Math.abs(t), n-1));
+            }
+
+            updateView(t, p, d, m1, m2Val, label1, label2, n);
+        }
+
+        function updateView(t, p, d, m1, m2, l1, l2, n) {
+            document.getElementById('pVal').innerText = p.toFixed(4);
+            const effectSize = Math.abs(d);
+            document.getElementById('effectVal').innerText = effectSize.toFixed(2);
+            document.getElementById('tVal').innerText = t.toFixed(2);
+
+            const sigCard = document.getElementById('sigCard');
+            const nar = document.getElementById('narrative');
+            const nBorder = document.getElementById('narBorder');
+            const imp = document.getElementById('implications');
+
+            let recommendation = "";
+            let significanceText = "";
+
+            if (p < 0.05) {
+                sigCard.innerText = "SUPPORTED";
+                sigCard.className = "card flex items-center justify-center font-black text-[10px] tracking-tighter bg-emerald-500 text-white";
+                nBorder.className = "card border-l-4 border-l-emerald-500";
+                significanceText = `<p>Result is <strong>Statistically Supported</strong> (p < .05). There is a verifiable difference in KPI performance between these business segments.</p>`;
+                
+                if (effectSize >= 0.8) {
+                    recommendation = `
+                        <div class="flex gap-3"><span class="font-black text-indigo-600">01</span><p><strong>Corporate Standard:</strong> High organizational impact detected. Transition this model into the standard operating procedure (SOP).</p></div>
+                        <div class="flex gap-3"><span class="font-black text-indigo-600">02</span><p><strong>Strategic Investment:</strong> Approve CAPEX/OPEX requests for full rollout to capture competitive advantage early.</p></div>
+                        <div class="flex gap-3"><span class="font-black text-indigo-600">03</span><p><strong>Talent Management:</strong> Use these findings to refine hiring profiles and leadership development tracks.</p></div>`;
+                } else if (effectSize >= 0.5) {
+                    recommendation = `
+                        <div class="flex gap-3"><span class="font-black text-indigo-600">01</span><p><strong>Phased Adoption:</strong> The effect is moderate. Proceed with a broader pilot in a secondary market or department before global launch.</p></div>
+                        <div class="flex gap-3"><span class="font-black text-indigo-600">02</span><p><strong>Efficiency Review:</strong> The intervention works, but assess if the ROI justifies the implementation cost given the moderate gains.</p></div>`;
+                } else {
+                    recommendation = `
+                        <div class="flex gap-3"><span class="font-black text-indigo-600">01</span><p><strong>Marginal Gains:</strong> While statistically "real," the productivity delta is trivial. Consider if resources are better spent elsewhere.</p></div>
+                        <div class="flex gap-3"><span class="font-black text-indigo-600">02</span><p><strong>Process Optimization:</strong> Minor performance lift detected. Look for ways to automate this process rather than manual intervention.</p></div>`;
+                }
+            } else {
+                sigCard.innerText = "NO SUPPORT";
+                sigCard.className = "card flex items-center justify-center font-black text-[10px] tracking-tighter bg-slate-200 text-slate-500";
+                nBorder.className = "card border-l-4 border-l-slate-300";
+                significanceText = `<p><strong>No Statistical Evidence</strong> of a difference (p > .05). We cannot distinguish this change from random day-to-day operational noise.</p>`;
+                
+                recommendation = `
+                    <div class="flex gap-3"><span class="font-black text-slate-400">01</span><p><strong>Risk Mitigation:</strong> Cease rollout. Data suggests no ROI improvement; proceeding would likely waste organizational capital.</p></div>
+                    <div class="flex gap-3"><span class="font-black text-slate-400">02</span><p><strong>Root Cause Analysis:</strong> Re-evaluate the underlying hypothesis. The intervention may be addressing a symptom rather than the core business problem.</p></div>
+                    <div class="flex gap-3"><span class="font-black text-slate-400">03</span><p><strong>Operational Audit:</strong> If a difference was expected, high internal variance may indicate inconsistent execution of the strategy.</p></div>`;
+            }
+
+            nar.innerHTML = significanceText + `<p>Effect Magnitude (d = ${effectSize.toFixed(2)}) represents the actual business impact on unit performance or employee productivity scores.</p>`;
+            imp.innerHTML = recommendation;
+
+            const pwr = Math.min(100, (effectSize * 60) + (n/8));
+            document.getElementById('powerBar').style.width = pwr + "%";
+            document.getElementById('powerText').innerText = pwr > 80 ? "Decision-Ready: Sample size provides high confidence." : "Caution: Results may be underpowered due to small sample or high variance.";
+
+            drawBars(m1, m2, l1, l2, '#6366f1', '#10b981');
+        }
+
+        window.onload = resizeCanvas;
+    </script>
+</body>
+</html>
