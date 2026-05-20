@@ -50,31 +50,31 @@ export default function App() {
   if (activeModule) {
     return (
       <div className="min-h-screen flex flex-col items-center py-12 px-4 sm:px-6">
-        <div className="w-full max-w-3xl">
+        <div className="w-full max-w-4xl bg-white rounded-[3rem] p-4 sm:p-8 shadow-2xl">
           <button
             onClick={() => { setActiveModule(null); setActiveTopic(null); setShowSimulators(false); }}
-            className="flex items-center text-eml-silver hover:text-white transition-colors mb-8 text-sm"
+            className="flex items-center text-eml-dark hover:text-black transition-colors mb-8 text-sm font-medium px-4"
           >
             <ArrowLeft className="w-4 h-4 mr-2" /> Back to Modules
           </button>
 
-          <div className="bg-eml-dark-card border border-eml-silver/10 p-10 sm:p-12 rounded-[2rem]">
-            <span className="inline-block px-4 py-1.5 rounded-full border border-eml-gold/30 text-eml-gold font-bold text-[10px] uppercase tracking-widest mb-6">
+          <div className="bg-white border-2 border-eml-dark p-10 sm:p-12 rounded-[2rem]">
+            <span className="inline-block px-4 py-1.5 rounded-full border border-eml-dark text-eml-dark font-bold text-[10px] uppercase tracking-widest mb-6">
               {activeModule.subject}
             </span>
             
-            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
+            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-eml-dark mb-4">
               {activeModule.title}
             </h1>
             
-            <p className="text-lg text-eml-silver/80 mb-12 font-light">
+            <p className="text-lg text-gray-700 mb-12 font-light">
               {activeModule.description}
             </p>
 
             {/* If Business & Management, show TOC or topic */}
             {activeModule.subject === "Business & Management" && !activeTopic ? (
                <div className="mb-10 fade-in">
-                 <h2 className="text-2xl font-bold text-white mb-6">Table of Contents</h2>
+                 <h2 className="text-2xl font-bold text-eml-dark mb-6">Table of Contents</h2>
                  <div className="flex flex-col space-y-6">
                    {(activeModule.title === "Introduction to Business" ? [
                      {
@@ -159,16 +159,16 @@ export default function App() {
                      }
                    ]).map(section => (
                      <div key={section.part} className="space-y-3">
-                       <h3 className="text-sm font-bold tracking-widest text-eml-gold uppercase">{section.part}</h3>
+                       <h3 className="text-sm font-bold tracking-widest text-eml-dark opacity-70 uppercase">{section.part}</h3>
                        <div className="grid grid-cols-1 gap-2">
                          {section.topics.map(topic => (
                            <div 
                               key={topic}
                               onClick={() => setActiveTopic(topic)}
-                              className="group flex items-center justify-between bg-transparent border border-eml-silver/10 p-4 rounded-xl hover:bg-eml-silver/5 transition-colors cursor-pointer"
+                              className="group flex items-center justify-between bg-white border border-eml-dark p-4 rounded-xl hover:bg-eml-dark hover:text-white transition-colors cursor-pointer"
                            >
-                              <span className="text-sm text-eml-silver group-hover:text-white transition-colors">{topic}</span>
-                              <span className="text-eml-gold font-bold ml-4">→</span>
+                              <span className="text-sm text-eml-dark font-medium group-hover:text-white transition-colors">{topic}</span>
+                              <span className="text-eml-dark group-hover:text-white font-bold ml-4">→</span>
                            </div>
                          ))}
                        </div>
@@ -181,8 +181,8 @@ export default function App() {
                 {showSimulators ? (
                  <div>
                    <div className="flex items-center justify-between mb-8">
-                     <h2 className="text-3xl font-extrabold text-white tracking-tight">Simulators</h2>
-                     <button onClick={() => setShowSimulators(false)} className="text-sm text-eml-silver hover:text-white flex items-center transition-colors">
+                     <h2 className="text-3xl font-extrabold text-eml-dark tracking-tight">Simulators</h2>
+                     <button onClick={() => setShowSimulators(false)} className="text-sm text-eml-dark hover:text-black flex items-center transition-colors font-medium">
                        <ArrowLeft className="w-4 h-4 mr-2" /> Back
                      </button>
                    </div>
@@ -215,35 +215,34 @@ export default function App() {
                        ))}
                      </div>
                    ) : (
-                     <p className="text-eml-silver py-12">No simulators available yet.</p>
+                     <p className="text-gray-700 py-12 font-medium">No simulators available yet.</p>
                    )}
                  </div>
                 ) : (
                   <>
                     {activeTopic && (
                        <div className="mb-8">
-                         <button onClick={() => setActiveTopic(null)} className="text-sm text-eml-silver hover:text-white flex items-center transition-colors mb-4">
+                         <button onClick={() => setActiveTopic(null)} className="text-sm text-eml-dark hover:text-black flex items-center transition-colors mb-4 font-medium">
                            <ArrowLeft className="w-4 h-4 mr-2" /> Back to Table of Contents
                          </button>
-                         <h2 className="text-2xl font-bold text-white">{activeTopic}</h2>
+                         <h2 className="text-2xl font-bold text-eml-dark">{activeTopic}</h2>
                        </div>
                     )}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {[
                         { title: "Infographics", desc: "Visual representation of the concepts." },
-                        { title: "Static Dashboards", desc: "Key metrics and data points at a glance." },
                         { title: "Interactive Dashboards", desc: "Explore data sets dynamically." },
                         { title: "Simulations", desc: "Hands-on simulation environments.", action: "EXPLORE" }
                       ].map(subMod => (
                       <div 
                         key={subMod.title}
-                        className="group bg-eml-dark-card border border-eml-silver/10 p-8 flex flex-col justify-between hover:border-eml-silver/30 transition-all duration-300 rounded-[2rem] min-h-[250px]"
+                        className="group bg-white border-2 border-eml-dark p-8 flex flex-col justify-between hover:bg-eml-dark transition-all duration-300 rounded-[2rem] min-h-[250px]"
                       >
                         <div>
-                          <h3 className="text-xl font-bold tracking-tight mb-4 text-white group-hover:text-eml-gold transition-colors duration-300">
+                          <h3 className="text-xl font-bold tracking-tight mb-4 text-eml-dark group-hover:text-white transition-colors duration-300">
                             {subMod.title}
                           </h3>
-                          <p className="text-sm text-eml-silver/80 leading-relaxed font-light">
+                          <p className="text-sm text-gray-700 group-hover:text-eml-silver leading-relaxed font-light transition-colors duration-300">
                             {subMod.desc}
                           </p>
                         </div>
@@ -256,9 +255,9 @@ export default function App() {
                                   alert("Coming soon!");
                                 }
                             }}
-                            className="w-12 h-12 flex items-center justify-center border border-eml-silver/20 rounded-full text-eml-silver hover:text-white hover:border-white group-hover:border-eml-gold group-hover:text-eml-gold transition-all"
+                            className="w-12 h-12 flex items-center justify-center border-2 border-eml-dark rounded-full text-eml-dark group-hover:border-white group-hover:text-white transition-all"
                           >
-                            <span className="font-light text-lg">→</span>
+                            <span className="font-bold text-lg">→</span>
                           </button>
                         </div>
                       </div>
@@ -311,33 +310,33 @@ export default function App() {
         <div className="hidden lg:block w-[100px]"></div>
       </header>
       
-      <main className="flex-grow px-6 md:px-12 py-12 max-w-6xl mx-auto w-full">
+      <main className="flex-grow px-6 md:px-12 py-12 max-w-6xl mx-auto w-full bg-white rounded-t-[3rem] sm:rounded-[3rem] mt-4 mb-8 shadow-2xl">
         {activeTab === "home" && (
           <div className="fade-in max-w-4xl mx-auto mt-8 md:mt-12">
             <div className="text-center mb-16">
-              <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-6">
-                Master the <span className="text-eml-gold">Big Picture</span>
+              <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-eml-dark mb-6">
+                Master the <span className="text-eml-dark bg-yellow-100 px-4 rounded-full inline-block mt-2">Big Picture</span>
               </h1>
-              <p className="text-base md:text-lg text-eml-silver/80 leading-relaxed max-w-2xl mx-auto font-light">
+              <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-2xl mx-auto font-light">
                 A modern framework for interactive dashboards, visual analytics, and deep conceptual simulations.
               </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-              <div className="bg-eml-dark-card border border-eml-silver/10 p-8 md:p-10 rounded-[2rem]">
-                <h3 className="text-sm font-bold tracking-widest text-eml-gold uppercase mb-6 flex items-center">
-                  <span className="w-8 h-[1px] bg-eml-gold/50 mr-4"></span> Mission
+              <div className="bg-white border-2 border-eml-dark p-8 md:p-10 rounded-[2rem]">
+                <h3 className="text-sm font-bold tracking-widest text-eml-dark uppercase mb-6 flex items-center">
+                  <span className="w-8 h-[2px] bg-eml-dark mr-4"></span> Mission
                 </h3>
-                <p className="text-eml-silver/90 leading-relaxed font-light">
+                <p className="text-gray-700 leading-relaxed font-light">
                   Our mission is to spark a new way of learning by making big-picture concepts globally accessible and deeply exciting. We turn complex systems and diverse insights into hands-on, unforgettable experiences through interactive dashboards, visual analytics, and simulations.
                 </p>
               </div>
               
-              <div className="bg-eml-dark-card border border-eml-silver/10 p-8 md:p-10 rounded-[2rem]">
-                <h3 className="text-sm font-bold tracking-widest text-eml-gold uppercase mb-6 flex items-center">
-                  <span className="w-8 h-[1px] bg-eml-gold/50 mr-4"></span> What You Gain
+              <div className="bg-white border-2 border-eml-dark p-8 md:p-10 rounded-[2rem]">
+                <h3 className="text-sm font-bold tracking-widest text-eml-dark uppercase mb-6 flex items-center">
+                  <span className="w-8 h-[2px] bg-eml-dark mr-4"></span> What You Gain
                 </h3>
-                <p className="text-eml-silver/90 leading-relaxed font-light">
+                <p className="text-gray-700 leading-relaxed font-light">
                   By engaging with AOL, you don't just study complex concepts—you master them. Our interactive tools bridge the gap between theory and execution, equipping you with the data-driven clarity, strategic intuition, and systemic thinking needed to solve real-world problems.
                 </p>
               </div>
@@ -357,13 +356,13 @@ export default function App() {
                 .map((mod) => (
                   <div 
                     key={mod.id} 
-                    className={`group bg-eml-dark-card border border-eml-silver/10 p-8 flex flex-col justify-between hover:border-eml-silver/30 transition-all duration-300 rounded-[2rem] min-h-[250px]`}
+                    className={`group bg-white border-2 border-eml-dark p-8 flex flex-col justify-between hover:bg-eml-dark transition-all duration-300 rounded-[2rem] min-h-[250px]`}
                   >
                     <div>
-                      <h3 className="text-xl font-bold tracking-tight mb-4 text-white group-hover:text-eml-gold transition-colors duration-300">
+                      <h3 className="text-xl font-bold tracking-tight mb-4 text-eml-dark group-hover:text-white transition-colors duration-300">
                         {mod.title}
                       </h3>
-                      <p className="text-sm text-eml-silver/80 leading-relaxed font-light">
+                      <p className="text-sm text-gray-700 group-hover:text-eml-silver leading-relaxed font-light transition-colors duration-300">
                         {mod.description}
                       </p>
                     </div>
@@ -371,9 +370,9 @@ export default function App() {
                     <div className="flex items-end justify-start mt-8">
                       <button 
                         onClick={() => { setActiveModule(mod); setShowSimulators(false); }}
-                        className={`w-12 h-12 flex items-center justify-center border border-eml-silver/20 rounded-full text-eml-silver hover:text-white hover:border-white group-hover:border-eml-gold group-hover:text-eml-gold transition-all`}
+                        className={`w-12 h-12 flex items-center justify-center border-2 border-eml-dark rounded-full text-eml-dark group-hover:border-white group-hover:text-white transition-all`}
                       >
-                        <span className="font-light text-lg">→</span>
+                        <span className="font-bold text-lg">→</span>
                       </button>
                     </div>
                   </div>
