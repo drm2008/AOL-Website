@@ -191,13 +191,13 @@ export default function App() {
                        {activeModule.simulators.map(sim => (
                          <div 
                            key={sim.title}
-                           className="group bg-eml-dark-card border border-eml-silver/10 p-8 flex flex-col justify-between hover:border-eml-silver/30 transition-all duration-300 rounded-[2rem] min-h-[250px]"
+                           className="group bg-white border-2 border-eml-dark p-8 flex flex-col justify-between hover:bg-eml-dark transition-all duration-300 rounded-[2rem] min-h-[250px]"
                          >
                            <div>
-                             <h3 className="text-xl font-bold tracking-tight mb-3 text-white group-hover:text-eml-gold transition-colors duration-300">
+                             <h3 className="text-xl font-bold tracking-tight mb-3 text-eml-dark group-hover:text-white transition-colors duration-300">
                                {sim.title}
                              </h3>
-                             <p className="text-sm text-eml-silver/80 leading-relaxed font-light">
+                             <p className="text-sm text-gray-700 group-hover:text-eml-silver leading-relaxed font-light transition-colors duration-300">
                                {sim.desc}
                              </p>
                            </div>
@@ -206,9 +206,9 @@ export default function App() {
                                href={sim.url}
                                target="_blank"
                                rel="noopener noreferrer"
-                               className="w-12 h-12 flex items-center justify-center border border-eml-silver/20 rounded-full text-eml-silver hover:text-white hover:border-white group-hover:border-eml-gold group-hover:text-eml-gold transition-all cursor-pointer"
+                               className="w-12 h-12 flex items-center justify-center border-2 border-eml-dark rounded-full text-eml-dark group-hover:border-white group-hover:text-white transition-all cursor-pointer"
                              >
-                               <span className="font-light text-lg">→</span>
+                               <span className="font-bold text-lg">→</span>
                              </a>
                            </div>
                          </div>
