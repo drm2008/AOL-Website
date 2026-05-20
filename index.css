@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-eml-dark: #0B1325;
+  --color-eml-silver: #C0C0C0;
+  --color-eml-gold: #D4AF37;
+  --color-eml-dark-card: #0c1426;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-eml-dark text-eml-silver font-sans antialiased;
+  }
+}
