@@ -279,7 +279,9 @@ export default function App() {
     <div className="min-h-screen flex flex-col font-sans">
       <header className="px-6 md:px-12 py-6 flex flex-col md:flex-row items-center justify-between border-b border-eml-silver/5 border-b-[rgba(255,255,255,0.05)]">
         <div className="mb-4 md:mb-0 w-full md:w-auto text-center md:text-left">
-          <h1 className="text-5xl font-black tracking-tighter text-eml-gold m-0">AOL</h1>
+          <h1 className="text-5xl font-black tracking-tighter m-0">
+            <span className="text-eml-silver">A</span><span className="text-eml-gold">OL</span>
+          </h1>
         </div>
         <nav className="flex space-x-2 sm:space-x-8 items-center overflow-x-auto w-full md:w-auto pb-2 md:pb-0 justify-center">
             <button 
