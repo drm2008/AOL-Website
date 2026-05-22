@@ -27,55 +27,39 @@ export default function App() {
     localStorage.setItem("app_progress", JSON.stringify(progress));
   }, [progress]);
 
-  const completeModule = (moduleId: string) => {
-    if (!progress.completedModules.includes(moduleId)) {
-      setProgress(prev => ({
-        ...prev,
-        completedModules: [...prev.completedModules, moduleId],
-        totalScore: prev.totalScore + 100
-      }));
-    }
-    setActiveModule(null);
-    setActiveTopic(null);
-    setShowSimulators(false);
-  };
-
-  const resetProgress = () => {
-    setProgress({ completedModules: [], totalScore: 0 });
-  };
-
-  if (loading) return <div className="min-h-screen" />;
+  if (loading) return <div className="min-h-screen bg-eml-offwhite" />;
 
   // 1. --- MODULE DETAIL VIEW ---
   if (activeModule) {
     return (
-      <div className="min-h-screen flex flex-col items-center py-12 px-4 sm:px-6">
-        <div className="w-full max-w-4xl bg-white rounded-[3rem] p-4 sm:p-8 shadow-2xl">
+      <div className="min-h-screen bg-eml-offwhite flex flex-col items-center py-20 px-6 sm:px-12 font-sans">
+        <div className="w-full max-w-5xl bg-white rounded-3xl p-10 sm:p-20 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
           <button
             onClick={() => { setActiveModule(null); setActiveTopic(null); setShowSimulators(false); }}
-            className="flex items-center text-eml-dark hover:text-black transition-colors mb-8 text-sm font-medium px-4"
+            className="flex items-center text-eml-silver hover:text-eml-navy transition-colors mb-16 text-sm font-medium tracking-wide"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" /> Back to Modules
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            BACK TO CATEGORIES
           </button>
 
-          <div className="bg-white border-2 border-eml-dark p-10 sm:p-12 rounded-[2rem]">
-            <span className="inline-block px-4 py-1.5 rounded-full border border-eml-dark text-eml-dark font-bold text-[10px] uppercase tracking-widest mb-6">
+          <div className="max-w-3xl mx-auto">
+            <span className="inline-block text-eml-gold font-semibold text-xs uppercase tracking-[0.2em] mb-4">
               {activeModule.subject}
             </span>
             
-            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-eml-dark mb-4">
+            <h1 className="text-4xl sm:text-6xl font-serif text-eml-navy mb-8 leading-tight">
               {activeModule.title}
             </h1>
             
-            <p className="text-lg text-gray-700 mb-12 font-light">
+            <p className="text-lg text-eml-navy/70 mb-16 font-light leading-relaxed">
               {activeModule.description}
             </p>
 
             {/* If Business & Management, show TOC or topic */}
             {activeModule.subject === "Business & Management" && !activeTopic ? (
                <div className="mb-10 fade-in">
-                 <h2 className="text-2xl font-bold text-eml-dark mb-6">Table of Contents</h2>
-                 <div className="flex flex-col space-y-6">
+                 <h2 className="text-2xl font-serif text-eml-navy mb-10 border-b border-eml-light-silver pb-4">Table of Contents</h2>
+                 <div className="flex flex-col space-y-12">
                    {(activeModule.title === "Introduction to Business" ? [
                      {
                        part: "Part 1. The Environment of Business",
@@ -158,17 +142,17 @@ export default function App() {
                        ]
                      }
                    ]).map(section => (
-                     <div key={section.part} className="space-y-3">
-                       <h3 className="text-sm font-bold tracking-widest text-eml-dark opacity-70 uppercase">{section.part}</h3>
-                       <div className="grid grid-cols-1 gap-2">
+                     <div key={section.part} className="space-y-4">
+                       <h3 className="text-xs font-bold tracking-[0.15em] text-eml-silver uppercase">{section.part}</h3>
+                       <div className="grid grid-cols-1 gap-1">
                          {section.topics.map(topic => (
                            <div 
                               key={topic}
                               onClick={() => setActiveTopic(topic)}
-                              className="group flex items-center justify-between bg-white border border-eml-dark p-4 rounded-xl hover:bg-eml-dark hover:text-white transition-colors cursor-pointer"
+                              className="group flex items-center justify-between py-4 border-b border-eml-light-silver/50 hover:border-eml-gold transition-colors cursor-pointer"
                            >
-                              <span className="text-sm text-eml-dark font-medium group-hover:text-white transition-colors">{topic}</span>
-                              <span className="text-eml-dark group-hover:text-white font-bold ml-4">→</span>
+                              <span className="text-base text-eml-navy/80 hover:text-eml-navy font-light transition-colors">{topic}</span>
+                              <span className="text-eml-gold opacity-0 group-hover:opacity-100 transform -translate-x-4 group-hover:translate-x-0 transition-all duration-300">→</span>
                            </div>
                          ))}
                        </div>
@@ -180,84 +164,83 @@ export default function App() {
               <div className="mb-10 fade-in">
                 {showSimulators ? (
                  <div>
-                   <div className="flex items-center justify-between mb-8">
-                     <h2 className="text-3xl font-extrabold text-eml-dark tracking-tight">Simulators</h2>
-                     <button onClick={() => setShowSimulators(false)} className="text-sm text-eml-dark hover:text-black flex items-center transition-colors font-medium">
-                       <ArrowLeft className="w-4 h-4 mr-2" /> Back
+                   <div className="flex items-center justify-between mb-12 border-b border-eml-light-silver pb-4">
+                     <h2 className="text-2xl font-serif text-eml-navy">Simulators</h2>
+                     <button onClick={() => setShowSimulators(false)} className="text-xs tracking-wider text-eml-silver hover:text-eml-navy uppercase transition-colors font-medium">
+                       Back
                      </button>
                    </div>
                    {activeModule.simulators && activeModule.simulators.length > 0 ? (
-                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                        {activeModule.simulators.map(sim => (
                          <div 
                            key={sim.title}
-                           className="group bg-white border-2 border-eml-dark p-8 flex flex-col justify-between hover:bg-eml-dark transition-all duration-300 rounded-[2rem] min-h-[250px]"
+                           className="group flex flex-col justify-between p-8 rounded-2xl bg-eml-offwhite hover:bg-white transition-all duration-500 shadow-sm hover:shadow-[0_10px_40px_rgba(10,25,47,0.08)] border border-transparent hover:border-eml-light-silver min-h-[220px]"
                          >
                            <div>
-                             <h3 className="text-xl font-bold tracking-tight mb-3 text-eml-dark group-hover:text-white transition-colors duration-300">
+                             <h3 className="text-lg font-serif text-eml-navy mb-3 transition-colors duration-300">
                                {sim.title}
                              </h3>
-                             <p className="text-sm text-gray-700 group-hover:text-eml-silver leading-relaxed font-light transition-colors duration-300">
+                             <p className="text-sm text-eml-navy/60 leading-relaxed font-light transition-colors duration-300">
                                {sim.desc}
                              </p>
                            </div>
-                           <div className="flex items-end justify-start mt-8">
+                           <div className="flex justify-start mt-8">
                              <a 
                                href={sim.url}
                                target="_blank"
                                rel="noopener noreferrer"
-                               className="w-12 h-12 flex items-center justify-center border-2 border-eml-dark rounded-full text-eml-dark group-hover:border-white group-hover:text-white transition-all cursor-pointer"
+                               className="text-eml-gold font-semibold text-sm tracking-widest uppercase flex items-center gap-2 group-hover:gap-4 transition-all duration-300"
                              >
-                               <span className="font-bold text-lg">→</span>
+                               Launch <span className="text-lg leading-none">→</span>
                              </a>
                            </div>
                          </div>
                        ))}
                      </div>
                    ) : (
-                     <p className="text-gray-700 py-12 font-medium">No simulators available yet.</p>
+                     <p className="text-eml-navy/50 py-12 font-light italic">No simulators available for this module yet.</p>
                    )}
                  </div>
                 ) : (
                   <>
                     {activeTopic && (
-                       <div className="mb-8">
-                         <button onClick={() => setActiveTopic(null)} className="text-sm text-eml-dark hover:text-black flex items-center transition-colors mb-4 font-medium">
-                           <ArrowLeft className="w-4 h-4 mr-2" /> Back to Table of Contents
+                       <div className="mb-12">
+                         <button onClick={() => setActiveTopic(null)} className="text-xs text-eml-silver hover:text-eml-navy uppercase tracking-wider transition-colors mb-6 font-medium">
+                           Back to Table of Contents
                          </button>
-                         <h2 className="text-2xl font-bold text-eml-dark">{activeTopic}</h2>
+                         <h2 className="text-3xl font-serif text-eml-navy">{activeTopic}</h2>
                        </div>
                     )}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-12">
                       {[
-                        { title: "Infographics", desc: "Visual representation of the concepts." },
-                        { title: "Interactive Dashboards", desc: "Explore data sets dynamically." },
-                        { title: "Simulations", desc: "Hands-on simulation environments.", action: "EXPLORE" }
+                        { title: "Interactive Dashboards", desc: "Explore data sets and visual trends dynamically." },
+                        { title: "Simulations", desc: "Access hands-on computational models and environments.", action: "EXPLORE" }
                       ].map(subMod => (
                       <div 
                         key={subMod.title}
-                        className="group bg-white border-2 border-eml-dark p-8 flex flex-col justify-between hover:bg-eml-dark transition-all duration-300 rounded-[2rem] min-h-[250px]"
+                        className="group flex flex-col justify-between pt-8 pb-10 border-t border-eml-light-silver hover:border-eml-gold transition-colors duration-500"
                       >
                         <div>
-                          <h3 className="text-xl font-bold tracking-tight mb-4 text-eml-dark group-hover:text-white transition-colors duration-300">
+                          <h3 className="text-xl font-serif text-eml-navy mb-4 transition-colors duration-300">
                             {subMod.title}
                           </h3>
-                          <p className="text-sm text-gray-700 group-hover:text-eml-silver leading-relaxed font-light transition-colors duration-300">
+                          <p className="text-sm text-eml-navy/60 leading-relaxed font-light transition-colors duration-300 pr-4">
                             {subMod.desc}
                           </p>
                         </div>
-                        <div className="flex items-end justify-start mt-8">
+                        <div className="flex justify-start mt-8">
                           <button 
                             onClick={() => {
                                 if (subMod.action === "EXPLORE") {
                                   setShowSimulators(true);
                                 } else {
-                                  alert("Coming soon!");
+                                  alert("Dashboard feature coming soon.");
                                 }
                             }}
-                            className="w-12 h-12 flex items-center justify-center border-2 border-eml-dark rounded-full text-eml-dark group-hover:border-white group-hover:text-white transition-all"
+                            className="text-eml-navy text-sm font-semibold tracking-[0.2em] uppercase flex items-center gap-2 group-hover:text-eml-gold group-hover:gap-4 transition-all duration-300"
                           >
-                            <span className="font-bold text-lg">→</span>
+                            Explore <span className="text-lg leading-none">→</span>
                           </button>
                         </div>
                       </div>
@@ -276,70 +259,66 @@ export default function App() {
 
   // 2. --- MAIN LIBRARY VIEW ---
   return (
-    <div className="min-h-screen flex flex-col font-sans">
-      <header className="px-6 md:px-12 py-6 flex flex-col md:flex-row items-center justify-between border-b border-eml-silver/5 border-b-[rgba(255,255,255,0.05)]">
-        <div className="mb-4 md:mb-0 w-full md:w-auto text-center md:text-left">
-          <h1 className="text-5xl font-black tracking-tighter m-0">
-            <span className="text-eml-silver">A</span><span className="text-eml-gold">OL</span>
+    <div className="min-h-screen flex flex-col bg-eml-offwhite font-sans">
+      <header className="px-8 md:px-16 lg:px-24 py-12 flex flex-col md:flex-row items-center justify-between border-b border-eml-light-silver bg-white">
+        <div className="mb-8 md:mb-0 w-full md:w-auto text-center md:text-left">
+          <h1 className="flex items-center justify-center md:justify-start tracking-tighter m-0 font-serif">
+            <span className="text-5xl text-eml-silver">A</span>
+            <span className="text-5xl text-eml-gold mx-[2px]">O</span>
+            <span className="text-5xl text-eml-navy">L</span>
           </h1>
         </div>
-        <nav className="flex space-x-2 sm:space-x-8 items-center overflow-x-auto w-full md:w-auto pb-2 md:pb-0 justify-center">
-            <button 
-              onClick={() => setActiveTab("home")}
-              className={`px-6 py-2 rounded-full text-sm font-semibold transition-all whitespace-nowrap ${activeTab === "home" ? 'bg-eml-gold text-eml-dark' : 'text-eml-silver hover:text-white'}`}
-            >
-              Home
-            </button>
-            <button 
-              onClick={() => setActiveTab("engineering_science")}
-              className={`px-6 py-2 rounded-full text-sm font-semibold transition-all whitespace-nowrap ${activeTab === "engineering_science" ? 'bg-eml-gold text-eml-dark' : 'text-eml-silver hover:text-white'}`}
-            >
-              Engineering & Science
-            </button>
-            <button 
-              onClick={() => setActiveTab("business_management")}
-              className={`px-6 py-2 rounded-full text-sm font-semibold transition-all whitespace-nowrap ${activeTab === "business_management" ? 'bg-eml-gold text-eml-dark' : 'text-eml-silver hover:text-white'}`}
-            >
-              Business & Management
-            </button>
-            <button 
-              onClick={() => setActiveTab("special_topics")}
-              className={`px-6 py-2 rounded-full text-sm font-semibold transition-all whitespace-nowrap ${activeTab === "special_topics" ? 'bg-eml-gold text-eml-dark' : 'text-eml-silver hover:text-white'}`}
-            >
-              Special Topics
-            </button>
+        <nav className="flex space-x-6 sm:space-x-10 items-center overflow-x-auto w-full md:w-auto justify-center md:justify-end">
+            {[
+              { id: "home", label: "Overview" },
+              { id: "engineering_science", label: "Engineering & Science" },
+              { id: "business_management", label: "Business & Management" },
+              { id: "special_topics", label: "Special Topics" }
+            ].map(tab => (
+              <button 
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id as any)}
+                className={`pb-1 text-sm tracking-wider uppercase font-medium whitespace-nowrap transition-all duration-300 border-b-2
+                  ${activeTab === tab.id 
+                    ? 'border-eml-gold text-eml-navy' 
+                    : 'border-transparent text-eml-silver hover:text-eml-navy hover:border-eml-light-silver'
+                  }`}
+              >
+                {tab.label}
+              </button>
+            ))}
         </nav>
-        <div className="hidden lg:block w-[100px]"></div>
       </header>
       
-      <main className="flex-grow px-6 md:px-12 py-12 max-w-6xl mx-auto w-full bg-white rounded-t-[3rem] sm:rounded-[3rem] mt-4 mb-8 shadow-2xl">
+      <main className="flex-grow px-8 md:px-16 lg:px-24 py-20 mx-auto w-full max-w-[1400px]">
         {activeTab === "home" && (
-          <div className="fade-in max-w-4xl mx-auto mt-8 md:mt-12">
-            <div className="text-center mb-16">
-              <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-eml-dark mb-6">
-                Master the <span className="text-eml-dark bg-yellow-100 px-4 rounded-full inline-block mt-2">Big Picture</span>
+          <div className="fade-in max-w-5xl mx-auto mt-10">
+            <div className="text-center mb-24">
+              <h1 className="text-5xl md:text-7xl font-serif text-eml-navy mb-8 leading-tight">
+                Master the <br className="hidden md:block"/>
+                <span className="text-eml-gold italic font-light">Big Picture</span>
               </h1>
-              <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-2xl mx-auto font-light">
-                A modern framework for interactive dashboards, visual analytics, and deep conceptual simulations.
+              <p className="text-lg md:text-xl text-eml-navy/60 leading-relaxed max-w-2xl mx-auto font-light">
+                A minimalist framework designed to foster executive clarity through interactive analytics, data-driven dashboards, and robust conceptual models.
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-              <div className="bg-white border-2 border-eml-dark p-8 md:p-10 rounded-[2rem]">
-                <h3 className="text-sm font-bold tracking-widest text-eml-dark uppercase mb-6 flex items-center">
-                  <span className="w-8 h-[2px] bg-eml-dark mr-4"></span> Mission
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 text-left">
+              <div>
+                <h3 className="text-xs font-bold tracking-[0.2em] text-eml-silver uppercase mb-6 flex items-center">
+                  <span className="w-12 h-[1px] bg-eml-gold mr-4"></span> Mission
                 </h3>
-                <p className="text-gray-700 leading-relaxed font-light">
-                  Our mission is to spark a new way of learning by making big-picture concepts globally accessible and deeply exciting. We turn complex systems and diverse insights into hands-on, unforgettable experiences through interactive dashboards, visual analytics, and simulations.
+                <p className="text-eml-navy/80 text-lg leading-loose font-light">
+                  To instill executive-level clarity by making high-level systems and structural insights seamlessly accessible. We distill complex architectures into profound, unforgettable experiences that champion precision over clutter.
                 </p>
               </div>
               
-              <div className="bg-white border-2 border-eml-dark p-8 md:p-10 rounded-[2rem]">
-                <h3 className="text-sm font-bold tracking-widest text-eml-dark uppercase mb-6 flex items-center">
-                  <span className="w-8 h-[2px] bg-eml-dark mr-4"></span> What You Gain
+              <div>
+                <h3 className="text-xs font-bold tracking-[0.2em] text-eml-silver uppercase mb-6 flex items-center">
+                  <span className="w-12 h-[1px] bg-eml-gold mr-4"></span> Execution
                 </h3>
-                <p className="text-gray-700 leading-relaxed font-light">
-                  By engaging with AOL, you don't just study complex concepts—you master them. Our interactive tools bridge the gap between theory and execution, equipping you with the data-driven clarity, strategic intuition, and systemic thinking needed to solve real-world problems.
+                <p className="text-eml-navy/80 text-lg leading-loose font-light">
+                  Bridging the gap between theory and decisive action, our tools arm you with the systemic intuition necessary for modern leadership. Engage deeply with models to grasp structural nuances without the surrounding noise.
                 </p>
               </div>
             </div>
@@ -348,7 +327,7 @@ export default function App() {
 
         {(activeTab === "engineering_science" || activeTab === "business_management" || activeTab === "special_topics") && (
           <div className="fade-in">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
               {modules
                 .filter(mod => 
                   (activeTab === "engineering_science" && mod.subject === "Engineering & Science") ||
@@ -358,23 +337,23 @@ export default function App() {
                 .map((mod) => (
                   <div 
                     key={mod.id} 
-                    className={`group bg-white border-2 border-eml-dark p-8 flex flex-col justify-between hover:bg-eml-dark transition-all duration-300 rounded-[2rem] min-h-[250px]`}
+                    className="group border-t border-eml-light-silver pt-8 pb-4 flex flex-col justify-between hover:border-eml-gold transition-all duration-500 min-h-[220px]"
                   >
                     <div>
-                      <h3 className="text-xl font-bold tracking-tight mb-4 text-eml-dark group-hover:text-white transition-colors duration-300">
+                      <h3 className="text-2xl font-serif text-eml-navy mb-4 pr-4 transition-colors">
                         {mod.title}
                       </h3>
-                      <p className="text-sm text-gray-700 group-hover:text-eml-silver leading-relaxed font-light transition-colors duration-300">
+                      <p className="text-sm text-eml-navy/60 leading-relaxed font-light transition-colors">
                         {mod.description}
                       </p>
                     </div>
                     
-                    <div className="flex items-end justify-start mt-8">
+                    <div className="flex items-end justify-start mt-10">
                       <button 
                         onClick={() => { setActiveModule(mod); setShowSimulators(false); }}
-                        className={`w-12 h-12 flex items-center justify-center border-2 border-eml-dark rounded-full text-eml-dark group-hover:border-white group-hover:text-white transition-all`}
+                        className="text-eml-navy font-semibold text-xs tracking-[0.2em] uppercase flex items-center gap-3 transition-all duration-300 group-hover:text-eml-gold"
                       >
-                        <span className="font-bold text-lg">→</span>
+                        Enter Module <span className="text-lg leading-none font-normal">→</span>
                       </button>
                     </div>
                   </div>
@@ -383,8 +362,12 @@ export default function App() {
           </div>
         )}
       </main>
-      <footer className="px-6 md:px-12 py-6 flex items-center justify-start text-xs font-medium border-t border-eml-silver/5 border-t-[rgba(255,255,255,0.05)] text-eml-silver/50">
-        <div>&copy; 2026 AOL | ANALYZE &middot; OPTIMIZE &middot; LEAD</div>
+
+      <footer className="px-8 md:px-16 lg:px-24 py-12 flex justify-between items-center text-xs tracking-widest uppercase font-medium text-eml-silver/60 bg-white">
+        <div>&copy; 2026 <span className="text-eml-silver">A</span><span className="text-eml-gold">O</span><span className="text-eml-navy">L</span></div>
+        <div>
+          <span className="text-eml-silver">Analyze</span> &middot; <span className="text-eml-gold">Optimize</span> &middot; <span className="text-eml-navy">Lead</span>
+        </div>
       </footer>
     </div>
   );

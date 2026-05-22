@@ -1,16 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-eml-dark: #0B1325;
-  --color-eml-silver: #C0C0C0;
+  --color-eml-navy: #0A192F;
+  --color-eml-silver: #8A9AAB;
+  --color-eml-light-silver: #E2E8F0;
   --color-eml-gold: #D4AF37;
-  --color-eml-dark-card: #0c1426;
+  --color-eml-white: #FFFFFF;
+  --color-eml-offwhite: #F9FAFB;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
 }
 
 @layer base {
   body {
-    @apply bg-eml-dark text-eml-silver font-sans antialiased;
+    @apply bg-eml-offwhite text-eml-navy font-sans antialiased;
   }
 }
+
