@@ -299,7 +299,7 @@ export default function App() {
                 <span className="text-eml-gold italic font-light">Big Picture</span>
               </h1>
               <p className="text-lg md:text-xl text-eml-navy/60 leading-relaxed max-w-2xl mx-auto font-light">
-                A minimalist framework designed to foster executive clarity through interactive analytics, data-driven dashboards, and robust conceptual models.
+                A modern framework for interactive dashboards, visual analytics, and deep conceptual simulations.
               </p>
             </div>
             
@@ -327,7 +327,7 @@ export default function App() {
 
         {(activeTab === "engineering_science" || activeTab === "business_management" || activeTab === "special_topics") && (
           <div className="fade-in">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {modules
                 .filter(mod => 
                   (activeTab === "engineering_science" && mod.subject === "Engineering & Science") ||
@@ -337,10 +337,11 @@ export default function App() {
                 .map((mod) => (
                   <div 
                     key={mod.id} 
-                    className="group border-t border-eml-light-silver pt-8 pb-4 flex flex-col justify-between hover:border-eml-gold transition-all duration-500 min-h-[220px]"
+                    onClick={() => { setActiveModule(mod); setShowSimulators(false); }}
+                    className="group flex flex-col justify-between p-8 rounded-2xl bg-white border border-eml-light-silver hover:border-eml-gold hover:-translate-y-1 shadow-sm hover:shadow-[0_12px_36px_rgba(11,19,37,0.06)] transition-all duration-500 cursor-pointer min-h-[240px]"
                   >
                     <div>
-                      <h3 className="text-2xl font-serif text-eml-navy mb-4 pr-4 transition-colors">
+                      <h3 className="text-2xl font-serif text-eml-navy mb-4 pr-4 transition-colors group-hover:text-eml-gold">
                         {mod.title}
                       </h3>
                       <p className="text-sm text-eml-navy/60 leading-relaxed font-light transition-colors">
@@ -349,12 +350,9 @@ export default function App() {
                     </div>
                     
                     <div className="flex items-end justify-start mt-10">
-                      <button 
-                        onClick={() => { setActiveModule(mod); setShowSimulators(false); }}
-                        className="text-eml-navy font-semibold text-xs tracking-[0.2em] uppercase flex items-center gap-3 transition-all duration-300 group-hover:text-eml-gold"
-                      >
-                        Enter Module <span className="text-lg leading-none font-normal">→</span>
-                      </button>
+                      <div className="text-eml-navy font-semibold text-xs tracking-[0.2em] uppercase flex items-center gap-3 transition-all duration-300 group-hover:text-eml-gold">
+                        Enter Module <span className="text-lg leading-none font-normal transition-transform duration-300 group-hover:translate-x-1">→</span>
+                      </div>
                     </div>
                   </div>
                 ))}

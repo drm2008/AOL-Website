@@ -2,12 +2,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-eml-navy: #0A192F;
-  --color-eml-silver: #8A9AAB;
+  --color-eml-navy: #0B1325;
+  --color-eml-silver: #555555;
   --color-eml-light-silver: #E2E8F0;
   --color-eml-gold: #D4AF37;
   --color-eml-white: #FFFFFF;
-  --color-eml-offwhite: #F9FAFB;
+  --color-eml-offwhite: #FFFFFF;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", ui-serif, Georgia, serif;
 }
