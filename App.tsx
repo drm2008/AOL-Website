@@ -309,16 +309,16 @@ export default function App() {
                   <span className="w-12 h-[1px] bg-eml-gold mr-4"></span> Mission
                 </h3>
                 <p className="text-eml-navy/80 text-lg leading-loose font-light">
-                  To instill executive-level clarity by making high-level systems and structural insights seamlessly accessible. We distill complex architectures into profound, unforgettable experiences that champion precision over clutter.
+                  Our mission is to spark a new way of learning by making big-picture concepts globally accessible and deeply exciting. We turn complex systems and diverse insights into hands-on, unforgettable experiences through interactive dashboards, visual analytics, and simulations.
                 </p>
               </div>
               
               <div>
                 <h3 className="text-xs font-bold tracking-[0.2em] text-eml-silver uppercase mb-6 flex items-center">
-                  <span className="w-12 h-[1px] bg-eml-gold mr-4"></span> Execution
+                  <span className="w-12 h-[1px] bg-eml-gold mr-4"></span> What You Gain
                 </h3>
                 <p className="text-eml-navy/80 text-lg leading-loose font-light">
-                  Bridging the gap between theory and decisive action, our tools arm you with the systemic intuition necessary for modern leadership. Engage deeply with models to grasp structural nuances without the surrounding noise.
+                  By engaging with AOL, you don't just learn complex concepts—you master them. Our interactive tools bridge the gap between theory and execution, equipping you with the data-driven clarity, strategic intuition, and systemic thinking needed to solve real-world problems.
                 </p>
               </div>
             </div>
