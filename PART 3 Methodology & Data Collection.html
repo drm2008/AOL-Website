@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Research Methodology Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-btn { transition: all 0.5s ease; border-bottom: 2px solid transparent; color: #0B1325; }
+        .tab-btn.active { border-bottom: 2px solid #D4AF37; color: #D4AF37; }
+        details summary { cursor: pointer; outline: none; padding: 0.5rem; color: #0B1325; }
+        .content-card { transition: all 0.5s ease; }
+        .content-card:hover { border-color: #D4AF37; transform: translateY(-4px); }
+        .design-btn { cursor: pointer; text-align: left; width: 100%; transition: all 0.3s; color: #0B1325; }
+        .design-btn:hover { color: #D4AF37; }
+        .example-box { display: none; padding: 1rem; background: #f9fafb; border-left: 4px solid #D4AF37; margin-top: 0.5rem; color: #555555; }
+    </style>
+</head>
+<body class="bg-[#FFFFFF] text-[#0B1325] antialiased min-h-screen p-8 md:p-16">
+    <main class="max-w-6xl mx-auto">
+        <header class="mb-16">
+            <h1 class="text-5xl font-serif text-[#0B1325] font-normal tracking-normal mb-4">PART 3: Methodology & Data Collection</h1>
+            <div class="h-px w-20 bg-[#D4AF37]"></div>
+        </header>
+
+        <nav class="flex space-x-8 border-b border-[#E2E8F0] mb-12">
+            <button onclick="showTab('intro')" class="tab-btn active pb-4 font-light">Introduction</button>
+            <button onclick="showTab('quan')" class="tab-btn pb-4 font-light">Quantitative</button>
+            <button onclick="showTab('qual')" class="tab-btn pb-4 font-light">Qualitative</button>
+            <button onclick="showTab('mixed')" class="tab-btn pb-4 font-light">Mixed-Methods</button>
+        </nav>
+
+        <div id="intro" class="tab-content active space-y-8 font-sans antialiased text-[#0B1325]/80 font-light leading-relaxed">
+            <div class="content-card bg-white p-8 rounded-2xl border border-[#E2E8F0] shadow-sm">
+                <h2 class="text-3xl font-serif text-[#0B1325] tracking-tight mb-4">Introduction</h2>
+                <p>Part 3 is the engine room of the research process. Here, we select the specific approach—quantitative, qualitative, or mixed-methods—that will be used to collect and analyze data, turning our design into action. This part provides a deep dive into the various research designs, data collection instruments, and procedures that bring the research plan to life. You will learn the characteristics, strengths, and limitations of different methodological paths, ensuring the data you collect is robust, relevant, and capable of answering your research questions.</p>
+            </div>
+        </div>
+
+        <div id="quan" class="tab-content space-y-8 font-sans antialiased text-[#0B1325]/80 font-light leading-relaxed">
+            <div class="content-card bg-white p-8 rounded-2xl border border-[#E2E8F0] shadow-sm">
+                <h2 class="text-3xl font-serif text-[#0B1325] tracking-tight mb-4">Quantitative Research Overview</h2>
+                <p class="mb-4">Quantitative research is a systematic approach to scientific investigation that involves collecting and analyzing numerical data to answer research questions or test hypotheses. It is characterized by its emphasis on measurement, statistical analysis, and objectivity.</p>
+                
+                <details class="mb-4 border-b border-[#E2E8F0]"><summary class="font-serif text-xl">Key Characteristics</summary>
+                    <ul class="list-disc ml-6 mt-2 space-y-2">
+                        <li><strong>Numerical Data:</strong> Quantitative research collects data in numerical form, such as counts, measurements, or ratings. This data can be easily quantified and analyzed statistically.</li>
+                        <li><strong>Objective and Empirical:</strong> Quantitative research aims to be objective and relies on empirical evidence. It seeks to minimize bias and subjectivity in data collection and analysis.</li>
+                        <li><strong>Structured Methods:</strong> Researchers use structured research designs, including surveys, experiments, and observations, to systematically gather data from participants or sources.</li>
+                        <li><strong>Large Sample Sizes:</strong> Quantitative studies often involve larger sample sizes to increase the reliability and generalizability of findings.</li>
+                        <li><strong>Statistical Analysis:</strong> Statistical techniques are applied to analyze data, identify patterns, relationships, and trends, and draw conclusions based on probability.</li>
+                        <li><strong>Hypothesis Testing:</strong> Quantitative research typically involves formulating hypotheses and testing them using statistical tests to determine the significance of relationships.</li>
+                        <li><strong>Generalizability:</strong> It aims to generalize findings from a sample to a larger population, allowing researchers to make broader conclusions.</li>
+                    </ul>
+                </details>
+
+                <details class="mb-4 border-b border-[#E2E8F0]"><summary class="font-serif text-xl">Research Process</summary>
+                    <ul class="list-disc ml-6 mt-2 space-y-2">
+                        <li><strong>Research Question:</strong> Clearly define the research question or hypothesis that you want to investigate.</li>
+                        <li><strong>Design:</strong> Choose a research design (e.g., experimental, cross-sectional, longitudinal) and select data collection methods (e.g., surveys, experiments).</li>
+                        <li><strong>Sampling:</strong> Determine the sample size and sampling method to select participants or data sources.</li>
+                        <li><strong>Data Collection:</strong> Collect quantitative data using standardized instruments, surveys, experiments, or observations.</li>
+                        <li><strong>Data Analysis:</strong> Analyze the data using statistical techniques, such as descriptive statistics, inferential statistics, regression analysis, and hypothesis testing.</li>
+                        <li><strong>Interpretation:</strong> Interpret the results, draw conclusions, and discuss their implications in the context of the research question.</li>
+                        <li><strong>Reporting:</strong> Communicate the findings through research reports, articles, or presentations.</li>
+                    </ul>
+                </details>
+
+                <div class="grid md:grid-cols-2 gap-6 mt-4">
+                    <div class="border-l-4 border-[#555555] pl-4">
+                        <h4 class="font-bold text-[#0B1325]">Strengths:</h4>
+                        <ul class="list-disc ml-4 text-sm text-[#555555]">
+                            <li>Provides precise, quantifiable data.</li>
+                            <li>Allows for statistical analysis and hypothesis testing.</li>
+                            <li>Enables generalization to larger populations.</li>
+                            <li>Facilitates comparisons and trend analysis.</li>
+                        </ul>
+                    </div>
+                    <div class="border-l-4 border-[#555555] pl-4">
+                        <h4 class="font-bold text-[#0B1325]">Limitations:</h4>
+                        <ul class="list-disc ml-4 text-sm text-[#555555]">
+                            <li>May not capture the richness of qualitative data.</li>
+                            <li>Limited in exploring complex phenomena or individual experiences.</li>
+                            <li>Requires careful design to ensure data quality and validity.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <details class="mt-4 border-b border-[#E2E8F0]"><summary class="font-serif text-xl">Purpose of Quantitative Research</summary>
+                    <p class="mt-2">The purpose of a quantitative study is to investigate and understand phenomena through the systematic collection, analysis, and interpretation of numerical data. Quantitative research aims to achieve specific objectives and contribute to the body of knowledge in a structured and empirical manner.</p>
+                </details>
+
+                <details class="mt-4 border-b border-[#E2E8F0]"><summary class="font-serif text-xl">Examples</summary>
+                    <ul class="list-disc ml-6 mt-2 space-y-2">
+                        <li>In medicine, a quantitative study may aim to assess the effectiveness of a new drug in reducing blood pressure among hypertensive patients.</li>
+                        <li>In education, a quantitative study could investigate the relationship between class size and student academic performance.</li>
+                        <li>In marketing, quantitative research might be used to analyze customer satisfaction data to identify factors that significantly influence customer loyalty.</li>
+                    </ul>
+                </details>
+
+                <details class="mt-4 border-b border-[#E2E8F0] open"><summary class="font-serif text-xl">Quantitative Research Designs (Click to View Examples)</summary>
+                    <div class="space-y-2 mt-4">
+                        <button class="design-btn font-semibold" onclick="toggleExample('ex1')">Descriptive Research Design</button>
+                        <div id="ex1" class="example-box text-sm italic">Example: A survey to gather data on the demographics of customers at a shopping mall, including age, gender, income level, and shopping habits.</div>
+                        
+                        <button class="design-btn font-semibold" onclick="toggleExample('ex2')">Correlational Research Design</button>
+                        <div id="ex2" class="example-box text-sm italic">Example: A study examining the relationship between daily exercise (measured in hours per week) and overall health (measured using a health score) among a sample of adults.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('ex3')">Causal-Comparative Research Design</button>
+                        <div id="ex3" class="example-box text-sm italic">Example: Comparing the academic performance (measured as GPA) of students who attended a summer enrichment program with those who did not, to determine if the program had a causal effect on their academic outcomes.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('ex4')">Experimental Research Design</button>
+                        <div id="ex4" class="example-box text-sm italic">Example: Testing the effectiveness of a new drug (independent variable) in reducing blood pressure (dependent variable) by randomly assigning participants into two groups: one receiving the drug and the other receiving a placebo.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('ex5')">Experimental Research Design with Control Groups</button>
+                        <div id="ex5" class="example-box text-sm italic">Example: Testing the effectiveness of a new teaching method (independent variable) on student learning outcomes (dependent variable) by randomly assigning students to an experimental group receiving the new method and a control group receiving the traditional method.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('ex6')">Quasi-Experimental Research Design</button>
+                        <div id="ex6" class="example-box text-sm italic">Example: Evaluating the impact of a teaching intervention on student test scores by comparing the performance of students in two different schools, one where the intervention was implemented and one where it was not, without random assignment.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('ex7')">Longitudinal Research Design</button>
+                        <div id="ex7" class="example-box text-sm italic">Example: Tracking the same group of individuals over several years to examine changes in their income levels and job satisfaction over time.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('ex8')">Cross-Sectional Research Design</button>
+                        <div id="ex8" class="example-box text-sm italic">Example: Collecting data from a diverse group of participants at a single point in time to study differences in attitudes toward environmental conservation based on age, gender, and education level.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('ex9')">Panel Study Research Design</button>
+                        <div id="ex9" class="example-box text-sm italic">Example: Following a fixed group of participants who provide data at multiple time points to study changes in their voting preferences leading up to a political election.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('ex10')">Ex Post Facto Research Design</button>
+                        <div id="ex10" class="example-box text-sm italic">Example: Investigating the factors that contribute to stress levels among employees by collecting data on their stress levels and then examining various potential causes (e.g., workload, job satisfaction) after the fact.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('ex11')">Survey Research Design</button>
+                        <div id="ex11" class="example-box text-sm italic">Example: Conducting a national survey to assess public opinion on a specific policy issue, such as healthcare reform, using structured questionnaires with closed-ended questions.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('ex12')">Case-Control Research Design</button>
+                        <div id="ex12" class="example-box text-sm italic">Example: Investigating the risk factors associated with a specific disease by comparing a group of individuals with the disease (cases) to a group of individuals without the disease (controls) and assessing their exposure to various potential risk factors.</div>
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <div id="qual" class="tab-content space-y-8 font-sans antialiased text-[#0B1325]/80 font-light leading-relaxed">
+            <div class="content-card bg-white p-8 rounded-2xl border border-[#E2E8F0] shadow-sm">
+                <h2 class="text-3xl font-serif text-[#0B1325] tracking-tight mb-4">Qualitative Research Overview</h2>
+                <p>Qualitative research is a research approach used in various fields, such as social sciences, psychology, anthropology, and healthcare, to explore and understand complex phenomena, experiences, and human behavior. Unlike quantitative research, which focuses on numerical data and statistical analysis, qualitative research emphasizes the collection and analysis of non-numerical data, such as text, audio, images, or observations, to gain insights into the underlying meanings, motivations, and perspectives of individuals or groups.</p>
+                
+                <details class="mt-4 border-b border-[#E2E8F0]"><summary class="font-serif text-xl">Nature, Methods, Analysis & More</summary>
+                    <p class="mt-2 text-[#555555]"><strong>Nature of Qualitative Research:</strong> Qualitative research seeks to understand the "how" and "why" of a particular phenomenon rather than quantifying it.</p>
+                </details>
+
+                <details class="mt-4 border-b border-[#E2E8F0] open"><summary class="font-serif text-xl">Qualitative Research Designs (Click to View Examples)</summary>
+                    <div class="space-y-2 mt-4">
+                        <button class="design-btn font-semibold" onclick="toggleExample('q1')">Phenomenological Research Design</button>
+                        <div id="q1" class="example-box text-sm italic">Example: Conducting in-depth interviews with cancer survivors to understand the lived experiences of coping with a cancer diagnosis and treatment.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('q2')">Grounded Theory Research Design</button>
+                        <div id="q2" class="example-box text-sm italic">Example: Studying the process of how individuals adapt to retirement by conducting interviews and constantly analyzing the data to develop a theory that explains retirement adaptation.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('q3')">Ethnographic Research Design</button>
+                        <div id="q3" class="example-box text-sm italic">Example: Immersing oneself in a rural farming community for an extended period to understand the cultural practices, social interactions, and economic challenges of the community.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('q4')">Case Study Research Design</button>
+                        <div id="q4" class="example-box text-sm italic">Example: Investigating the impact of a specific educational program by conducting an in-depth examination of a single school, including interviews with teachers, students, and administrators, as well as the analysis of relevant documents.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('q5')">Narrative Research Design</button>
+                        <div id="q5" class="example-box text-sm italic">Example: Exploring the personal narratives of individuals who have experienced a significant life event, such as immigrating to a new country, through interviews and the analysis of their stories.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('q6')">Content Analysis Research Design</button>
+                        <div id="q6" class="example-box text-sm italic">Example: Analyzing a large collection of online customer reviews for a particular product to identify common themes, sentiments, and trends among customers.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('q7')">Biographical Research Design</button>
+                        <div id="q7" class="example-box text-sm italic">Example: Investigating the life stories and autobiographies of artists to understand the factors that influenced their creative development and artistic styles.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('q8')">Action Research Design</button>
+                        <div id="q8" class="example-box text-sm italic">Example: Collaborating with a group of teachers to identify and address specific classroom challenges, such as improving student engagement, through cycles of action, observation, and reflection.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('q9')">Constructivist Research Design</button>
+                        <div id="q9" class="example-box text-sm italic">Example: Exploring how individuals construct their beliefs and attitudes about climate change by conducting interviews and analyzing the ways in which they make sense of scientific information.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('q10')">Historical Research Design</button>
+                        <div id="q10" class="example-box text-sm italic">Example: Conducting archival research and analyzing historical documents, diaries, and letters to investigate the social, political, and cultural factors that influenced a specific historical event.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('q11')">Photovoice Research Design</button>
+                        <div id="q11" class="example-box text-sm italic">Example: Empowering a group of community members to document their experiences and concerns through photography and subsequently analyzing the images and accompanying narratives to advocate for social change.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('q12')">Document Analysis</button>
+                        <div id="q12" class="example-box text-sm italic">Example: Analyzing letters and diaries from the Civil Rights Movement to uncover the motivations and strategies of activists.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('q13')">In-Depth Interviews</button>
+                        <div id="q13" class="example-box text-sm italic">Example: Interviewing healthcare professionals to understand their experiences and challenges in providing care during the COVID-19 pandemic.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('q14')">Focus Groups</button>
+                        <div id="q14" class="example-box text-sm italic">Example: Organizing focus groups with parents to explore their attitudes and beliefs regarding childhood vaccination.</div>
+
+                        <button class="design-btn font-semibold" onclick="toggleExample('q15')">Participant Observation</button>
+                        <div id="q15" class="example-box text-sm italic">Example: Observing and documenting the daily routines and interactions of employees in a corporate office to understand workplace culture.</div>
+                    </div>
+                </details>
+
+                <details class="mt-4 border-b border-[#E2E8F0]"><summary class="font-serif text-xl">Validity & Reliability</summary>
+                    <p class="mt-2 text-[#555555]">In qualitative research, the concepts of validity and reliability are understood differently. <strong>Credibility:</strong> Akin to internal validity. <strong>Transferability:</strong> Aims for application to similar contexts. <strong>Dependability:</strong> Refers to consistency and stability. <strong>Confirmability:</strong> Addresses researcher's biases.</p>
+                </details>
+            </div>
+        </div>
+
+        <div id="mixed" class="tab-content space-y-8 font-sans antialiased text-[#0B1325]/80 font-light leading-relaxed">
+            <div class="content-card bg-white p-8 rounded-2xl border border-[#E2E8F0] shadow-sm">
+                <h2 class="text-3xl font-serif text-[#0B1325] tracking-tight mb-4">Mixed-Methods Research Overview</h2>
+                <p>Mixed-methods research is a sophisticated approach that systematically integrates both quantitative and qualitative data within a single study to provide a more complete understanding.</p>
+
+                <details class="mt-4 border-b border-[#E2E8F0]"><summary class="font-serif text-xl">Common Mixed-Methods Research Designs</summary>
+                    <ul class="list-disc ml-6 mt-2 space-y-2 text-[#555555]">
+                        <li><strong>Convergent Parallel Design:</strong> Collect/analyze both simultaneously. (QUAN + QUAL)</li>
+                        <li><strong>Explanatory Sequential Design:</strong> QUAN first, then qual. (QUAN → qual)</li>
+                        <li><strong>Exploratory Sequential Design:</strong> QUAL first, then quan. (QUAL → quan)</li>
+                        <li><strong>Embedded Design:</strong> Supportive secondary role. (Varies)</li>
+                    </ul>
+                </details>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function showTab(id) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+        function toggleExample(id) {
+            const el = document.getElementById(id);
+            el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

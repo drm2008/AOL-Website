@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-white text-[#0B1325]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Foundations & Philosophy Workspace</title>
+    <!-- Google Fonts: Playfair Display & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .tab-transition { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .gold-glow {
+            filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.2));
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col font-sans antialiased text-[#0B1325]/80 font-light bg-white selection:bg-[#D4AF37]/20 selection:text-[#0B1325]">
+
+    <header class="w-full border-b border-[#E2E8F0] bg-white sticky top-0 z-40 mb-8">
+        <div class="max-w-6xl mx-auto flex h-24 items-center justify-between px-6 sm:px-12">
+            <div class="flex items-center gap-4">
+                <div>
+                    <h1 class="text-3xl font-serif tracking-tight text-[#0B1325]">PART 1: Research Foundations & Philosophy</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="w-full border-b border-[#E2E8F0] bg-white" aria-label="Main Navigation">
+        <div class="max-w-6xl mx-auto px-6 sm:px-12">
+            <div class="flex flex-wrap gap-x-8 gap-y-2 py-4 justify-start text-xs font-medium tracking-widest uppercase">
+                <button onclick="switchTab('intro')" id="nav-intro" class="nav-btn transition-all duration-300 pb-2 border-b-2 border-[#D4AF37] text-[#0B1325] font-semibold">
+                    Introduction
+                </button>
+                <button onclick="switchTab('bigwords')" id="nav-bigwords" class="nav-btn transition-all duration-300 pb-2 border-b-2 border-transparent text-[#555555] hover:text-[#0B1325]">
+                    Big Words
+                </button>
+                <button onclick="switchTab('reasoning')" id="nav-reasoning" class="nav-btn transition-all duration-300 pb-2 border-b-2 border-transparent text-[#555555] hover:text-[#0B1325]">
+                    Reasoning Modes
+                </button>
+                <button onclick="switchTab('hourglass')" id="nav-hourglass" class="nav-btn transition-all duration-300 pb-2 border-b-2 border-transparent text-[#555555] hover:text-[#0B1325]">
+                    The Hourglass
+                </button>
+                <button onclick="switchTab('conceptualization')" id="nav-conceptualization" class="nav-btn transition-all duration-300 pb-2 border-b-2 border-transparent text-[#555555] hover:text-[#0B1325]">
+                    Conceptualization
+                </button>
+                <button onclick="switchTab('ethics')" id="nav-ethics" class="nav-btn transition-all duration-300 pb-2 border-b-2 border-transparent text-[#555555] hover:text-[#0B1325]">
+                    Research Ethics
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-1 overflow-y-auto bg-white pt-14 pb-16 sm:pb-24">
+        <div class="max-w-4xl mx-auto px-6 sm:px-12 space-y-20">
+
+            <!-- ================= TAB: INTRODUCTION ================= -->
+            <div id="panel-intro" class="tab-panel space-y-12">
+                <div class="prose max-w-none text-[#0B1325]/80 font-light leading-relaxed text-base space-y-6">
+                    <p class="text-2xl text-[#0B1325] font-serif italic leading-tight">
+                        Welcome to the foundation of all rigorous research. Before designing a study or collecting data, it is essential to understand the core principles that underpin scholarly inquiry.
+                    </p>
+                    <p>
+                        Part 1 explores the philosophical bedrock of research, distinguishing between different ways of knowing and reasoning. We will introduce key concepts like theoretical vs. empirical research, deductive and inductive reasoning, and the overarching structure of a research project.
+                    </p>
+                    <p>
+                        Furthermore, we will establish the non-negotiable ethical framework that guides responsible research conduct, ensuring the integrity of your work and the protection of your participants.
+                    </p>
+                </div>
+
+                <div class="pt-8">
+                    <button onclick="switchTab('bigwords')" class="group inline-flex items-center gap-3 border-b border-[#0B1325] pb-2 text-xs uppercase tracking-widest font-semibold text-[#0B1325] transition-all duration-300 hover:text-[#D4AF37] hover:border-[#D4AF37]">
+                        Begin the exploration
+                        <svg class="h-4 w-4 transform transition-transform group-hover:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ================= TAB: FIVE BIG WORDS ================= -->
+            <div id="panel-bigwords" class="tab-panel hidden space-y-12">
+                <div class="space-y-4">
+                    <span class="inline-block text-[11px] uppercase tracking-[0.2em] text-[#D4AF37] font-semibold font-sans">Terminology Matrix</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif text-[#0B1325] tracking-tight">Five Big Words in Research</h2>
+                    <p class="text-[#555555] text-sm font-light max-w-xl">Five fundamental pillars that characterize the philosophy, parameters, and generalizability of modern scientific studies.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6">
+                    
+                    <div class="rounded-2xl border border-[#E2E8F0] p-8 bg-white shadow-xs transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs uppercase tracking-widest text-[#D4AF37] font-semibold font-mono">01</span>
+                                <span class="h-2 w-2 rounded-full bg-[#0B1325]"></span>
+                            </div>
+                            <h3 class="text-xl font-serif font-bold text-[#0B1325]">Theoretical &amp; Empirical</h3>
+                            <p class="text-xs text-[#555555] leading-relaxed">
+                                Social research involves both theoretical and empirical components. Theoretical research explores and tests theories and ideas, while empirical research relies on real-world observations and measurements.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-[#E2E8F0] text-[11px]">
+                            <strong class="text-[#0B1325] uppercase tracking-wider block mb-1">Sociological Example:</strong>
+                            <p class="text-[#555555] leading-relaxed">A sociologist might develop a theory about how social media affects relationships (theoretical) and then conduct surveys to gather real data on the topic (empirical).</p>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-[#E2E8F0] p-8 bg-white shadow-xs transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs uppercase tracking-widest text-[#D4AF37] font-semibold font-mono">02</span>
+                                <span class="h-2 w-2 rounded-full bg-[#0B1325]"></span>
+                            </div>
+                            <h3 class="text-xl font-serif font-bold text-[#0B1325]">Nomothetic</h3>
+                            <p class="text-xs text-[#555555] leading-relaxed">
+                                Nomothetic pertains to general rules (generalizability). This is different from "idiographic," which deals with rules specific to individuals.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-[#E2E8F0] text-[11px]">
+                            <strong class="text-[#0B1325] uppercase tracking-wider block mb-1">Psychology Context:</strong>
+                            <p class="text-[#555555] leading-relaxed">Surveying thousands to establish that 'increased support correlates with lower depression' (nomothetic). Conversely, idiographic studies explore detailed individual case studies.</p>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-[#E2E8F0] p-8 bg-white shadow-xs transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs uppercase tracking-widest text-[#D4AF37] font-semibold font-mono">03</span>
+                                <span class="h-2 w-2 rounded-full bg-[#0B1325]"></span>
+                            </div>
+                            <h3 class="text-xl font-serif font-bold text-[#0B1325]">Probabilistic</h3>
+                            <p class="text-xs text-[#555555] leading-relaxed">
+                                In contemporary social research, certainty is rare. Research often involves estimating probabilities associated with findings.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-[#E2E8F0] text-[11px]">
+                            <strong class="text-[#0B1325] uppercase tracking-wider block mb-1">Statistical Context:</strong>
+                            <p class="text-[#555555] leading-relaxed">Reporting relationship significance levels (<span class="font-mono text-[#D4AF37]">p &lt; .05</span>) indicates that the probability of random fluke is low, but absolute individual certainty remains absent.</p>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-[#E2E8F0] p-8 bg-white shadow-xs transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs uppercase tracking-widest text-[#D4AF37] font-semibold font-mono">04</span>
+                                <span class="h-2 w-2 rounded-full bg-[#0B1325]"></span>
+                            </div>
+                            <h3 class="text-xl font-serif font-bold text-[#0B1325]">Causal</h3>
+                            <p class="text-xs text-[#555555] leading-relaxed">
+                                "Causal" research investigates cause-and-effect relationships. While not all studies directly establish cause and effect, many explore relationships.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-[#E2E8F0] text-[11px]">
+                            <strong class="text-[#0B1325] uppercase tracking-wider block mb-1">Experimental Example:</strong>
+                            <p class="text-[#555555] leading-relaxed">A medical researcher study might monitor the precise causal relationship between smoking (cause) and the subsequent formation of lung tumors (effect).</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ================= TAB: DEDUCTIVE & INDUCTIVE REASONING ================= -->
+            <div id="panel-reasoning" class="tab-panel hidden space-y-12">
+                <div class="space-y-4">
+                    <span class="inline-block text-[11px] uppercase tracking-[0.2em] text-[#D4AF37] font-semibold font-sans">Cognitive Architecture</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif text-[#0B1325] tracking-tight">Deductive vs. Inductive Reasoning</h2>
+                    <p class="text-[#555555] text-sm font-light max-w-xl">Contrast the directions of theory validation (top-down deductive) against theoretical construction (bottom-up inductive).</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6">
+                    <div class="rounded-2xl border border-[#E2E8F0] p-8 bg-white shadow-xs transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-[10px] font-semibold tracking-wider text-[#D4AF37] uppercase">Top-Down Path</span>
+                                <span class="text-xs text-[#555555]">Quantitative Bias</span>
+                            </div>
+                            <h3 class="text-2xl font-serif font-bold text-[#0B1325]">Deductive Reasoning</h3>
+                            <p class="text-xs text-[#555555] leading-relaxed">
+                                Starts with a general statement or theory, and progressively narrows it down to specific conclusions. Often used for hypothesis testing.
+                            </p>
+                            
+                            <div class="pt-4 space-y-2 border-l border-[#E2E8F0] pl-4 text-[11px]">
+                                <div class="text-[#555555]"><strong class="text-[#0B1325]">General Theory:</strong> All mammals have a backbone.</div>
+                                <div class="text-[#555555]"><strong class="text-[#0B1325]">Specific Case:</strong> Horses are mammals.</div>
+                                <div class="text-[#0B1325] font-semibold"><strong class="text-[#D4AF37]">Logical Test:</strong> Therefore, horses have a backbone.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-[#E2E8F0] p-8 bg-white shadow-xs transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-[10px] font-semibold tracking-wider text-[#D4AF37] uppercase">Bottom-Up Path</span>
+                                <span class="text-xs text-[#555555]">Qualitative Bias</span>
+                            </div>
+                            <h3 class="text-2xl font-serif font-bold text-[#0B1325]">Inductive Reasoning</h3>
+                            <p class="text-xs text-[#555555] leading-relaxed">
+                                Begins with specific observations and data, identifies patterns, and generalizes from them. Often used for forming theories or general principles.
+                            </p>
+                            
+                            <div class="pt-4 space-y-2 border-l border-[#E2E8F0] pl-4 text-[11px]">
+                                <div class="text-[#555555]"><strong class="text-[#0B1325]">Specific Observations:</strong> Last 5 math test takers scored &gt; 90%.</div>
+                                <div class="text-[#0B1325] font-semibold"><strong class="text-[#D4AF37]">Generalization:</strong> We conclude that students at this school perform well in math.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-2xl border border-[#E2E8F0] p-8 bg-[#0B1325] text-white space-y-6">
+                    <div class="space-y-2">
+                <span class="text-[9px] font-mono uppercase tracking-widest text-[#D4AF37] font-semibold">Self Assessment</span>
+                <h3 class="text-3xl font-serif text-[#0B1325]">Reviewing Key Concepts</h3>
+                <p class="text-xs text-[#555555]">Verify your mastery over structural research logic, boundaries, and methodology.</p>
+            </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4">
+                        <div class="space-y-3 flex flex-col justify-center">
+                            <button onclick="simulateReasoning('deductive')" id="btn-sim-deductive" class="w-full text-left rounded-xl p-4 bg-[#D4AF37] text-[#0B1325] font-semibold transition-all duration-300 flex items-center justify-between text-xs tracking-wider uppercase">
+                                <span>Deductive Logic</span>
+                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13l-7 7-7-7" /></svg>
+                            </button>
+                            <button onclick="simulateReasoning('inductive')" id="btn-sim-inductive" class="w-full text-left rounded-xl p-4 bg-[#0B1325] text-[#D4AF37] border border-[#D4AF37] font-semibold transition-all duration-300 flex items-center justify-between text-xs tracking-wider uppercase hover:bg-[#D4AF37]/10">
+                                <span>Inductive Logic</span>
+                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7" /></svg>
+                            </button>
+                        </div>
+
+                        <div class="md:col-span-2 bg-[#121B2F] rounded-xl p-6 border border-slate-800 flex flex-col justify-center min-h-[160px]">
+                            <div id="sim-display-container" class="space-y-4">
+                                <!-- Dynamic logic flowchart outputs -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= TAB: THE HOURGLASS MODEL ================= -->
+            <div id="panel-hourglass" class="tab-panel hidden space-y-12">
+                <div class="space-y-4">
+                    <span class="inline-block text-[11px] uppercase tracking-[0.2em] text-[#D4AF37] font-semibold font-sans">Structural Progression</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif text-[#0B1325] tracking-tight">The Hourglass Notion of Research</h2>
+                    <p class="text-[#555555] text-sm font-light max-w-xl">
+                        Research flows from broad inquiries, narrows to precise operational tests, and expands back out to make generalized claims.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-start pt-6">
+                    <div class="md:col-span-5 rounded-2xl border border-[#E2E8F0] p-8 bg-white flex flex-col items-center justify-center">
+                        <span class="text-[9px] font-semibold uppercase tracking-widest text-[#555555] mb-6 block">Interactive Stage SVG</span>
+                        
+                        <svg class="w-full max-w-[220px] h-auto gold-glow" viewBox="0 0 200 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path id="hg-step-1" onclick="selectHourglassStep(1)" class="cursor-pointer transition-all duration-300 stroke-2 hover:fill-[#D4AF37]/10 fill-white stroke-[#0B1325]" d="M20 20 H180 L140 90 H60 L20 20Z" />
+                            <text onclick="selectHourglassStep(1)" class="cursor-pointer fill-[#0B1325] text-[10px] font-serif tracking-wider font-bold select-none" x="100" y="45" text-anchor="middle">1. Broad Interest</text>
+
+                            <path id="hg-step-2" onclick="selectHourglassStep(2)" class="cursor-pointer transition-all duration-300 stroke-2 hover:fill-[#D4AF37]/10 fill-white stroke-[#0B1325]" d="M60 90 H140 L115 130 H85 L60 90Z" />
+                            <text onclick="selectHourglassStep(2)" class="cursor-pointer fill-[#0B1325] text-[8px] font-serif tracking-wider font-bold select-none" x="100" y="112" text-anchor="middle">2. Focus Question</text>
+
+                            <path id="hg-step-3" onclick="selectHourglassStep(3)" class="cursor-pointer transition-all duration-300 stroke-2 hover:fill-[#D4AF37]/10 fill-white stroke-[#0B1325]" d="M85 130 H115 L110 160 H90 L85 130Z" />
+                            <text onclick="selectHourglassStep(3)" class="cursor-pointer fill-[#0B1325] text-[8px] font-serif tracking-wider font-bold select-none" x="100" y="148" text-anchor="middle">3. Collection</text>
+
+                            <path id="hg-step-4" onclick="selectHourglassStep(4)" class="cursor-pointer transition-all duration-300 stroke-2 hover:fill-[#D4AF37]/10 fill-white stroke-[#0B1325]" d="M90 160 H110 L115 190 H85 L90 160Z" />
+                            <text onclick="selectHourglassStep(4)" class="cursor-pointer fill-[#0B1325] text-[8px] font-serif tracking-wider font-bold select-none" x="100" y="178" text-anchor="middle">4. Analysis</text>
+
+                            <path id="hg-step-5" onclick="selectHourglassStep(5)" class="cursor-pointer transition-all duration-300 stroke-2 hover:fill-[#D4AF37]/10 fill-white stroke-[#0B1325]" d="M85 190 H115 L140 230 H60 L85 190Z" />
+                            <text onclick="selectHourglassStep(5)" class="cursor-pointer fill-[#0B1325] text-[8px] font-serif tracking-wider font-bold select-none" x="100" y="213" text-anchor="middle">5. Conclusions</text>
+
+                            <path id="hg-step-6" onclick="selectHourglassStep(6)" class="cursor-pointer transition-all duration-300 stroke-2 hover:fill-[#D4AF37]/10 fill-white stroke-[#0B1325]" d="M60 230 H140 L180 300 H20 L60 230Z" />
+                            <text onclick="selectHourglassStep(6)" class="cursor-pointer fill-[#0B1325] text-[10px] font-serif tracking-wider font-bold select-none" x="100" y="270" text-anchor="middle">6. Generalization</text>
+                        </svg>
+                    </div>
+
+                    <div class="md:col-span-7 space-y-4">
+                        <div id="hourglass-info-box" class="rounded-2xl border border-[#E2E8F0] p-8 bg-white min-h-[350px] flex flex-col justify-between">
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-3">
+                                    <span id="hg-info-badge" class="inline-flex rounded-full border border-[#D4AF37] px-3 py-0.5 text-[9px] font-mono font-bold text-[#D4AF37]">STAGE 1</span>
+                                    <h3 id="hg-info-title" class="text-xl font-serif font-bold text-[#0B1325]">Broad Area of Interest</h3>
+                                </div>
+                                
+                                <p id="hg-info-desc" class="text-xs text-[#555555] leading-relaxed">
+                                    Research begins with a generalized topic, observation, or real-world problem. This stage captures a macroscopic area of curiosity before restricting variables.
+                                </p>
+
+                                <div class="rounded-xl bg-[#0B1325]/5 p-5 border border-[#E2E8F0] space-y-2">
+                                    <h4 class="text-[9px] font-bold tracking-widest uppercase text-[#555555]">Academic Example</h4>
+                                    <p id="hg-info-example" class="text-xs text-[#0B1325] italic leading-relaxed">
+                                        "An educational researcher starts with a generic goal: wanting to explore how student classroom mathematics performance can be improved through digital tools."
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-between items-center border-t border-[#E2E8F0] pt-6">
+                                <span class="text-[10px] text-[#555555]">Click the SVG steps to navigate.</span>
+                                <div class="flex gap-2">
+                                    <button id="hg-prev-btn" onclick="offsetHourglassStep(-1)" class="rounded border border-[#E2E8F0] hover:border-[#D4AF37] px-3 py-1 text-[10px] tracking-wider uppercase font-medium transition-all">Prev</button>
+                                    <button id="hg-next-btn" onclick="offsetHourglassStep(1)" class="rounded bg-[#0B1325] hover:bg-[#D4AF37] text-white px-3 py-1 text-[10px] tracking-wider uppercase font-medium transition-all">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= TAB: CONCEPTUALIZATION ================= -->
+            <div id="panel-conceptualization" class="tab-panel hidden space-y-12">
+                <div class="space-y-4">
+                    <span class="inline-block text-[11px] uppercase tracking-[0.2em] text-[#D4AF37] font-semibold font-sans">Operational Frameworks</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif text-[#0B1325] tracking-tight">Conceptualization in Research</h2>
+                    <p class="text-[#555555] text-sm font-light max-w-xl">Deep-dive into specifying, operationalizing, and assessing the construct validity of scientific variables.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
+                    <div class="rounded-2xl border border-[#E2E8F0] p-6 bg-white space-y-2">
+                        <span class="text-[9px] font-semibold text-[#D4AF37] uppercase tracking-wider font-mono">Phase I</span>
+                        <h3 class="text-base font-serif font-bold text-[#0B1325]">Definition of Concepts</h3>
+                        <p class="text-xs text-[#555555] leading-relaxed">
+                            Precisely defining key variables to prevent ambiguity and ensure consistent operational standards across contexts.
+                        </p>
+                    </div>
+
+                    <div class="rounded-2xl border border-[#E2E8F0] p-6 bg-white space-y-2">
+                        <span class="text-[9px] font-semibold text-[#D4AF37] uppercase tracking-wider font-mono">Phase II</span>
+                        <h3 class="text-base font-serif font-bold text-[#0B1325]">Operationalization</h3>
+                        <p class="text-xs text-[#555555] leading-relaxed">
+                            Translating abstract mental constructs into physical parameters, questionnaire items, or metrics for structured empirical validation.
+                        </p>
+                    </div>
+
+                    <div class="rounded-2xl border border-[#E2E8F0] p-6 bg-white space-y-2">
+                        <span class="text-[9px] font-semibold text-[#D4AF37] uppercase tracking-wider font-mono">Phase III</span>
+                        <h3 class="text-base font-serif font-bold text-[#0B1325]">Construct Validity</h3>
+                        <p class="text-xs text-[#555555] leading-relaxed">
+                            Ensuring that specific measurements (e.g., GPA) accurately represent the underlying theoretical constructs (e.g., academic intelligence).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="rounded-2xl border border-[#E2E8F0] p-8 bg-white space-y-6">
+                    <h3 class="text-lg font-serif font-bold text-[#0B1325]">The Eleven Foundations of Conceptualization</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 text-xs text-[#555555]">
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-[#0B1325]">1. Definition of Concepts</h4>
+                            <p class="leading-relaxed font-light">Formulating precise, consistent, clear definitions to eliminate research ambiguity.</p>
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-[#0B1325]">2. Theoretical Framework</h4>
+                            <p class="leading-relaxed font-light">Placing concepts within models derived from existing theories.</p>
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-[#0B1325]">3. Conceptual Framework</h4>
+                            <p class="leading-relaxed font-light">Creating a written or visual schematic representation of interrelations.</p>
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-[#0B1325]">4. Operationalization</h4>
+                            <p class="leading-relaxed font-light">Converting high-level concepts into exact physical measurement criteria.</p>
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-[#0B1325]">5. Construct Validity</h4>
+                            <p class="leading-relaxed font-light">Verifying that the instruments measure what was theoretically intended.</p>
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-[#0B1325]">6. Conceptual Clarity</h4>
+                            <p class="leading-relaxed font-light">Explicitly distinguishing between similar variables to maintain integrity.</p>
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-[#0B1325]">7. Literature Review</h4>
+                            <p class="leading-relaxed font-light">Revising concept definitions by inspecting previously tested methods.</p>
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-[#0B1325]">8. Hypothesis Formulation</h4>
+                            <p class="leading-relaxed font-light">Generating testable questions based on the structured conceptual design.</p>
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-[#0B1325]">9. Pilot Testing</h4>
+                            <p class="leading-relaxed font-light">Executing small preliminary trials to confirm metric feasibility.</p>
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-[#0B1325]">10. Revisiting and Revising</h4>
+                            <p class="leading-relaxed font-light">Rethinking parameters as data yields deeper unexpected insights.</p>
+                        </div>
+                        <div class="space-y-1 sm:col-span-2">
+                            <h4 class="font-bold text-[#0B1325]">11. Communication</h4>
+                            <p class="leading-relaxed font-light text-xs">Exposing frameworks clearly to peer reviewers and academic audiences for transparency.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-2xl border border-[#E2E8F0] p-8 bg-white space-y-6">
+                    <div class="border-b border-[#E2E8F0] pb-4">
+                        <span class="text-[9px] uppercase tracking-widest text-[#D4AF37] font-semibold block">Case Study Simulator</span>
+                        <h3 class="text-xl font-serif font-bold text-[#0B1325]">Academic Performance Framework</h3>
+                        <p class="text-xs text-[#555555] mt-1">Interact with variables to observe how conceptual models predict GPA output.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-5 space-y-4 bg-slate-50/50 p-6 rounded-xl border border-[#E2E8F0]">
+                            <h4 class="text-[10px] font-bold tracking-widest uppercase text-[#555555]">Configure Predictors</h4>
+
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-[11px]">
+                                    <span class="text-[#0B1325]">Study Habits (Hours/Wk)</span>
+                                    <span id="val-study" class="font-mono text-[#D4AF37] font-bold">12 hrs</span>
+                                </div>
+                                <input id="slide-study" oninput="updateConceptSim()" type="range" min="2" max="30" value="12" class="w-full accent-[#0B1325] h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                            </div>
+
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-[11px]">
+                                    <span class="text-[#0B1325]">Attendance Rate (%)</span>
+                                    <span id="val-attendance" class="font-mono text-[#0B1325] font-bold">92%</span>
+                                </div>
+                                <input id="slide-attendance" oninput="updateConceptSim()" type="range" min="50" max="100" value="92" class="w-full accent-[#0B1325] h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                            </div>
+
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-[11px]">
+                                    <span class="text-[#0B1325]">Socioeconomic Income</span>
+                                    <span id="val-income" class="font-mono text-[#555555] font-bold">$65K</span>
+                                </div>
+                                <input id="slide-income" oninput="updateConceptSim()" type="range" min="15" max="150" value="65" class="w-full accent-[#0B1325] h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                            </div>
+
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-[11px]">
+                                    <span class="text-[#0B1325]">Parental PTA Meetings/Yr</span>
+                                    <span id="val-involvement" class="font-mono text-[#D4AF37] font-bold">4 mtgs</span>
+                                </div>
+                                <input id="slide-involvement" oninput="updateConceptSim()" type="range" min="0" max="12" value="4" class="w-full accent-[#0B1325] h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-7 border border-[#E2E8F0] rounded-xl p-6 flex flex-col justify-between h-full space-y-4">
+                            <div class="space-y-3">
+                                <h4 class="text-[9px] font-bold uppercase tracking-widest text-[#555555]">Operational Mappings</h4>
+                                <div class="space-y-2 text-xs">
+                                    <div class="flex justify-between border-b border-slate-100 pb-1">
+                                        <span class="text-[#555555]">Study Hours indicator:</span>
+                                        <span id="vis-study" class="font-mono text-[#0B1325] font-bold">12h</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-slate-100 pb-1">
+                                        <span class="text-[#555555]">Attendance Rate indicator:</span>
+                                        <span id="vis-attendance" class="font-mono text-[#0B1325] font-bold">92%</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-slate-100 pb-1">
+                                        <span class="text-[#555555]">PTA Schedule frequency:</span>
+                                        <span id="vis-involvement" class="font-mono text-[#0B1325] font-bold">4</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center py-4 bg-[#0B1325]/5 rounded-lg border border-[#E2E8F0]">
+                                <span class="text-[9px] font-bold tracking-widest uppercase text-[#555555]">Predicted Academic Performance (GPA)</span>
+                                <div id="vis-predicted-gpa" class="text-4xl font-serif font-bold text-[#0B1325] mt-1">3.42</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= TAB: ETHICS IN RESEARCH ================= -->
+            <div id="panel-ethics" class="tab-panel hidden space-y-12">
+                <div class="space-y-4">
+                    <span class="inline-block text-[11px] uppercase tracking-[0.2em] text-[#D4AF37] font-semibold font-sans">Moral Mandates</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif text-[#0B1325] tracking-tight">Ethics in Research</h2>
+                    <p class="text-[#555555] text-sm font-light max-w-xl">Uphold absolute structural standards to preserve trust, transparency, and human participant dignity.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6">
+                    <div class="border border-[#E2E8F0] p-6 rounded-2xl bg-white space-y-2">
+                        <h3 class="font-serif font-bold text-lg text-[#0B1325]">Informed Consent</h3>
+                        <p class="text-xs text-[#555555] leading-relaxed">
+                            Obtaining voluntary, written, and explicit agreement from participants before study access, detailing potential hazards, targets, and exit options. Particular protection must be extended to vulnerable communities.
+                        </p>
+                    </div>
+
+                    <div class="border border-[#E2E8F0] p-6 rounded-2xl bg-white space-y-2">
+                        <h3 class="font-serif font-bold text-lg text-[#0B1325]">Beneficence</h3>
+                        <p class="text-xs text-[#555555] leading-relaxed">
+                            Maximizing prospective scientific yields for humanity and participants while actively implementing parameters to protect individuals from risks or injury.
+                        </p>
+                    </div>
+
+                    <div class="border border-[#E2E8F0] p-6 rounded-2xl bg-white space-y-2">
+                        <h3 class="font-serif font-bold text-lg text-[#0B1325]">Privacy &amp; Confidentiality</h3>
+                        <p class="text-xs text-[#555555] leading-relaxed">
+                            Securing raw datasets and anonymizing personal details. Identities must not be revealed without clear, written authority.
+                        </p>
+                    </div>
+
+                    <div class="border border-[#E2E8F0] p-6 rounded-2xl bg-white space-y-2">
+                        <h3 class="font-serif font-bold text-lg text-[#0B1325]">Justice</h3>
+                        <p class="text-xs text-[#555555] leading-relaxed">
+                            Insuring equitable, balanced dispersion of workload and discovery fruits. Avoid discriminating against or exploiting vulnerable populations.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border border-[#E2E8F0] p-8 rounded-2xl bg-[#0B1325]/5 space-y-6 text-xs text-[#555555]">
+                    <h3 class="text-base font-serif font-bold text-[#0B1325]">Full Scope of Ethical Responsibility</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-4">
+                            <p><strong>Honesty &amp; Integrity:</strong> Explicitly representing findings and strictly avoiding data fabrication, falsification, or plagiarism.</p>
+                            <p><strong>Respect for Autonomy:</strong> Recognizing absolute participant freedom to decline or terminate participation at any moment without penalty.</p>
+                            <p><strong>Social Responsibility:</strong> Directing scientific endeavors to advance public welfare, minimize societal harms, and improve standards of living.</p>
+                        </div>
+                        <div class="space-y-4">
+                            <p><strong>Research Ethics Review (IRBs):</strong> Acquiring advance formal approval from Institutional Review Boards or research ethics boards before study initiation.</p>
+                            <p><strong>International Guidelines:</strong> Staying aligned with international milestones like the Belmont Report, the Declaration of Helsinki, and national regulations.</p>
+                            <p><strong>Conflicts of Interest:</strong> Disclosing any competing financial, political, or professional associations that could potentially bias interpretation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border border-[#D4AF37]/50 rounded-2xl p-8 bg-white space-y-6">
+                    <div class="space-y-2">
+                        <span class="inline-flex rounded-full border border-[#D4AF37] px-3 py-0.5 text-[9px] font-mono font-bold text-[#D4AF37] uppercase">Interactive Paradox</span>
+                        <h3 class="text-2xl font-serif font-bold text-[#0B1325]">The Adolescent Confidentiality Dilemma</h3>
+                        <p class="text-xs text-[#555555] leading-relaxed">
+                            <strong>Context Case Scenario:</strong> You are conducting qualitative structured interviews with vulnerable high school students regarding dangerous, risky local behavior. You promised full study confidentiality to encourage participant trust. Mid-interview, a student discloses ongoing, severe, life-threatening self-harm.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pt-4">
+                        <div class="md:col-span-5 space-y-3 flex flex-col justify-center">
+                            <button onclick="resolveDilemma('confidentiality')" id="btn-opt-conf" class="w-full text-left rounded-xl p-4 bg-[#0B1325]/5 text-xs text-[#0B1325] border border-[#E2E8F0] font-semibold transition-all duration-300">
+                                <strong class="block mb-1 text-[10px] text-[#D4AF37] uppercase font-mono">Option A</strong>
+                                Uphold absolute confidentiality. Protect data reliability.
+                            </button>
+                            <button onclick="resolveDilemma('harm')" id="btn-opt-harm" class="w-full text-left rounded-xl p-4 bg-[#0B1325]/5 text-xs text-[#0B1325] border border-[#E2E8F0] font-semibold transition-all duration-300">
+                                <strong class="block mb-1 text-[10px] text-[#D4AF37] uppercase font-mono">Option B</strong>
+                                Breach trust. Contact authorities immediately.
+                            </button>
+                            <button onclick="resolveDilemma('protocol')" id="btn-opt-prot" class="w-full text-left rounded-xl p-4 bg-[#0B1325] text-xs text-white font-semibold transition-all duration-300">
+                                <strong class="block mb-1 text-[10px] text-[#D4AF37] uppercase font-mono">Option C (Standard Protocol)</strong>
+                                Execute pre-defined confidentiality limits shared during upfront consent.
+                            </button>
+                        </div>
+
+                        <div class="md:col-span-7 border border-[#E2E8F0] rounded-xl p-6 flex flex-col justify-between space-y-4">
+                            <div>
+                                <h4 class="text-[9px] font-bold uppercase tracking-widest text-[#555555]">Resolution Analyzer</h4>
+                                <div id="dilemma-analysis-text" class="mt-3 text-xs leading-relaxed text-[#0B1325]/80">
+                                    Click a scenario approach on the left to analyze the ethical trade-offs.
+                                </div>
+                            </div>
+                            <div class="border-t border-[#E2E8F0] pt-4 flex justify-between items-center text-[10px]">
+                                <span class="text-[#555555]">Ethics Verdict:</span>
+                                <span class="font-bold text-[#D4AF37] uppercase tracking-wider" id="dilemma-verdict">Awaiting selection</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= DYNAMIC QUIZ SECTION (KNOWLEDGE CHECK) ================= -->
+            <div class="border-t border-[#E2E8F0] pt-16">
+                <div class="rounded-2xl border border-[#E2E8F0] p-8 sm:p-12 bg-white space-y-8">
+                    <div class="space-y-2">
+                        <span class="text-[9px] font-mono uppercase tracking-widest text-[#D4AF37] font-semibold">Self Assessment</span>
+                        <h3 class="text-3xl font-serif text-[#0B1325]">Reviewing Key Concepts</h3>
+                        <p class="text-xs text-[#555555]">Verify your mastery over structural research logic, boundaries, and methodology.</p>
+                    </div>
+
+                    <div class="space-y-6 pt-4 border-t border-[#E2E8F0]">
+                        <div id="quiz-question-container">
+                            <h4 id="quiz-question-title" class="text-sm font-serif font-bold text-[#0B1325] leading-relaxed"></h4>
+                            
+                            <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4" id="quiz-options-grid">
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 border-t border-[#E2E8F0]">
+                            <span class="text-[10px] text-[#555555] font-mono uppercase tracking-wider" id="quiz-progress-text">Question 1 of 4</span>
+                            <div id="quiz-feedback" class="hidden text-xs font-semibold"></div>
+                            <button onclick="nextQuizQuestion()" id="quiz-next-btn" class="hidden rounded bg-[#0B1325] hover:bg-[#D4AF37] text-white px-4 py-2 text-[10px] tracking-wider uppercase font-bold transition-all">
+                                Next Question
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-panel').forEach(panel => {
+                panel.classList.add('hidden');
+            });
+            const targetPanel = document.getElementById(`panel-${tabId}`);
+            if (targetPanel) {
+                targetPanel.classList.remove('hidden');
+            }
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.className = "nav-btn transition-all duration-300 pb-2 border-b-2 border-transparent text-[#555555] hover:text-[#0B1325]";
+            });
+            const activeNavBtn = document.getElementById(`nav-${tabId}`);
+            if (activeNavBtn) {
+                activeNavBtn.className = "nav-btn transition-all duration-300 pb-2 border-b-2 border-[#D4AF37] text-[#0B1325] font-semibold";
+            }
+        }
+
+        function simulateReasoning(type) {
+            const container = document.getElementById('sim-display-container');
+            const btnDeductive = document.getElementById('btn-sim-deductive');
+            const btnInductive = document.getElementById('btn-sim-inductive');
+
+            if (type === 'deductive') {
+                btnDeductive.className = "w-full text-left rounded-xl p-4 bg-[#D4AF37] text-[#0B1325] font-semibold transition-all duration-300 flex items-center justify-between text-xs tracking-wider uppercase";
+                btnInductive.className = "w-full text-left rounded-xl p-4 bg-[#0B1325] text-[#D4AF37] border border-[#D4AF37] font-semibold transition-all duration-300 flex items-center justify-between text-xs tracking-wider uppercase hover:bg-[#D4AF37]/10";
+
+                container.innerHTML = `
+                    <div class="space-y-4 text-xs font-light">
+                        <div class="flex items-center gap-2">
+                            <span class="inline-block px-2 py-0.5 border border-[#D4AF37] text-[#D4AF37] rounded text-[8px] font-mono">1. THEORY</span>
+                            <span class="font-mono text-slate-400">&gt; All mammals have backbones</span>
+                        </div>
+                        <div class="pl-4 border-l border-[#D4AF37]/30 text-slate-300 font-light leading-relaxed">
+                            We start with a validated, generalized universal premise.
+                        </div>
+                        
+                        <div class="flex items-center gap-2">
+                            <span class="inline-block px-2 py-0.5 border border-[#D4AF37] text-[#D4AF37] rounded text-[8px] font-mono">2. SPECIFIC CASE</span>
+                            <span class="font-mono text-slate-400">&gt; Horses are mammals</span>
+                        </div>
+                        <div class="pl-4 border-l border-[#D4AF37]/30 text-slate-300 font-light leading-relaxed">
+                            Focus the broad statement down to observe a localized context.
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <span class="inline-block px-2 py-0.5 bg-[#D4AF37] text-[#0B1325] rounded text-[8px] font-mono font-bold">3. CONCLUSION</span>
+                            <span class="font-mono font-bold text-[#D4AF37]">&gt; Therefore, horses have backbones</span>
+                        </div>
+                        <div class="pl-4 border-l border-[#D4AF37] text-white font-normal leading-relaxed">
+                            The deductive test confirms a clean, absolute proof.
+                        </div>
+                    </div>
+                `;
+            } else {
+                btnDeductive.className = "w-full text-left rounded-xl p-4 bg-[#0B1325] text-[#D4AF37] border border-[#D4AF37] font-semibold transition-all duration-300 flex items-center justify-between text-xs tracking-wider uppercase hover:bg-[#D4AF37]/10";
+                btnInductive.className = "w-full text-left rounded-xl p-4 bg-[#D4AF37] text-[#0B1325] font-semibold transition-all duration-300 flex items-center justify-between text-xs tracking-wider uppercase";
+
+                container.innerHTML = `
+                    <div class="space-y-4 text-xs font-light">
+                        <div class="flex items-center gap-2">
+                            <span class="inline-block px-2 py-0.5 border border-[#D4AF37] text-[#D4AF37] rounded text-[8px] font-mono">1. OBSERVATIONS</span>
+                            <span class="font-mono text-slate-400">&gt; Last 5 math test scores &gt; 90%</span>
+                        </div>
+                        <div class="pl-4 border-l border-[#D4AF37]/30 text-slate-300 font-light leading-relaxed">
+                            Identify localized empirical observations from distinct target subjects.
+                        </div>
+                        
+                        <div class="flex items-center gap-2">
+                            <span class="inline-block px-2 py-0.5 border border-[#D4AF37] text-[#D4AF37] rounded text-[8px] font-mono">2. DETECT PATTERNS</span>
+                            <span class="font-mono text-slate-400">&gt; Student excellence repeats consistently</span>
+                        </div>
+                        <div class="pl-4 border-l border-[#D4AF37]/30 text-slate-300 font-light leading-relaxed">
+                            Analyze the physical outcomes to isolate repeating trends.
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <span class="inline-block px-2 py-0.5 bg-[#D4AF37] text-[#0B1325] rounded text-[8px] font-mono font-bold">3. BROAD THEORY</span>
+                            <span class="font-mono font-bold text-[#D4AF37]">&gt; Students here perform well in math</span>
+                        </div>
+                        <div class="pl-4 border-l border-[#D4AF37] text-white font-normal leading-relaxed">
+                            Formulate a broad, probabilistic rule to explain the population overall.
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        simulateReasoning('deductive');
+
+        const hgSteps = [
+            {
+                badge: "STAGE 1",
+                title: "Broad Area of Interest",
+                desc: "Research begins with a broad question or a general area of interest before variables are strictly defined.",
+                example: '"An educational researcher starts with a generic goal: wanting to explore how student classroom mathematics performance can be improved through digital tools."'
+            },
+            {
+                badge: "STAGE 2",
+                title: "Narrowing the Focus & Operationalizing",
+                desc: "The researcher refines that interest into a precise question or testable hypothesis, operationalizing variables within the project's scope.",
+                example: '"The researcher hypothesizes that a particular computer-based math instruction method will enhance the performance of elementary school students in a specific district."'
+            },
+            {
+                badge: "STAGE 3",
+                title: "Data Collection",
+                desc: "With operational variables defined, the investigator collects relevant empirical data through structured testing or direct measurement.",
+                example: '"The researcher collects data on student performance in math before and after implementing the computer-based instruction."'
+            },
+            {
+                badge: "STAGE 4",
+                title: "Data Analysis",
+                desc: "The collected empirical data is analyzed statistically or qualitatively to extract insights, relationships, and significance levels.",
+                example: '"Statistical analyses are conducted to determine if there is a significant improvement in student math scores after using the computer program."'
+            },
+            {
+                badge: "STAGE 5",
+                title: "Formulating Initial Conclusions",
+                desc: "Based strictly on data analysis, preliminary conclusions are formulated, directly addressing the project's core hypothesis.",
+                example: '"The researcher concludes that the computerized math program had a positive impact on student performance in the specific district."'
+            },
+            {
+                badge: "STAGE 6",
+                title: "Generalization & Broader Implications",
+                desc: "Finally, the hourglass expands back out as researchers attempt to generalize these findings back to broader theoretical frameworks and wider populations.",
+                example: '"The researcher suggests that other school districts similar to the one studied may also benefit from implementing the same computer-based math program due to the positive results observed."'
+            }
+        ];
+
+        let currentHgStep = 1;
+
+        function updateHourglassUI() {
+            const step = hgSteps[currentHgStep - 1];
+            
+            document.getElementById('hg-info-badge').innerText = step.badge;
+            document.getElementById('hg-info-title').innerText = step.title;
+            document.getElementById('hg-info-desc').innerText = step.desc;
+            document.getElementById('hg-info-example').innerText = step.example;
+
+            for (let i = 1; i <= 6; i++) {
+                const el = document.getElementById(`hg-step-${i}`);
+                if (el) {
+                    if (i === currentHgStep) {
+                        el.style.fill = "rgba(212, 175, 55, 0.15)";
+                        el.style.stroke = "#D4AF37";
+                    } else {
+                        el.style.fill = "#FFFFFF";
+                        el.style.stroke = "#0B1325";
+                    }
+                }
+            }
+
+            document.getElementById('hg-prev-btn').disabled = (currentHgStep === 1);
+            document.getElementById('hg-next-btn').disabled = (currentHgStep === 6);
+        }
+
+        function selectHourglassStep(stepNum) {
+            currentHgStep = stepNum;
+            updateHourglassUI();
+        }
+
+        function offsetHourglassStep(offset) {
+            const newStep = currentHgStep + offset;
+            if (newStep >= 1 && newStep <= 6) {
+                currentHgStep = newStep;
+                updateHourglassUI();
+            }
+        }
+
+        updateHourglassUI();
+
+        function updateConceptSim() {
+            const studyHours = parseFloat(document.getElementById('slide-study').value);
+            const attendance = parseFloat(document.getElementById('slide-attendance').value);
+            const income = parseFloat(document.getElementById('slide-income').value);
+            const involvement = parseFloat(document.getElementById('slide-involvement').value);
+
+            document.getElementById('val-study').innerText = `${studyHours} hrs`;
+            document.getElementById('val-attendance').innerText = `${attendance}%`;
+            document.getElementById('val-income').innerText = `$${income}K`;
+            document.getElementById('val-involvement').innerText = `${involvement} mtg${involvement === 1 ? '' : 's'}`;
+
+            document.getElementById('vis-study').innerText = `${studyHours}h/wk`;
+            document.getElementById('vis-attendance').innerText = `${attendance}%`;
+            document.getElementById('vis-involvement').innerText = `${involvement}`;
+
+            let predictedGPA = 2.0;
+            predictedGPA += (studyHours / 30) * 1.0;
+            predictedGPA += ((attendance - 50) / 50) * 0.7;
+            predictedGPA += (income / 150) * 0.1;
+            predictedGPA += (involvement / 12) * 0.2;
+
+            if (predictedGPA > 4.0) predictedGPA = 4.0;
+            if (predictedGPA < 2.0) predictedGPA = 2.0;
+
+            document.getElementById('vis-predicted-gpa').innerText = predictedGPA.toFixed(2);
+        }
+
+        updateConceptSim();
+
+        function resolveDilemma(choice) {
+            const analysisText = document.getElementById('dilemma-analysis-text');
+            const verdict = document.getElementById('dilemma-verdict');
+
+            document.getElementById('btn-opt-conf').className = "w-full text-left rounded-xl p-4 bg-[#0B1325]/5 text-xs text-[#0B1325] border border-[#E2E8F0] font-semibold transition-all duration-300";
+            document.getElementById('btn-opt-harm').className = "w-full text-left rounded-xl p-4 bg-[#0B1325]/5 text-xs text-[#0B1325] border border-[#E2E8F0] font-semibold transition-all duration-300";
+            document.getElementById('btn-opt-prot').className = "w-full text-left rounded-xl p-4 bg-[#0B1325]/5 text-xs text-[#0B1325] border border-[#E2E8F0] font-semibold transition-all duration-300";
+
+            if (choice === 'confidentiality') {
+                document.getElementById('btn-opt-conf').className = "w-full text-left rounded-xl p-4 bg-white text-xs text-[#0B1325] border-2 border-[#D4AF37] font-semibold transition-all duration-300";
+                analysisText.innerHTML = `
+                    <p class="text-[#0B1325] font-serif font-bold mb-2">RISK ASSIGNED: Failure of Beneficence</p>
+                    <p class="font-light">While protecting confidentiality promotes participant trust, standard human ethical guidelines demand prioritized safety over privacy. Denying intervention during immediate self-harm violates the foundational principle of <strong>Beneficence</strong> (minimizing participant danger).</p>
+                `;
+                verdict.innerText = "Ethically Compromised";
+            } else if (choice === 'harm') {
+                document.getElementById('btn-opt-harm').className = "w-full text-left rounded-xl p-4 bg-white text-xs text-[#0B1325] border-2 border-[#D4AF37] font-semibold transition-all duration-300";
+                analysisText.innerHTML = `
+                    <p class="text-[#0B1325] font-serif font-bold mb-2">RISK ASSIGNED: Autonomy Infringement</p>
+                    <p class="font-light">Securing immediate rescue is vital, but breaking a total confidentiality pledge without pre-disclosed limits compromises participant <strong>Autonomy</strong> and destroys overall methodology trust.</p>
+                `;
+                verdict.innerText = "Incomplete Design";
+            } else if (choice === 'protocol') {
+                document.getElementById('btn-opt-prot').className = "w-full text-left rounded-xl p-4 bg-[#0B1325] text-xs text-white font-semibold transition-all duration-300";
+                analysisText.innerHTML = `
+                    <p class="text-[#D4AF37] font-serif font-bold mb-2">RESOLVED: Balanced Autonomy &amp; Beneficence</p>
+                    <p class="font-light text-slate-700">By implementing pre-established <strong>limits of confidentiality</strong> during initial informed consent forms, you uphold autonomy (giving adolescents clear agency) while fulfilling your duty to protect them from critical harm.</p>
+                `;
+                verdict.innerText = "Ideal & Moral Path";
+            }
+        }
+
+        resolveDilemma('protocol');
+
+        const quizData = [
+            {
+                question: "1. A researcher compiles numeric logs from mental health apps to map stress trends across the general population. Which descriptors best represent this method?",
+                options: [
+                    "A) Theoretical & Idiographic",
+                    "B) Empirical & Nomothetic",
+                    "C) Deductive & Idiographic",
+                    "D) Inductive & Causal"
+                ],
+                correct: 1,
+                feedback: "Correct! Gathering real-world logs is Empirical, and seeking general rules that apply broadly is Nomothetic."
+            },
+            {
+                question: "2. Which intellectual logic path starts with highly localized observation data and progresses upward to construct broad general theories?",
+                options: [
+                    "A) Deductive Reasoning",
+                    "B) Quantitative Hypothesis Testing",
+                    "C) Inductive Reasoning",
+                    "D) Nomothetic Parameterization"
+                ],
+                correct: 2,
+                feedback: "Correct! Inductive reasoning compiles specific instances to build generalized hypotheses and overarching models."
+            },
+            {
+                question: "3. To maximize 'Construct Validity' during academic performance examinations, the investigator must:",
+                options: [
+                    "A) Secure strict participant confidentiality agreements.",
+                    "B) Verify that operationalized scales (like GPA) accurately represent the underlying theoretical constructs.",
+                    "C) Formulate a deductive hypothesis about single individual subjects.",
+                    "D) Perform qualitative pilot testing on external variables."
+                ],
+                correct: 1,
+                feedback: "Correct! Construct validity measures whether physical tools accurately record target mental or behavioral structures."
+            },
+            {
+                question: "4. An adolescent subject mentions active danger of self-harm. What is the ethically sound approach under standard research protocols?",
+                options: [
+                    "A) Breach total confidentiality instantly without warning to secure protection.",
+                    "B) Retain complete confidentiality to guarantee study truthfulness.",
+                    "C) Enact pre-established limits of confidentiality disclosed during informed consent processes.",
+                    "D) Terminate the study immediately to avoid liability concerns."
+                ],
+                correct: 2,
+                feedback: "Correct! The most ethical approach is stating the limits of confidentiality transparently during the initial consent process."
+            }
+        ];
+
+        let currentQuizIndex = 0;
+        let selectedOption = null;
+
+        function renderQuizQuestion() {
+            const currentItem = quizData[currentQuizIndex];
+            document.getElementById('quiz-question-title').innerText = currentItem.question;
+            document.getElementById('quiz-progress-text').innerText = `Question ${currentQuizIndex + 1} of ${quizData.length}`;
+
+            const optionsGrid = document.getElementById('quiz-options-grid');
+            optionsGrid.innerHTML = '';
+            
+            currentItem.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "quiz-opt-btn w-full text-left rounded-xl p-4 bg-white border border-[#E2E8F0] text-xs font-light transition-all duration-300 hover:border-[#D4AF37]";
+                btn.innerText = opt;
+                btn.onclick = () => selectQuizAnswer(idx, btn);
+                optionsGrid.appendChild(btn);
+            });
+
+            document.getElementById('quiz-feedback').classList.add('hidden');
+            document.getElementById('quiz-next-btn').classList.add('hidden');
+            selectedOption = null;
+        }
+
+        function selectQuizAnswer(index, btnEl) {
+            document.querySelectorAll('.quiz-opt-btn').forEach(btn => {
+                btn.className = "quiz-opt-btn w-full text-left rounded-xl p-4 bg-white border border-[#E2E8F0] text-xs font-light transition-all duration-300 hover:border-[#D4AF37]";
+            });
+
+            selectedOption = index;
+            btnEl.className = "quiz-opt-btn w-full text-left rounded-xl p-4 bg-[#0B1325]/5 border border-[#D4AF37] text-xs font-semibold text-[#0B1325]";
+            
+            const currentItem = quizData[currentQuizIndex];
+            const feedbackEl = document.getElementById('quiz-feedback');
+            
+            feedbackEl.classList.remove('hidden');
+            if (index === currentItem.correct) {
+                feedbackEl.className = "text-xs font-semibold text-emerald-600";
+                feedbackEl.innerHTML = `✓ ${currentItem.feedback}`;
+            } else {
+                feedbackEl.className = "text-xs font-semibold text-red-600";
+                feedbackEl.innerHTML = `✗ Incorrect. Try again!`;
+            }
+
+            document.getElementById('quiz-next-btn').classList.remove('hidden');
+        }
+
+        function nextQuizQuestion() {
+            currentQuizIndex++;
+            if (currentQuizIndex < quizData.length) {
+                renderQuizQuestion();
+            } else {
+                document.getElementById('quiz-question-container').innerHTML = `
+                    <div class="text-center py-8 space-y-4">
+                        <div class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[#D4AF37] bg-white text-[#D4AF37]">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                        </div>
+                        <h4 class="text-2xl font-serif font-bold text-[#0B1325]">Module Assessment Cleared</h4>
+                        <p class="text-xs text-[#555555] max-w-sm mx-auto leading-relaxed">You have answered all assessment queries tracking research philosophies, structures, and ethics.</p>
+                        <button onclick="resetQuiz()" class="mt-4 rounded bg-[#0B1325] hover:bg-[#D4AF37] text-white px-4 py-2 text-[10px] tracking-wider uppercase font-bold transition-all">Restart Quiz</button>
+                    </div>
+                `;
+                document.getElementById('quiz-feedback').classList.add('hidden');
+                document.getElementById('quiz-next-btn').classList.add('hidden');
+                document.getElementById('quiz-progress-text').innerText = `Completed`;
+            }
+        }
+
+        function resetQuiz() {
+            currentQuizIndex = 0;
+            document.getElementById('quiz-question-container').innerHTML = `
+                <h4 id="quiz-question-title" class="text-sm font-serif font-bold text-[#0B1325] leading-relaxed"></h4>
+                <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4" id="quiz-options-grid"></div>
+            `;
+            renderQuizQuestion();
+        }
+
+        renderQuizQuestion();
+    </script>
+</body>
+</html>

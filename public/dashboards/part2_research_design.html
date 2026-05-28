@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-white text-[#0B1325]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Design & Planning Dashboard</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons (CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            navy: '#0B1325',
+                            gold: '#D4AF37',
+                            silver: '#555555',
+                            slate: '#E2E8F0',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth scrolling and minimalist elegant scrollbars */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFFFFF;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E2E8F0;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D4AF37;
+        }
+        
+        /* Apply primary fonts universally to match requested typography */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .header-serif {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col font-sans antialiased text-[#0B1325]/80 font-light bg-white selection:bg-[#D4AF37]/20 selection:text-[#0B1325]">
+
+    <!-- HEADER BAR -->
+    <header class="flex-shrink-0 bg-white border-b border-[#E2E8F0] px-8 py-5 flex items-center justify-between">
+        <div class="flex items-center space-x-4">
+            <div>
+                <h1 class="text-xl font-serif text-[#0B1325] tracking-tight font-semibold">
+                    PART 2: Research Design & Planning
+                </h1>
+                <p class="text-xs text-[#555555] font-light mt-0.5">An interactive blueprint guiding you from initial inquiry to rigorous methodology.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <div class="flex flex-1 overflow-hidden">
+        
+        <!-- SIDEBAR NAVIGATION -->
+        <aside class="w-80 bg-white border-r border-[#E2E8F0] flex flex-col h-full overflow-y-auto">
+            <div class="p-6 border-b border-[#E2E8F0]">
+                <span class="text-[9px] font-bold text-[#0B1325] uppercase tracking-widest block mb-1">Architectural Sequence</span>
+                <p class="text-xs text-[#555555] font-light leading-relaxed">Systematically structure your quantitative methodology study design.</p>
+            </div>
+            
+            <nav class="flex-1 p-4 space-y-1">
+                <!-- Nav Items: Custom styled with sleek left border indicator on active tab -->
+                <button onclick="switchTab('tab-introduction')" id="btn-tab-introduction" class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left text-xs font-medium transition-all duration-300 bg-[#0B1325] text-white border-l-4 border-[#D4AF37]">
+                    <i data-lucide="info" class="w-4 h-4 flex-shrink-0"></i>
+                    <span>Introduction & Overview</span>
+                </button>
+
+                <button onclick="switchTab('tab-background')" id="btn-tab-background" class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left text-xs font-medium transition-all duration-300 text-[#0B1325]/70 hover:text-[#0B1325] hover:bg-[#E2E8F0]/30 border-l-4 border-transparent">
+                    <i data-lucide="book-open" class="w-4 h-4 flex-shrink-0"></i>
+                    <span>Background of the Problem</span>
+                </button>
+
+                <button onclick="switchTab('tab-significance')" id="btn-tab-significance" class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left text-xs font-medium transition-all duration-300 text-[#0B1325]/70 hover:text-[#0B1325] hover:bg-[#E2E8F0]/30 border-l-4 border-transparent">
+                    <i data-lucide="award" class="w-4 h-4 flex-shrink-0"></i>
+                    <span>Significance of the Study</span>
+                </button>
+
+                <button onclick="switchTab('tab-purpose')" id="btn-tab-purpose" class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left text-xs font-medium transition-all duration-300 text-[#0B1325]/70 hover:text-[#0B1325] hover:bg-[#E2E8F0]/30 border-l-4 border-transparent">
+                    <i data-lucide="target" class="w-4 h-4 flex-shrink-0"></i>
+                    <span>Purpose of the Study</span>
+                </button>
+
+                <button onclick="switchTab('tab-questions')" id="btn-tab-questions" class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left text-xs font-medium transition-all duration-300 text-[#0B1325]/70 hover:text-[#0B1325] hover:bg-[#E2E8F0]/30 border-l-4 border-transparent">
+                    <i data-lucide="help-circle" class="w-4 h-4 flex-shrink-0"></i>
+                    <span>Research Questions</span>
+                </button>
+
+                <button onclick="switchTab('tab-hypotheses')" id="btn-tab-hypotheses" class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left text-xs font-medium transition-all duration-300 text-[#0B1325]/70 hover:text-[#0B1325] hover:bg-[#E2E8F0]/30 border-l-4 border-transparent">
+                    <i data-lucide="git-commit" class="w-4 h-4 flex-shrink-0"></i>
+                    <span>Research Hypotheses</span>
+                </button>
+
+                <button onclick="switchTab('tab-variables')" id="btn-tab-variables" class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left text-xs font-medium transition-all duration-300 text-[#0B1325]/70 hover:text-[#0B1325] hover:bg-[#E2E8F0]/30 border-l-4 border-transparent">
+                    <i data-lucide="variable" class="w-4 h-4 flex-shrink-0"></i>
+                    <span>Variables & Data Types</span>
+                </button>
+
+                <button onclick="switchTab('tab-unit')" id="btn-tab-unit" class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left text-xs font-medium transition-all duration-300 text-[#0B1325]/70 hover:text-[#0B1325] hover:bg-[#E2E8F0]/30 border-l-4 border-transparent">
+                    <i data-lucide="layers" class="w-4 h-4 flex-shrink-0"></i>
+                    <span>Unit of Analysis</span>
+                </button>
+
+                <button onclick="switchTab('tab-relationships')" id="btn-tab-relationships" class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left text-xs font-medium transition-all duration-300 text-[#0B1325]/70 hover:text-[#0B1325] hover:bg-[#E2E8F0]/30 border-l-4 border-transparent">
+                    <i data-lucide="git-merge" class="w-4 h-4 flex-shrink-0"></i>
+                    <span>Relationships & Time</span>
+                </button>
+
+                <button onclick="switchTab('tab-boundaries')" id="btn-tab-boundaries" class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left text-xs font-medium transition-all duration-200 text-[#0B1325]/70 hover:text-[#0B1325] hover:bg-[#E2E8F0]/30 border-l-4 border-transparent">
+                    <i data-lucide="shield-alert" class="w-4 h-4 flex-shrink-0"></i>
+                    <span>Assumptions & Constraints</span>
+                </button>
+
+                <button onclick="switchTab('tab-summary')" id="btn-tab-summary" class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left text-xs font-medium transition-all duration-200 text-[#0B1325]/70 hover:text-[#0B1325] hover:bg-[#E2E8F0]/30 border-l-4 border-transparent">
+                    <i data-lucide="clipboard-check" class="w-4 h-4 flex-shrink-0"></i>
+                    <span>Summary & Blueprint</span>
+                </button>
+            </nav>
+
+            <div class="p-6 border-t border-[#E2E8F0] bg-[#FFFFFF] text-[11px] text-[#555555]">
+                <p class="font-semibold text-[#0B1325] mb-1">Architecture Planning Phase</p>
+                <p class="font-light">Decide on structural guidelines before transitioning to Part 3 (Execution & Gathering).</p>
+            </div>
+        </aside>
+
+        <!-- MAIN VIEWPORT CONTENT -->
+        <main class="flex-1 overflow-y-auto bg-white p-8 md:p-12 space-y-12">
+
+            <!-- TAB: INTRODUCTION -->
+            <div id="tab-introduction" class="tab-content block space-y-8">
+                <div class="p-8 rounded-2xl border border-[#E2E8F0] relative overflow-hidden bg-white shadow-sm transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1">
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-[#D4AF37]/5 rounded-full blur-2xl pointer-events-none"></div>
+                    <span class="text-[10px] font-sans font-bold text-[#D4AF37] uppercase tracking-widest">Stage 1: Foundational Framework</span>
+                    <h2 class="text-3xl md:text-4xl font-serif text-[#0B1325] tracking-tight font-normal mt-2">Research Design & Planning</h2>
+                    <p class="mt-4 text-[#0B1325]/80 text-sm leading-relaxed max-w-3xl font-light">
+                        Welcome to the architectural phase of research. Here, we transform broad personal interest or observation into a systematic, objective, and rigorous master plan. This dynamic dashboard covers every element of Part 2 of your research syllabus, mapping out structural integrity, parameters, variables, and boundaries that guarantee valid scientific outcomes.
+                    </p>
+                    <div class="mt-8">
+                        <button onclick="switchTab('tab-background')" class="border border-[#0B1325] bg-[#0B1325] hover:bg-white hover:text-[#0B1325] text-white font-sans font-medium text-xs px-5 py-3 rounded-xl transition-all duration-300 flex items-center gap-2">
+                            <span>Get Started with Background of the Problem</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1">
+                        <div class="border border-[#E2E8F0] p-3 w-12 h-12 rounded-xl text-[#0B1325] flex items-center justify-center mb-6">
+                            <i data-lucide="compass" class="w-5 h-5 text-[#D4AF37]"></i>
+                        </div>
+                        <h3 class="font-serif text-[#0B1325] font-semibold mb-3 text-base">Design & Articulate</h3>
+                        <p class="text-xs text-[#555555] leading-relaxed font-light">Articulate the core problem with high clarity, justify its societal or academic significance, and construct testable hypotheses.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1">
+                        <div class="border border-[#E2E8F0] p-3 w-12 h-12 rounded-xl text-[#0B1325] flex items-center justify-center mb-6">
+                            <i data-lucide="sliders" class="w-5 h-5 text-[#D4AF37]"></i>
+                        </div>
+                        <h3 class="font-serif text-[#0B1325] font-semibold mb-3 text-base">Define & Parameterize</h3>
+                        <p class="text-xs text-[#555555] leading-relaxed font-light">Unpack the core operational components including variables, target units of analysis, temporal conditions, and data types.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1">
+                        <div class="border border-[#E2E8F0] p-3 w-12 h-12 rounded-xl text-[#0B1325] flex items-center justify-center mb-6">
+                            <i data-lucide="shield" class="w-5 h-5 text-[#D4AF37]"></i>
+                        </div>
+                        <h3 class="font-serif text-[#0B1325] font-semibold mb-3 text-base">Identify Boundaries</h3>
+                        <p class="text-xs text-[#555555] leading-relaxed font-light">Identify underlying assumptions, state hard parameters (limitations), and specify self-imposed design bounds (delimitations).</p>
+                    </div>
+                </div>
+
+                <!-- Syllabus Context Box -->
+                <div class="bg-white p-8 rounded-2xl border border-[#E2E8F0] shadow-sm">
+                    <h3 class="text-base font-serif text-[#0B1325] font-semibold flex items-center gap-3 mb-6">
+                        <i data-lucide="help-circle" class="w-5 h-5 text-[#D4AF37]"></i>
+                        The Architectural Paradigm: From Idea to Blueprint
+                    </h3>
+                    <div class="relative pl-6 border-l border-[#D4AF37]/50 space-y-6 text-xs text-[#555555] font-light">
+                        <div>
+                            <span class="font-semibold text-[#0B1325] text-sm block mb-1">Why are we planning?</span>
+                            <p class="leading-relaxed">A sound design prevents methodological breakdown during data collection. Choosing the wrong unit of analysis or omitting boundary conditions is the leading cause of failed research validations.</p>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-[#0B1325] text-sm block mb-1">The Ultimate Goal:</span>
+                            <p class="leading-relaxed">To formulate an ironclad blueprint that seamlessly transitions into scientific data collection (Part 3 of your research curriculum).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: BACKGROUND -->
+            <div id="tab-background" class="tab-content hidden space-y-8">
+                <div>
+                    <span class="text-[10px] font-sans font-bold text-[#D4AF37] uppercase tracking-widest">Section 2: Background of the Problem</span>
+                    <h2 class="text-3xl font-serif text-[#0B1325] tracking-tight font-normal mt-1">Contextualizing & Justifying Research</h2>
+                    <p class="text-xs text-[#555555] font-light mt-1">Every scientific project must show where it lives and why it is warranted. See how the "Background of the Problem" functions below.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Left: Core Concept -->
+                    <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-serif text-[#0B1325] font-semibold text-lg mb-6 pb-2 border-b border-[#E2E8F0]">Purpose of this Section</h3>
+                            <ul class="space-y-4 text-xs text-[#0B1325]/80">
+                                <li class="flex gap-3 items-start">
+                                    <i data-lucide="globe" class="w-4 h-4 text-[#D4AF37] flex-shrink-0 mt-0.5"></i>
+                                    <span><strong>Contextualize:</strong> Place the research problem within a broader framework or context.</span>
+                                </li>
+                                <li class="flex gap-3 items-start">
+                                    <i data-lucide="scale" class="w-4 h-4 text-[#D4AF37] flex-shrink-0 mt-0.5"></i>
+                                    <span><strong>Justify:</strong> Explain why the problem is significant and worthy of investigation.</span>
+                                </li>
+                                <li class="flex gap-3 items-start">
+                                    <i data-lucide="split" class="w-4 h-4 text-[#D4AF37] flex-shrink-0 mt-0.5"></i>
+                                    <span><strong>Identify Gaps:</strong> Highlight gaps or areas where previous research has not fully addressed the issue.</span>
+                                </li>
+                                <li class="flex gap-3 items-start">
+                                    <i data-lucide="arrow-right-circle" class="w-4 h-4 text-[#D4AF37] flex-shrink-0 mt-0.5"></i>
+                                    <span><strong>Lead to Questions:</strong> Set the stage for the specific research questions or hypotheses.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-8 p-4 bg-[#E2E8F0]/20 rounded-xl border border-[#E2E8F0]/50 text-[11px] text-[#555555] leading-relaxed">
+                            <strong>Note:</strong> Writing a generic essay isn't enough; the background must build an airtight logical path to your specific research questions.
+                        </div>
+                    </div>
+
+                    <!-- Right: Interactive Example Walkthrough -->
+                    <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1">
+                        <div class="flex items-center justify-between mb-6 pb-3 border-b border-[#E2E8F0]">
+                            <div>
+                                <h3 class="font-serif text-[#0B1325] font-semibold text-lg">Interactive Structure Blueprint</h3>
+                                <p class="text-[11px] text-[#555555] font-light mt-0.5">Topic: Exercise & Hypertension in Adults</p>
+                            </div>
+                            <span class="text-[9px] bg-[#0B1325] text-white px-3 py-1 rounded-full font-sans tracking-widest uppercase font-medium">Flow</span>
+                        </div>
+
+                        <!-- Step Tabs -->
+                        <div class="grid grid-cols-3 md:grid-cols-6 gap-2 mb-6">
+                            <button onclick="showBgStep(1)" id="bg-step-btn-1" class="bg-[#0B1325] text-white text-[10px] font-sans font-medium py-2 px-1.5 rounded-lg transition-all duration-300">1. Intro</button>
+                            <button onclick="showBgStep(2)" id="bg-step-btn-2" class="bg-white border border-[#E2E8F0] text-[#0B1325]/70 text-[10px] font-sans font-medium py-2 px-1.5 rounded-lg hover:border-[#D4AF37] transition-all duration-300">2. Problem</button>
+                            <button onclick="showBgStep(3)" id="bg-step-btn-3" class="bg-white border border-[#E2E8F0] text-[#0B1325]/70 text-[10px] font-sans font-medium py-2 px-1.5 rounded-lg hover:border-[#D4AF37] transition-all duration-300">3. Motive</button>
+                            <button onclick="showBgStep(4)" id="bg-step-btn-4" class="bg-white border border-[#E2E8F0] text-[#0B1325]/70 text-[10px] font-sans font-medium py-2 px-1.5 rounded-lg hover:border-[#D4AF37] transition-all duration-300">4. Lit</button>
+                            <button onclick="showBgStep(5)" id="bg-step-btn-5" class="bg-white border border-[#E2E8F0] text-[#0B1325]/70 text-[10px] font-sans font-medium py-2 px-1.5 rounded-lg hover:border-[#D4AF37] transition-all duration-300">5. Gap</button>
+                            <button onclick="showBgStep(6)" id="bg-step-btn-6" class="bg-white border border-[#E2E8F0] text-[#0B1325]/70 text-[10px] font-sans font-medium py-2 px-1.5 rounded-lg hover:border-[#D4AF37] transition-all duration-300">6. Quest</button>
+                        </div>
+
+                        <!-- Step Card Output -->
+                        <div class="bg-white p-6 rounded-xl border border-[#E2E8F0] min-h-[180px] flex flex-col justify-between">
+                            <div id="bg-step-content" class="text-xs text-[#0B1325]/80 leading-relaxed font-light">
+                                <!-- Dynamically Rendered -->
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-[#E2E8F0] flex justify-between items-center text-[10px] text-[#555555]">
+                                <span id="bg-step-indicator" class="font-sans font-medium">Step 1 of 6</span>
+                                <div class="space-x-2">
+                                    <button onclick="prevBgStep()" class="border border-[#E2E8F0] hover:border-[#D4AF37] px-3 py-1.5 rounded-lg transition-colors font-sans">Previous</button>
+                                    <button onclick="nextBgStep()" class="border border-[#E2E8F0] hover:border-[#D4AF37] px-3 py-1.5 rounded-lg transition-colors font-sans">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: SIGNIFICANCE -->
+            <div id="tab-significance" class="tab-content hidden space-y-8">
+                <div>
+                    <span class="text-[10px] font-sans font-bold text-[#D4AF37] uppercase tracking-widest">Section 3: Significance of the Study</span>
+                    <h2 class="text-3xl font-serif text-[#0B1325] tracking-tight font-normal mt-1">Staking a Claim: Why Your Work Matters</h2>
+                    <p class="text-xs text-[#555555] font-light mt-1">This section details how your research moves the needle, fills existing gaps, or influences real-world policies.</p>
+                </div>
+
+                <!-- Case Study Selector -->
+                <div class="bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between pb-5 border-b border-[#E2E8F0] gap-4 mb-6">
+                        <div>
+                            <h3 class="font-serif text-[#0B1325] font-semibold text-lg">Interactive Case Studies</h3>
+                            <p class="text-xs text-[#555555] font-light mt-0.5">Toggle categories to analyze why an early childhood education study matters.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="setSigFilter('discipline')" id="sig-btn-discipline" class="sig-filter-btn text-xs bg-[#0B1325] text-white px-4 py-2 rounded-lg transition-all font-sans font-medium">Relevance to Discipline</button>
+                            <button onclick="setSigFilter('practical')" id="sig-btn-practical" class="sig-filter-btn text-xs bg-white border border-[#E2E8F0] text-[#0B1325]/70 px-4 py-2 rounded-lg hover:border-[#D4AF37] transition-all font-sans font-medium">Practical Significance</button>
+                            <button onclick="setSigFilter('theoretical')" id="sig-btn-theoretical" class="sig-filter-btn text-xs bg-white border border-[#E2E8F0] text-[#0B1325]/70 px-4 py-2 rounded-lg hover:border-[#D4AF37] transition-all font-sans font-medium">Theoretical Contributions</button>
+                            <button onclick="setSigFilter('policy')" id="sig-btn-policy" class="sig-filter-btn text-xs bg-white border border-[#E2E8F0] text-[#0B1325]/70 px-4 py-2 rounded-lg hover:border-[#D4AF37] transition-all font-sans font-medium">Policy & Social Relevance</button>
+                            <button onclick="setSigFilter('gap')" id="sig-btn-gap" class="sig-filter-btn text-xs bg-white border border-[#E2E8F0] text-[#0B1325]/70 px-4 py-2 rounded-lg hover:border-[#D4AF37] transition-all font-sans font-medium">Addressing Gaps</button>
+                        </div>
+                    </div>
+
+                    <!-- Output Card -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+                        <div class="md:col-span-4 bg-white p-5 rounded-xl border border-[#E2E8F0] flex flex-col justify-between">
+                            <div>
+                                <span class="text-[9px] uppercase font-bold text-[#555555] tracking-wider font-sans">Example Study Focus</span>
+                                <h4 class="font-serif text-[#0B1325] font-semibold mt-2 text-sm leading-snug">Early Childhood Education Programs & Academic Achievement</h4>
+                            </div>
+                            <div class="mt-6 p-4 bg-[#E2E8F0]/20 rounded-lg border border-[#E2E8F0]/30 text-[11px] text-[#555555] leading-relaxed">
+                                Highlights the practical value, conceptual alignment, policy changes, and long-term scientific developments.
+                            </div>
+                        </div>
+                        <div class="md:col-span-8 bg-white p-6 rounded-xl border border-[#E2E8F0] flex flex-col justify-center min-h-[180px]">
+                            <h4 id="sig-card-title" class="text-[#D4AF37] font-serif font-bold text-lg mb-3">Field or Discipline Relevance</h4>
+                            <p id="sig-card-desc" class="text-xs text-[#0B1325]/80 leading-relaxed italic font-light">
+                                "This research is situated within the field of education and child development, addressing a longstanding question about the influence of early childhood education on later academic success."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="p-5 bg-white rounded-xl border border-[#E2E8F0] shadow-sm">
+                        <span class="text-xs font-serif font-bold text-[#D4AF37]">Context</span>
+                        <p class="text-[11px] text-[#555555] font-light mt-1 leading-relaxed">Frames where the investigation fits inside the academic environment.</p>
+                    </div>
+                    <div class="p-5 bg-white rounded-xl border border-[#E2E8F0] shadow-sm">
+                        <span class="text-xs font-serif font-bold text-[#D4AF37]">Justify</span>
+                        <p class="text-[11px] text-[#555555] font-light mt-1 leading-relaxed">States clearly why resources should be devoted to this topic.</p>
+                    </div>
+                    <div class="p-5 bg-white rounded-xl border border-[#E2E8F0] shadow-sm">
+                        <span class="text-xs font-serif font-bold text-[#D4AF37]">Contribute</span>
+                        <p class="text-[11px] text-[#555555] font-light mt-1 leading-relaxed">Outlines real-world advancements (conceptual, procedural, practical).</p>
+                    </div>
+                    <div class="p-5 bg-white rounded-xl border border-[#E2E8F0] shadow-sm">
+                        <span class="text-xs font-serif font-bold text-[#D4AF37]">Value</span>
+                        <p class="text-[11px] text-[#555555] font-light mt-1 leading-relaxed">Expresses the returns on investment for readers, schools, and policymakers.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: PURPOSE -->
+            <div id="tab-purpose" class="tab-content hidden space-y-8">
+                <div>
+                    <span class="text-[10px] font-sans font-bold text-[#D4AF37] uppercase tracking-widest">Section 4: Purpose of the Study</span>
+                    <h2 class="text-3xl font-serif text-[#0B1325] tracking-tight font-normal mt-1">The Goal Statement</h2>
+                    <p class="text-xs text-[#555555] font-light mt-1">The Purpose of the Study is the core guiding pillar. Learn how to map a formal title directly into a targeted mission statement.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                    <!-- Left Column -->
+                    <div class="md:col-span-5 bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-[9px] font-bold text-[#555555] font-sans uppercase tracking-wider block mb-2">Defining the Goal</span>
+                            <h3 class="font-serif text-[#0B1325] font-semibold text-lg mb-4">What is a Purpose Statement?</h3>
+                            <p class="text-xs text-[#0B1325]/80 leading-relaxed font-light mb-4">
+                                It is the primary guiding objective explaining why the research is happening and what specific, observable outcome is expected. It must explicitly declare:
+                            </p>
+                            <ul class="space-y-3 text-xs text-[#555555] font-light list-disc list-inside">
+                                <li>The target variables.</li>
+                                <li>The exact target population.</li>
+                                <li>The intended real-world applications.</li>
+                            </ul>
+                        </div>
+                        <div class="p-4 bg-[#E2E8F0]/20 border border-[#E2E8F0]/50 rounded-xl mt-6 text-[11px] text-[#555555] leading-relaxed">
+                            <strong>Tip:</strong> Keep it concise, focused, and free of unnecessary fluff. It guides all downstream variable controls.
+                        </div>
+                    </div>
+
+                    <!-- Right Column (Interactive Translation Sandbox) -->
+                    <div class="md:col-span-7 bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1">
+                        <div class="flex items-center justify-between mb-6 pb-2 border-b border-[#E2E8F0]">
+                            <h3 class="font-serif text-[#0B1325] font-semibold text-lg">Interactive Synthesis Blueprint</h3>
+                            <span class="text-[10px] border border-[#D4AF37] text-[#D4AF37] px-3 py-0.5 rounded-full font-sans tracking-wide">Active Mapping</span>
+                        </div>
+
+                        <!-- Card 1: Title Input -->
+                        <div class="bg-white p-5 rounded-xl border border-[#E2E8F0] space-y-2 mb-6 shadow-sm">
+                            <span class="text-[9px] font-semibold text-[#555555] font-sans uppercase tracking-wider block">Input Topic / Title</span>
+                            <div class="text-[#0B1325] font-serif font-bold text-sm italic p-3 bg-[#E2E8F0]/20 rounded-lg">
+                                "The Impact of Exercise on Mental Health and Well-being in Teenagers"
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Automatic Purpose Output -->
+                        <div class="bg-white p-5 rounded-xl border border-[#E2E8F0] space-y-2 shadow-sm">
+                            <span class="text-[9px] font-semibold text-[#555555] font-sans uppercase tracking-wider block">Synthesized Purpose Statement</span>
+                            <p class="text-xs text-[#0B1325]/80 leading-relaxed bg-[#E2E8F0]/10 p-4 rounded-lg border border-[#D4AF37]">
+                                "The purpose of this study is to investigate the relationship between regular physical exercise and mental health outcomes in teenagers aged 13 to 18. We aim to determine whether engaging in regular physical activity has a positive effect on reducing symptoms of anxiety and depression, improving self-esteem, and enhancing overall well-being among this age group. By examining this relationship, we seek to provide valuable insights that can inform public health initiatives and school-based programs aimed at promoting mental health in teenagers."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: QUESTIONS -->
+            <div id="tab-questions" class="tab-content hidden space-y-8">
+                <div>
+                    <span class="text-[10px] font-sans font-bold text-[#D4AF37] uppercase tracking-widest">Section 5: The Research Questions</span>
+                    <h2 class="text-3xl font-serif text-[#0B1325] tracking-tight font-normal mt-1">Descriptive, Relational, and Causal Inquiries</h2>
+                    <p class="text-xs text-[#555555] font-light mt-1">Research questions establish the boundaries of an empirical investigation. Master the three primary categories.</p>
+                </div>
+
+                <!-- Interactive Question Builder Playground -->
+                <div class="bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between pb-4 border-b border-[#E2E8F0] gap-4 mb-6">
+                        <div>
+                            <h3 class="font-serif text-[#0B1325] font-semibold text-lg">Interactive Question Builder</h3>
+                            <p class="text-xs text-[#555555] font-light mt-0.5">Select a structural type to see how an inquiry changes from simple details to correlation and causation.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="setRqType('descriptive')" id="rq-btn-descriptive" class="rq-filter-btn text-xs bg-[#0B1325] text-white px-4 py-2 rounded-lg transition-all font-sans font-medium">Descriptive Question</button>
+                            <button onclick="setRqType('relational')" id="rq-btn-relational" class="rq-filter-btn text-xs bg-white border border-[#E2E8F0] text-[#0B1325]/70 px-4 py-2 rounded-lg hover:border-[#D4AF37] transition-all font-sans font-medium">Relational Question</button>
+                            <button onclick="setRqType('causal')" id="rq-btn-causal" class="rq-filter-btn text-xs bg-white border border-[#E2E8F0] text-[#0B1325]/70 px-4 py-2 rounded-lg hover:border-[#D4AF37] transition-all font-sans font-medium">Causal Question</button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                        <!-- Left: Core info -->
+                        <div class="md:col-span-5 bg-white p-5 rounded-xl border border-[#E2E8F0] flex flex-col justify-between">
+                            <div>
+                                <span class="text-[9px] uppercase font-bold text-[#D4AF37] block tracking-wider font-sans mb-1" id="rq-category-tag">Descriptive Type</span>
+                                <h4 class="font-serif text-[#0B1325] font-semibold text-base mb-3" id="rq-category-title">Providing a Snapshot</h4>
+                                <p class="text-xs text-[#555555] leading-relaxed font-light" id="rq-category-desc">
+                                    Descriptive research aims to provide a straightforward description of a phenomenon or situation without trying to establish relationships, predictions, or causes.
+                                </p>
+                            </div>
+                            <div class="mt-6 p-4 bg-[#E2E8F0]/20 rounded-lg border border-[#E2E8F0]/30 text-[10px] text-[#555555]">
+                                <strong>Common Starters:</strong> "What are...", "How often...", "Who is..."
+                            </div>
+                        </div>
+
+                        <!-- Right: Real-World Example & Dynamic Build -->
+                        <div class="md:col-span-7 space-y-4">
+                            <div class="bg-white p-5 rounded-xl border border-[#E2E8F0] shadow-sm">
+                                <span class="text-[9px] text-[#555555] font-sans uppercase font-bold block mb-2">Interactive Research Question Template</span>
+                                <p class="text-sm font-serif font-bold text-[#0B1325] italic" id="rq-active-question">
+                                    "What are the demographic characteristics of participants attending an AI festival?"
+                                </p>
+                            </div>
+                            <div class="bg-white p-5 rounded-xl border border-[#E2E8F0] shadow-sm">
+                                <span class="text-[9px] text-[#555555] font-sans uppercase font-bold block mb-2">Structural Anatomy</span>
+                                <p class="text-xs text-[#0B1325]/80 leading-relaxed font-light" id="rq-active-anatomy">
+                                    This question seeks to describe the basic demographic details of individuals at an AI festival without attempting to establish relationships or causes.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: HYPOTHESES -->
+            <div id="tab-hypotheses" class="tab-content hidden space-y-8">
+                <div>
+                    <span class="text-[10px] font-sans font-bold text-[#D4AF37] uppercase tracking-widest">Section 6: Research Hypotheses & Testing</span>
+                    <h2 class="text-3xl font-serif text-[#0B1325] tracking-tight font-normal mt-1">Predictions and Empirical Verification</h2>
+                    <p class="text-xs text-[#555555] font-light mt-1">Hypotheses are testable predictions that guide experimental design. Below, explore both structural types and run a live simulated trial.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Left: Hypotheses Anatomy -->
+                    <div class="bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1 space-y-4">
+                        <h3 class="font-serif text-[#0B1325] font-semibold text-lg pb-3 border-b border-[#E2E8F0]">Anatomy of Null vs. Alternative Hypotheses</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-white p-5 rounded-xl border border-[#E2E8F0] shadow-sm">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-sans font-semibold text-[#555555]">Null Hypothesis (H<sub>0</sub>)</span>
+                                    <span class="text-[8px] tracking-wider px-2 py-0.5 rounded-full bg-[#E2E8F0] text-[#0B1325] uppercase font-sans font-semibold">No Effect</span>
+                                </div>
+                                <p class="text-xs text-[#0B1325]/80 mt-3 italic font-light leading-relaxed">
+                                    "There is no statistically significant difference in test scores between students taught using the new teaching method and those taught using the traditional method."
+                                </p>
+                            </div>
+
+                            <div class="bg-white p-5 rounded-xl border border-[#E2E8F0] shadow-sm">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-sans font-semibold text-[#0B1325]">Alternative Hypothesis (H<sub>a</sub>)</span>
+                                    <span class="text-[8px] tracking-wider px-2 py-0.5 rounded-full bg-[#D4AF37]/20 text-[#D4AF37] uppercase font-sans font-semibold">Has Effect</span>
+                                </div>
+                                <p class="text-xs text-[#0B1325]/80 mt-3 italic font-light leading-relaxed">
+                                    "Students taught using the new teaching method will achieve statistically significantly higher test scores compared to students taught using the traditional method."
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-[#E2E8F0]/10 border border-[#E2E8F0] rounded-xl">
+                            <h4 class="text-xs font-sans font-semibold text-[#0B1325] mb-2">Key Characteristics of a Sound Hypothesis</h4>
+                            <ul class="text-[11px] text-[#555555] space-y-2 list-disc list-inside font-light leading-relaxed">
+                                <li><strong>Testable:</strong> Must be formulated to allow empirical testing.</li>
+                                <li><strong>Relational:</strong> Proposes a concrete connection between variables.</li>
+                                <li><strong>Directional:</strong> Outlines the expected direction of change.</li>
+                                <li><strong>Grounded:</strong> Derived from existing theories or prior research.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Right: Dynamic Testing Steps Simulator -->
+                    <div class="bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4 pb-3 border-b border-[#E2E8F0]">
+                                <h3 class="font-serif text-[#0B1325] font-semibold text-lg">Hypothesis Testing Steps Simulator</h3>
+                                <span class="text-[9px] border border-[#D4AF37] text-[#D4AF37] px-2.5 py-0.5 rounded-full font-sans tracking-wide">Interactive</span>
+                            </div>
+
+                            <!-- Interactive Steps List with Status Icons -->
+                            <div class="space-y-3 max-h-[300px] overflow-y-auto pr-1">
+                                <!-- Step 1 -->
+                                <div onclick="selectHypoStep(1)" id="hstep-1" class="hstep-card p-3 rounded-xl bg-[#E2E8F0]/30 border border-[#D4AF37] cursor-pointer transition-all">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-5 h-5 rounded-full bg-[#0B1325] text-[10px] flex items-center justify-center font-bold text-white font-sans">1</div>
+                                        <span class="text-xs font-sans font-semibold text-[#0B1325]">Formulate Hypotheses</span>
+                                    </div>
+                                    <p class="text-[10px] text-[#555555] font-light mt-1.5 pl-8">State clear null (H0) and alternative (Ha) predictions.</p>
+                                </div>
+                                <!-- Step 2 -->
+                                <div onclick="selectHypoStep(2)" id="hstep-2" class="hstep-card p-3 rounded-xl bg-white border border-[#E2E8F0] cursor-pointer transition-all hover:border-[#D4AF37]">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-5 h-5 rounded-full bg-[#E2E8F0] text-[10px] flex items-center justify-center font-bold text-[#555555] font-sans">2</div>
+                                        <span class="text-xs font-sans font-semibold text-[#555555]">Select Statistical Test & Alpha</span>
+                                    </div>
+                                    <p class="text-[10px] text-[#555555] font-light mt-1.5 pl-8">Select test types (t-test, ANOVA) and set alpha (e.g., &alpha; = 0.05).</p>
+                                </div>
+                                <!-- Step 3 -->
+                                <div onclick="selectHypoStep(3)" id="hstep-3" class="hstep-card p-3 rounded-xl bg-white border border-[#E2E8F0] cursor-pointer transition-all hover:border-[#D4AF37]">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-5 h-5 rounded-full bg-[#E2E8F0] text-[10px] flex items-center justify-center font-bold text-[#555555] font-sans">3</div>
+                                        <span class="text-xs font-sans font-semibold text-[#555555]">Collect & Analyze Data</span>
+                                    </div>
+                                    <p class="text-[10px] text-[#555555] font-light mt-1.5 pl-8">Gather sample values and compute the associated p-value.</p>
+                                </div>
+                                <!-- Step 4 -->
+                                <div onclick="selectHypoStep(4)" id="hstep-4" class="hstep-card p-3 rounded-xl bg-white border border-[#E2E8F0] cursor-pointer transition-all hover:border-[#D4AF37]">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-5 h-5 rounded-full bg-[#E2E8F0] text-[10px] flex items-center justify-center font-bold text-[#555555] font-sans">4</div>
+                                        <span class="text-xs font-sans font-semibold text-[#555555]">Determine Significance & Report</span>
+                                    </div>
+                                    <p class="text-[10px] text-[#555555] font-light mt-1.5 pl-8">Compare p-value to alpha. If p &le; &alpha;, reject H0 in favor of Ha.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step Feedback Panel -->
+                        <div class="mt-6 p-4 bg-[#E2E8F0]/10 border border-[#E2E8F0] rounded-xl text-xs">
+                            <span class="text-[9px] text-[#D4AF37] font-sans font-bold uppercase block mb-1">Detailed Explanation & Actions</span>
+                            <div id="hypo-step-details" class="text-[#0B1325]/80 leading-relaxed font-light">
+                                Choose step 1 to begin. Learn how to write your null and alternative hypotheses before gathering data.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: VARIABLES & DATA -->
+            <div id="tab-variables" class="tab-content hidden space-y-8">
+                <div>
+                    <span class="text-[10px] font-sans font-bold text-[#D4AF37] uppercase tracking-widest">Section 7: Variables & Data Types</span>
+                    <h2 class="text-3xl font-serif text-[#0B1325] tracking-tight font-normal mt-1">Variables, Attributes, & Measurement Scales</h2>
+                    <p class="text-xs text-[#555555] font-light mt-1">Variables are the core objects of empirical study. Learn to classify their characteristics and measurement levels.</p>
+                </div>
+
+                <!-- Part A: Variables vs Attributes Interactive Card -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                    <div class="md:col-span-5 bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1 space-y-6">
+                        <h3 class="font-serif text-[#0B1325] font-semibold text-lg pb-3 border-b border-[#E2E8F0]">Variables & Attributes</h3>
+                        <p class="text-xs text-[#555555] leading-relaxed font-light">
+                            A <strong>Variable</strong> is any entity that can take on different values (e.g., age, score). An <strong>Attribute</strong> is a specific value of that variable.
+                        </p>
+
+                        <!-- Interactive Anatomy Panel -->
+                        <div class="space-y-4">
+                            <div class="bg-[#E2E8F0]/10 p-4 rounded-xl border border-[#E2E8F0]">
+                                <span class="text-[9px] font-sans font-bold text-[#D4AF37] block uppercase">Variable Instance</span>
+                                <span class="text-xs font-sans font-semibold text-[#0B1325]">Student Grade Outcome</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-[#555555] pl-4 font-light">
+                                <i data-lucide="corner-down-right" class="w-4 h-4 text-[#D4AF37]"></i>
+                                <span>Attributes: <strong class="text-[#0B1325]">Pass, Fail</strong></span>
+                            </div>
+
+                            <div class="bg-[#E2E8F0]/10 p-4 rounded-xl border border-[#E2E8F0]">
+                                <span class="text-[9px] font-sans font-bold text-[#D4AF37] block uppercase">Variable Instance</span>
+                                <span class="text-xs font-sans font-semibold text-[#0B1325]">Agreement Level</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-[#555555] pl-4 font-light">
+                                <i data-lucide="corner-down-right" class="w-4 h-4 text-[#D4AF37]"></i>
+                                <span>Attributes: <strong class="text-[#0B1325]">Strongly Disagree, Disagree, Neutral, Agree, Strongly Agree</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- Independent vs Dependent Box -->
+                        <div class="p-4 bg-[#0B1325]/5 border border-[#E2E8F0] rounded-xl text-xs leading-relaxed">
+                            <span class="font-sans font-semibold text-[#0B1325] block mb-1">Independent vs. Dependent</span>
+                            <p class="text-[#555555] font-light">
+                                The <strong>Independent Variable</strong> is manipulated or introduced (e.g., program or treatment). The <strong>Dependent Variable</strong> is the measured outcome affected by that manipulation.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Part B: Level of Measurement Interactive Matrix -->
+                    <div class="md:col-span-7 bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between pb-3 border-b border-[#E2E8F0] mb-6">
+                                <h3 class="font-serif text-[#0B1325] font-semibold text-lg">Interactive Data Type Explorer</h3>
+                                <p class="text-[10px] text-[#555555] font-light">Classify different levels of measurement.</p>
+                            </div>
+
+                            <!-- Selector Grid -->
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4">
+                                <button onclick="selectDataType('nominal')" id="dt-nominal" class="dt-btn text-[11px] font-sans font-semibold bg-[#0B1325] text-white p-3 rounded-lg transition-all duration-300">Nominal</button>
+                                <button onclick="selectDataType('ordinal')" id="dt-ordinal" class="dt-btn text-[11px] font-sans font-semibold bg-white border border-[#E2E8F0] text-[#0B1325]/70 p-3 rounded-lg hover:border-[#D4AF37] transition-all duration-300">Ordinal</button>
+                                <button onclick="selectDataType('interval')" id="dt-interval" class="dt-btn text-[11px] font-sans font-semibold bg-white border border-[#E2E8F0] text-[#0B1325]/70 p-3 rounded-lg hover:border-[#D4AF37] transition-all duration-300">Interval</button>
+                                <button onclick="selectDataType('ratio')" id="dt-ratio" class="dt-btn text-[11px] font-sans font-semibold bg-white border border-[#E2E8F0] text-[#0B1325]/70 p-3 rounded-lg hover:border-[#D4AF37] transition-all duration-300">Ratio</button>
+                            </div>
+
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
+                                <button onclick="selectDataType('discrete')" id="dt-discrete" class="dt-btn text-[11px] font-sans font-semibold bg-white border border-[#E2E8F0] text-[#0B1325]/70 p-3 rounded-lg hover:border-[#D4AF37] transition-all duration-300">Discrete</button>
+                                <button onclick="selectDataType('continuous')" id="dt-continuous" class="dt-btn text-[11px] font-sans font-semibold bg-white border border-[#E2E8F0] text-[#0B1325]/70 p-3 rounded-lg hover:border-[#D4AF37] transition-all duration-300">Continuous</button>
+                                <button onclick="selectDataType('qualitative')" id="dt-qualitative" class="dt-btn text-[11px] font-sans font-semibold bg-white border border-[#E2E8F0] text-[#0B1325]/70 p-3 rounded-lg hover:border-[#D4AF37] transition-all duration-300">Qualitative</button>
+                                <button onclick="selectDataType('quantitative')" id="dt-quantitative" class="dt-btn text-[11px] font-sans font-semibold bg-white border border-[#E2E8F0] text-[#0B1325]/70 p-3 rounded-lg hover:border-[#D4AF37] transition-all duration-300">Quantitative</button>
+                            </div>
+
+                            <!-- Output card -->
+                            <div class="bg-white p-6 rounded-xl border border-[#E2E8F0] space-y-4 min-h-[160px] flex flex-col justify-center shadow-sm">
+                                <div class="flex items-center justify-between">
+                                    <h4 id="dt-active-title" class="text-[#0B1325] font-serif font-bold text-lg">Nominal Data</h4>
+                                    <span id="dt-active-class" class="text-[9px] tracking-wider bg-[#E2E8F0] text-[#0B1325] px-3 py-1 rounded-full font-sans uppercase font-bold">Categorical</span>
+                                </div>
+                                <p id="dt-active-desc" class="text-xs text-[#555555] leading-relaxed font-light">
+                                    Nominal data consists of categories or labels that do not have any logical order, ranking, or quantitative structure.
+                                </p>
+                                <div class="bg-[#E2E8F0]/20 p-3 rounded-lg border border-[#E2E8F0]/30">
+                                    <span class="text-[9px] text-[#555555] uppercase font-bold block mb-1 font-sans">Examples:</span>
+                                    <p id="dt-active-examples" class="text-xs text-[#0B1325] font-serif italic">
+                                        Gender (e.g., Male, Female), Marital Status (e.g., Single, Married, Divorced)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: UNIT OF ANALYSIS -->
+            <div id="tab-unit" class="tab-content hidden space-y-8">
+                <div>
+                    <span class="text-[10px] font-sans font-bold text-[#D4AF37] uppercase tracking-widest">Section 8: Unit of Analysis</span>
+                    <h2 class="text-3xl font-serif text-[#0B1325] tracking-tight font-normal mt-1">What Exactly Are You Analyzing?</h2>
+                    <p class="text-xs text-[#555555] font-light mt-1">The Unit of Analysis is the major entity being studied. It dictates how data is compiled and compared.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Left: Description and Selector Matrix -->
+                    <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-serif text-[#0B1325] font-semibold text-lg mb-4">Defining the Unit</h3>
+                            <p class="text-xs text-[#555555] leading-relaxed font-light mb-6">
+                                The unit of analysis is defined by the level at which conclusions are drawn. It is often different from your unit of sampling. For example, you may sample individual students but analyze the entire classroom as a single group.
+                            </p>
+
+                            <!-- Mini buttons list of types -->
+                            <div class="space-y-2">
+                                <button onclick="selectUnit('individuals')" id="unit-btn-individuals" class="unit-btn w-full text-left text-xs bg-[#0B1325] text-white p-3.5 rounded-xl flex items-center justify-between transition-all duration-300">
+                                    <span class="font-sans font-semibold">Individuals</span>
+                                    <i data-lucide="user" class="w-4 h-4 text-[#D4AF37]"></i>
+                                </button>
+                                <button onclick="selectUnit('groups')" id="unit-btn-groups" class="unit-btn w-full text-left text-xs bg-white border border-[#E2E8F0] text-[#0B1325]/70 p-3.5 rounded-xl hover:border-[#D4AF37] flex items-center justify-between transition-all duration-300">
+                                    <span class="font-sans font-semibold">Groups</span>
+                                    <i data-lucide="users" class="w-4 h-4 text-[#555555]"></i>
+                                </button>
+                                <button onclick="selectUnit('artifacts')" id="unit-btn-artifacts" class="unit-btn w-full text-left text-xs bg-white border border-[#E2E8F0] text-[#0B1325]/70 p-3.5 rounded-xl hover:border-[#D4AF37] flex items-center justify-between transition-all duration-300">
+                                    <span class="font-sans font-semibold">Artifacts</span>
+                                    <i data-lucide="book-marked" class="w-4 h-4 text-[#555555]"></i>
+                                </button>
+                                <button onclick="selectUnit('geographical')" id="unit-btn-geographical" class="unit-btn w-full text-left text-xs bg-white border border-[#E2E8F0] text-[#0B1325]/70 p-3.5 rounded-xl hover:border-[#D4AF37] flex items-center justify-between transition-all duration-300">
+                                    <span class="font-sans font-semibold">Geographical Units</span>
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-[#555555]"></i>
+                                </button>
+                                <button onclick="selectUnit('interactions')" id="unit-btn-interactions" class="unit-btn w-full text-left text-xs bg-white border border-[#E2E8F0] text-[#0B1325]/70 p-3.5 rounded-xl hover:border-[#D4AF37] flex items-center justify-between transition-all duration-300">
+                                    <span class="font-sans font-semibold">Social Interactions</span>
+                                    <i data-lucide="heart-handshake" class="w-4 h-4 text-[#555555]"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Dynamic Output explanation and layout differences -->
+                    <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-[9px] font-bold text-[#555555] font-sans uppercase tracking-wider block mb-2">Active Unit Breakdown</span>
+                            <h3 id="unit-active-title" class="text-lg font-serif font-bold text-[#0B1325] mb-4">Individuals as Unit of Analysis</h3>
+                            
+                            <!-- Main Explanation Card -->
+                            <div class="bg-white p-6 rounded-xl border border-[#E2E8F0] mb-6 min-h-[140px] flex flex-col justify-center shadow-sm">
+                                <p id="unit-active-desc" class="text-xs text-[#555555] leading-relaxed font-light">
+                                    If you are studying people and comparing their individual performances, each person is your primary unit of analysis. For example, comparing test scores of students across classes.
+                                </p>
+                            </div>
+
+                            <!-- Structural Context Card -->
+                            <div class="bg-white p-5 rounded-xl border border-[#E2E8F0] shadow-sm bg-[#E2E8F0]/10">
+                                <div class="flex items-center space-x-2 mb-3 text-[#D4AF37]">
+                                    <i data-lucide="git-commit" class="w-4 h-4"></i>
+                                    <span class="text-xs font-sans font-semibold">Scientific Contrast</span>
+                                </div>
+                                <p id="unit-active-contrast" class="text-xs text-[#555555] leading-relaxed font-light">
+                                    Comparing individual test scores means the student is the unit. However, if you are studying classroom environmental atmospheres, the classroom itself becomes the unit of analysis since you measure it as a whole group.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: RELATIONSHIPS & TIME -->
+            <div id="tab-relationships" class="tab-content hidden space-y-8">
+                <div>
+                    <span class="text-[10px] font-sans font-bold text-[#D4AF37] uppercase tracking-widest">Section 9: Relationships & Time Dimensions</span>
+                    <h2 class="text-3xl font-serif text-[#0B1325] tracking-tight font-normal mt-1">Correlation vs. Causation & Time Frames</h2>
+                    <p class="text-xs text-[#555555] font-light mt-1">How do variables relate over time? Unpack pattern geometries and temporal models below.</p>
+                </div>
+
+                <!-- Part A: Patterns of Relationships Interactive -->
+                <div class="bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between pb-4 border-b border-[#E2E8F0] gap-4 mb-6">
+                        <div>
+                            <h3 class="font-serif text-[#0B1325] font-semibold text-lg">Interactive Pattern & Correlation Analyzer</h3>
+                            <p class="text-xs text-[#555555] font-light mt-0.5">Toggle different relationship models to inspect structural logic.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-1">
+                            <button onclick="setRelPattern('none')" id="rel-btn-none" class="rel-btn text-[11px] font-sans font-semibold bg-[#0B1325] text-white px-3 py-2 rounded-lg transition-all duration-300">No Relationship</button>
+                            <button onclick="setRelPattern('positive')" id="rel-btn-positive" class="rel-btn text-[11px] font-sans font-semibold bg-white border border-[#E2E8F0] text-[#0B1325]/70 px-3 py-2 rounded-lg hover:border-[#D4AF37] transition-all duration-300">Positive Correlation</button>
+                            <button onclick="setRelPattern('negative')" id="rel-btn-negative" class="rel-btn text-[11px] font-sans font-semibold bg-white border border-[#E2E8F0] text-[#0B1325]/70 px-3 py-2 rounded-lg hover:border-[#D4AF37] transition-all duration-300">Negative Correlation</button>
+                            <button onclick="setRelPattern('complex')" id="rel-btn-complex" class="rel-btn text-[11px] font-sans font-semibold bg-white border border-[#E2E8F0] text-[#0B1325]/70 px-3 py-2 rounded-lg hover:border-[#D4AF37] transition-all duration-300">Complex Curvilinear</button>
+                            <button onclick="setRelPattern('causal')" id="rel-btn-causal" class="rel-btn text-[11px] font-sans font-semibold bg-white border border-[#E2E8F0] text-[#0B1325]/70 px-3 py-2 rounded-lg hover:border-[#D4AF37] transition-all duration-300">Causal Relationship</button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+                        <!-- Left Explanation Column -->
+                        <div class="md:col-span-5 bg-white p-6 rounded-xl border border-[#E2E8F0] flex flex-col justify-between shadow-sm">
+                            <div>
+                                <span class="text-[9px] font-bold text-[#D4AF37] uppercase tracking-widest block mb-2 font-sans">Relationship Details</span>
+                                <h4 id="rel-active-title" class="font-serif text-[#0B1325] font-bold text-lg mb-3">No Relationship</h4>
+                                <p id="rel-active-desc" class="text-xs text-[#555555] leading-relaxed font-light">
+                                    Knowing the value of one variable gives no information about the value of another variable. There is zero logical overlap or statistical association.
+                                </p>
+                            </div>
+                            <div class="mt-6 p-4 bg-[#E2E8F0]/20 rounded-lg border border-[#E2E8F0]/30">
+                                <span class="text-[9px] text-[#555555] uppercase font-bold block mb-1 font-sans">Classic Case Study:</span>
+                                <p id="rel-active-example" class="text-xs text-[#0B1325] italic font-light">
+                                    The relationship between length of the lifeline on your hand and your Grade Point Average (GPA).
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Right Plot Visualizer representation -->
+                        <div class="md:col-span-7 bg-white p-6 rounded-xl border border-[#E2E8F0] flex flex-col justify-between min-h-[220px] shadow-sm">
+                            <div>
+                                <span class="text-[9px] font-bold text-[#555555] font-sans uppercase tracking-wider block mb-4">Simulated Data Visualization</span>
+                                <div id="rel-active-chart" class="h-36 border-l border-b border-[#E2E8F0] relative flex items-center justify-center">
+                                    <!-- Dynamic points or line representation -->
+                                    <div id="rel-chart-points" class="absolute inset-0 p-4"></div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center text-[10px] text-[#555555] pt-3 border-t border-[#E2E8F0] font-sans mt-4">
+                                <span>X Axis: Independent/Predictor</span>
+                                <span>Y Axis: Dependent/Criterion</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part B: Time Dimension (Cross-sectional vs Longitudinal) -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                    <!-- Cross Sectional Card -->
+                    <div class="md:col-span-6 bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between pb-3 border-b border-[#E2E8F0] mb-4">
+                                <span class="font-serif text-[#0B1325] font-semibold text-lg">Cross-Sectional Studies</span>
+                                <span class="text-[8px] tracking-wider bg-[#E2E8F0] text-[#0B1325] px-3 py-1 rounded-full font-sans uppercase font-bold">Single Instant</span>
+                            </div>
+                            <p class="text-xs text-[#555555] leading-relaxed font-light">
+                                Cross-sectional studies occur at a single, isolated point in time. All variables are measured simultaneously.
+                            </p>
+                        </div>
+                        <div class="mt-6 p-4 bg-[#E2E8F0]/10 rounded-xl border border-[#E2E8F0] text-xs">
+                            <span class="text-[9px] uppercase font-bold text-[#555555] tracking-wider font-sans">Example Scenario:</span>
+                            <p class="text-[#0B1325] mt-2 italic font-light">
+                                "Surveying a group of students in one school to understand their preferences at a specific moment."
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Longitudinal Card -->
+                    <div class="md:col-span-6 bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between pb-3 border-b border-[#E2E8F0] mb-4">
+                                <span class="font-serif text-[#0B1325] font-semibold text-lg">Longitudinal Studies</span>
+                                <span class="text-[8px] tracking-wider bg-[#D4AF37]/20 text-[#D4AF37] px-3 py-1 rounded-full font-sans uppercase font-bold font-semibold">Over Time</span>
+                            </div>
+                            <p class="text-xs text-[#555555] leading-relaxed font-light mb-4">
+                                Longitudinal designs follow the same group over a period of time, measuring variables at multiple key points.
+                            </p>
+                            
+                            <!-- Nested subcategories -->
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="p-3 bg-white border border-[#E2E8F0] rounded-xl shadow-sm">
+                                    <span class="text-[9px] font-sans font-bold text-[#D4AF37] block uppercase">Repeated Measures</span>
+                                    <p class="text-[10px] text-[#555555] font-light mt-1.5 leading-normal">Fewer than 20 points (e.g., patient's BP trial measurements).</p>
+                                </div>
+                                <div class="p-3 bg-white border border-[#E2E8F0] rounded-xl shadow-sm">
+                                    <span class="text-[9px] font-sans font-bold text-[#D4AF37] block uppercase">Time Series Design</span>
+                                    <p class="text-[10px] text-[#555555] font-light mt-1.5 leading-normal">20 or more measurements (e.g., daily market monitoring for a year).</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6 p-4 bg-[#E2E8F0]/10 rounded-xl border border-[#E2E8F0] text-xs">
+                            <span class="text-[9px] uppercase font-bold text-[#555555] tracking-wider font-sans">Example Scenario:</span>
+                            <p class="text-[#0B1325] mt-2 italic font-light">
+                                "Tracking the development of the same group of individuals' career progression over several years."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: BOUNDARIES -->
+            <div id="tab-boundaries" class="tab-content hidden space-y-8">
+                <div>
+                    <span class="text-[10px] font-sans font-bold text-[#D4AF37] uppercase tracking-widest">Section 10: Assumptions, Limitations, & Delimitations</span>
+                    <h2 class="text-3xl font-serif text-[#0B1325] tracking-tight font-normal mt-1">Mapping Boundaries, Risks, & Parameters</h2>
+                    <p class="text-xs text-[#555555] font-light mt-1">Every robust research plan must state what is taken for granted, what limits performance, and where bounds are set.</p>
+                </div>
+
+                <!-- Tri-Part Boundary Explorer Interface -->
+                <div class="bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between pb-4 border-b border-[#E2E8F0] gap-4 mb-6">
+                        <div>
+                            <h3 class="font-serif text-[#0B1325] font-semibold text-lg">Interactive Boundary Diagnostic Tool</h3>
+                            <p class="text-xs text-[#555555] font-light mt-0.5">Filter parameters to master crucial distinctions.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="setBoundType('assumptions')" id="bound-btn-assumptions" class="bound-filter-btn text-xs bg-[#0B1325] text-white px-4 py-2 rounded-lg transition-all font-sans font-medium">Assumptions</button>
+                            <button onclick="setBoundType('limitations')" id="bound-btn-limitations" class="bound-filter-btn text-xs bg-white border border-[#E2E8F0] text-[#0B1325]/70 px-4 py-2 rounded-lg hover:border-[#D4AF37] transition-all font-sans font-medium">Limitations</button>
+                            <button onclick="setBoundType('delimitations')" id="bound-btn-delimitations" class="bound-filter-btn text-xs bg-white border border-[#E2E8F0] text-[#0B1325]/70 px-4 py-2 rounded-lg hover:border-[#D4AF37] transition-all font-sans font-medium">Delimitations</button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                        <!-- Left Explanation Column -->
+                        <div class="md:col-span-4 bg-white p-5 rounded-xl border border-[#E2E8F0] flex flex-col justify-between shadow-sm">
+                            <div>
+                                <span class="text-[9px] font-bold text-[#D4AF37] uppercase block tracking-wider font-sans" id="bound-meta-tag">UNDERLYING POSTULATES</span>
+                                <h4 id="bound-active-title" class="font-serif text-[#0B1325] font-bold text-lg mt-2">Assumptions in Research</h4>
+                                <p id="bound-active-desc" class="text-xs text-[#555555] mt-3 leading-relaxed font-light">
+                                    Assumptions are beliefs or conditions taken for granted and considered true, even though they may not be explicitly proven. They guide choices of methodology, sampling, and statistics.
+                                </p>
+                            </div>
+                            <div class="mt-6 p-4 bg-[#E2E8F0]/20 rounded-lg border border-[#E2E8F0]/30 text-[10px] text-[#555555]">
+                                <strong>Integrity check:</strong> Overstepping an assumption without proper scientific grounding can invalidate your entire research output.
+                            </div>
+                        </div>
+
+                        <!-- Right Interactive Checklists -->
+                        <div class="md:col-span-8 bg-white p-6 rounded-xl border border-[#E2E8F0] space-y-4 shadow-sm">
+                            <div class="flex items-center justify-between pb-3 border-b border-[#E2E8F0]">
+                                <span class="text-xs font-sans font-semibold text-[#0B1325]" id="bound-checklist-title">Core Assumption Dimensions</span>
+                                <span class="text-[8px] tracking-wider bg-[#E2E8F0] text-[#0B1325] px-3 py-1 rounded-full font-sans uppercase font-bold">Checklist Items</span>
+                            </div>
+
+                            <div id="bound-list-content" class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[240px] overflow-y-auto pr-1 text-xs text-[#555555] font-light">
+                                <!-- Dynamic checkboxes loaded from script -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: SUMMARY -->
+            <div id="tab-summary" class="tab-content hidden space-y-8">
+                <div>
+                    <span class="text-[10px] font-sans font-bold text-[#D4AF37] uppercase tracking-widest">Section 11: Final Review & Transition</span>
+                    <h2 class="text-3xl font-serif text-[#0B1325] tracking-tight font-normal mt-1">Research Design Blueprint Complete</h2>
+                    <p class="text-xs text-[#555555] font-light mt-1">Verify that your structural planning contains all the mandatory components required before execution.</p>
+                </div>
+
+                <!-- Interactive Blueprint Summary Matrix -->
+                <div class="bg-white p-8 rounded-2xl border border-[#E2E8F0] shadow-sm space-y-8 transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-1">
+                    <div class="pb-4 border-b border-[#E2E8F0]">
+                        <h3 class="font-serif text-[#0B1325] font-semibold text-lg">Your Structured Research Blueprint Matrix</h3>
+                        <p class="text-xs text-[#555555] font-light mt-1">Review the core elements you have built. Use this checklist as a template for your research chapters.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Pillar 1: Problem Definition -->
+                        <div class="bg-white p-5 rounded-xl border border-[#E2E8F0] space-y-4 shadow-sm">
+                            <div class="flex items-center space-x-2 text-[#0B1325] border-b border-[#E2E8F0] pb-3">
+                                <i data-lucide="check-square" class="w-4 h-4 text-[#D4AF37]"></i>
+                                <span class="text-xs font-sans font-semibold">1. Problem Formulation</span>
+                            </div>
+                            <ul class="space-y-3 text-[11px] text-[#555555] font-light">
+                                <li class="flex items-start gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-[#D4AF37] mt-1.5 flex-shrink-0"></span>
+                                    <span><strong>Background:</strong> Documented, cited, and contextualized problem scope.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-[#D4AF37] mt-1.5 flex-shrink-0"></span>
+                                    <span><strong>Significance:</strong> Practical, conceptual, and policy values.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-[#D4AF37] mt-1.5 flex-shrink-0"></span>
+                                    <span><strong>Purpose Statement:</strong> High-level mission declaration.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Pillar 2: Operational Design -->
+                        <div class="bg-white p-5 rounded-xl border border-[#E2E8F0] space-y-4 shadow-sm">
+                            <div class="flex items-center space-x-2 text-[#0B1325] border-b border-[#E2E8F0] pb-3">
+                                <i data-lucide="check-square" class="w-4 h-4 text-[#D4AF37]"></i>
+                                <span class="text-xs font-sans font-semibold">2. Operational Design</span>
+                            </div>
+                            <ul class="space-y-3 text-[11px] text-[#555555] font-light">
+                                <li class="flex items-start gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-[#D4AF37] mt-1.5 flex-shrink-0"></span>
+                                    <span><strong>Questions:</strong> Structured descriptive, relational, or causal questions.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-[#D4AF37] mt-1.5 flex-shrink-0"></span>
+                                    <span><strong>Hypotheses:</strong> Clearly formulated H<sub>0</sub> and H<sub>a</sub>.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-[#D4AF37] mt-1.5 flex-shrink-0"></span>
+                                    <span><strong>Variables:</strong> Identified IVs, DVs, and data types.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Pillar 3: Scope & Boundaries -->
+                        <div class="bg-white p-5 rounded-xl border border-[#E2E8F0] space-y-4 shadow-sm">
+                            <div class="flex items-center space-x-2 text-[#0B1325] border-b border-[#E2E8F0] pb-3">
+                                <i data-lucide="check-square" class="w-4 h-4 text-[#D4AF37]"></i>
+                                <span class="text-xs font-sans font-semibold">3. Scope & Parameters</span>
+                            </div>
+                            <ul class="space-y-3 text-[11px] text-[#555555] font-light">
+                                <li class="flex items-start gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-[#D4AF37] mt-1.5 flex-shrink-0"></span>
+                                    <span><strong>Unit of Analysis:</strong> Defined analysis entity (e.g., individual, group).</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-[#D4AF37] mt-1.5 flex-shrink-0"></span>
+                                    <span><strong>Time Frame:</strong> Cross-sectional vs. Longitudinal.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-[#D4AF37] mt-1.5 flex-shrink-0"></span>
+                                    <span><strong>Boundaries:</strong> Clear assumptions, limitations, and delimitations.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Final Action Transition Box -->
+                    <div class="bg-[#E2E8F0]/30 border border-[#E2E8F0] p-6 rounded-xl flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="space-y-1">
+                            <h4 class="text-xs font-sans font-semibold text-[#0B1325]">Ready for Execution? (Transition to Part 3)</h4>
+                            <p class="text-[11px] text-[#555555] font-light">With these foundational planning blueprints in place, you are ready to explore research execution, methodological paradigms, and data gathering techniques.</p>
+                        </div>
+                        <button onclick="openCompletionModal()" class="bg-[#0B1325] hover:bg-white border border-[#0B1325] hover:text-[#0B1325] text-white font-sans font-semibold text-xs px-5 py-3 rounded-xl transition-all duration-300 whitespace-nowrap">
+                            Complete Blueprint
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- CUSTOM MINIMALIST COMPLETION MODAL -->
+    <div id="completion-modal" class="fixed inset-0 bg-[#0B1325]/40 backdrop-blur-sm z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white rounded-2xl border border-[#E2E8F0] p-8 max-w-md w-full mx-4 shadow-xl transform scale-95 transition-transform duration-300 relative">
+            <button onclick="closeCompletionModal()" class="absolute top-4 right-4 text-[#555555] hover:text-[#0B1325] transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div class="text-center space-y-4">
+                <div class="w-12 h-12 rounded-full border border-[#D4AF37] bg-[#D4AF37]/10 flex items-center justify-center mx-auto text-[#D4AF37]">
+                    <i data-lucide="award" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-serif text-[#0B1325] font-semibold">Blueprint Finalized</h3>
+                <p class="text-xs text-[#555555] leading-relaxed font-light">
+                    Congratulations! You have completed the interactive exploration of <strong>Part 2: Research Design & Planning</strong>. Use this structural master plan to outline your thesis, dissertation, or proposal papers.
+                </p>
+                <div class="pt-4">
+                    <button onclick="closeCompletionModal()" class="w-full bg-[#0B1325] hover:bg-[#D4AF37] hover:text-[#0B1325] text-white font-sans font-semibold text-xs py-3 rounded-xl transition-all duration-300">
+                        Continue Reviewing
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN JAVASCRIPT STATE CONTROLLER -->
+    <script>
+        // Global initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize lucide icons
+            lucide.createIcons();
+            
+            // Set first step views
+            showBgStep(1);
+            setSigFilter('discipline');
+            setRqType('descriptive');
+            selectDataType('nominal');
+            selectUnit('individuals');
+            setRelPattern('none');
+            setBoundType('assumptions');
+        });
+
+        // ----------------- TAB CONTROL -----------------
+        function switchTab(tabId) {
+            // Hide all tab content
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+                tab.classList.remove('block');
+            });
+            
+            // Show target content
+            const activeTab = document.getElementById(tabId);
+            if (activeTab) {
+                activeTab.classList.remove('hidden');
+                activeTab.classList.add('block');
+            }
+
+            // Reset navigation highlight styles to clean minimalist left border
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.className = "nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left text-xs font-medium transition-all duration-300 text-[#0B1325]/70 hover:text-[#0B1325] hover:bg-[#E2E8F0]/30 border-l-4 border-transparent";
+            });
+
+            // Highlight target button
+            const targetBtn = document.getElementById(`btn-${tabId}`);
+            if (targetBtn) {
+                targetBtn.className = "nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left text-xs font-medium transition-all duration-300 bg-[#0B1325] text-white border-l-4 border-[#D4AF37]";
+            }
+        }
+
+        // ----------------- MODAL CONTROLS -----------------
+        function openCompletionModal() {
+            const modal = document.getElementById('completion-modal');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.querySelector('div').classList.remove('scale-95');
+            modal.querySelector('div').classList.add('scale-100');
+        }
+
+        function closeCompletionModal() {
+            const modal = document.getElementById('completion-modal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.querySelector('div').classList.remove('scale-100');
+            modal.querySelector('div').classList.add('scale-95');
+        }
+
+        // ----------------- SECTION 2: BACKGROUND STEPS -----------------
+        let currentBgStep = 1;
+        const bgStepsData = {
+            1: {
+                title: "Introduction to the Research Area",
+                content: "Begin with an introduction to the broader societal or medical field. Frame the core challenge — managing hypertension globally and highlighting non-pharmacological interventions like exercise.",
+                meta: "Contextualization"
+            },
+            2: {
+                title: "Statement of the Problem",
+                content: "\"Hypertension is a highly prevalent health issue. Understanding the exact effects of physical exercise on blood pressure in hypertensive adults is critical for formulating effective treatment strategies.\"",
+                meta: "Problem Statement"
+            },
+            3: {
+                title: "Rationale and Significance",
+                content: "\"This research is motivated by the critical need to identify non-pharmacological approaches to managing hypertension. While exercise shows general promise, its specific impact warrants deep, scientific investigation.\"",
+                meta: "Justification"
+            },
+            4: {
+                title: "Review of Previous Research",
+                content: "\"Previous studies have provided evidence of the beneficial effects of exercise on blood pressure reduction, but there remains a major need for rigorous quantitative research to clarify the exact magnitude and consistency of these outcomes.\"",
+                meta: "Academic Lit Review"
+            },
+            5: {
+                title: "Research Gaps Identification",
+                content: "\"Despite some positive findings, there is limited quantitative research that considers the dose-response relationship between exercise intensity and blood pressure reduction in hypertensive adults.\"",
+                meta: "Gap Identification"
+            },
+            6: {
+                title: "Specific Research Questions",
+                content: "\"To address this gap, this study will investigate: (1) Is there a statistically significant difference in blood pressure reduction between moderate and high intensity exercise? (2) Does session duration influence the magnitude of blood pressure reduction?\"",
+                meta: "Transition"
+            }
+        };
+
+        function showBgStep(step) {
+            currentBgStep = step;
+            const data = bgStepsData[step];
+            const contentDiv = document.getElementById('bg-step-content');
+            const indicatorSpan = document.getElementById('bg-step-indicator');
+
+            // Set content
+            contentDiv.innerHTML = `
+                <div class="flex items-center justify-between mb-3 pb-2 border-b border-[#E2E8F0]">
+                    <span class="text-[8px] tracking-wider font-extrabold uppercase bg-[#E2E8F0] text-[#0B1325] px-2.5 py-1 rounded-full font-sans">${data.meta}</span>
+                    <span class="text-[10px] text-[#555555]">Step ${step} of 6</span>
+                </div>
+                <h4 class="font-serif font-semibold text-[#0B1325] text-sm mb-2">${data.title}</h4>
+                <p class="text-[#555555] leading-relaxed text-xs italic font-light">${data.content}</p>
+            `;
+
+            indicatorSpan.textContent = `Step ${step} of 6`;
+
+            // Reset step button classes
+            for (let i = 1; i <= 6; i++) {
+                const btn = document.getElementById(`bg-step-btn-${i}`);
+                if (btn) {
+                    if (i === step) {
+                        btn.className = "bg-[#0B1325] text-white text-[10px] font-sans font-medium py-2 px-1.5 rounded-lg transition-all duration-300";
+                    } else {
+                        btn.className = "bg-white border border-[#E2E8F0] text-[#0B1325]/70 text-[10px] font-sans font-medium py-2 px-1.5 rounded-lg hover:border-[#D4AF37] transition-all duration-300";
+                    }
+                }
+            }
+        }
+
+        function nextBgStep() {
+            if (currentBgStep < 6) showBgStep(currentBgStep + 1);
+        }
+
+        function prevBgStep() {
+            if (currentBgStep > 1) showBgStep(currentBgStep - 1);
+        }
+
+        // ----------------- SECTION 3: SIGNIFICANCE FILTER -----------------
+        const sigData = {
+            discipline: {
+                title: "Field or Discipline Relevance",
+                desc: "\"This research is situated within the field of education and child development, addressing a longstanding question about the influence of early childhood education on later academic success.\""
+            },
+            practical: {
+                title: "Practical Significance",
+                desc: "\"The findings of this study can inform educational policies and practices, supporting the design of effective early childhood education programs that enhance academic achievement among young learners.\""
+            },
+            theoretical: {
+                title: "Theoretical Contributions",
+                desc: "\"In addition to its practical implications, this research contributes to the theoretical understanding of the long-term effects of early education, potentially refining our knowledge of child development and learning trajectories.\""
+            },
+            policy: {
+                title: "Policy or Social Relevance",
+                desc: "\"Given the ongoing emphasis on early childhood education, the results of this study may be of interest to policymakers, educators, and parents, guiding decisions on resource allocation and program development.\""
+            },
+            gap: {
+                title: "Addressing Gaps",
+                desc: "\"While prior research has indicated positive short-term outcomes of early childhood education, there is a gap in our understanding of its sustained effects on academic achievement beyond the early years. This study aims to fill that gap.\""
+            }
+        };
+
+        function setSigFilter(filter) {
+            const data = sigData[filter];
+            document.getElementById('sig-card-title').textContent = data.title;
+            document.getElementById('sig-card-desc').textContent = data.desc;
+
+            // Highlight button
+            document.querySelectorAll('.sig-filter-btn').forEach(btn => {
+                btn.className = "sig-filter-btn text-xs bg-white border border-[#E2E8F0] text-[#0B1325]/70 px-4 py-2 rounded-lg hover:border-[#D4AF37] transition-all font-sans font-medium";
+            });
+            document.getElementById(`sig-btn-${filter}`).className = "sig-filter-btn text-xs bg-[#0B1325] text-white px-4 py-2 rounded-lg transition-all font-sans font-medium";
+        }
+
+        // ----------------- SECTION 5: RESEARCH QUESTIONS -----------------
+        const rqData = {
+            descriptive: {
+                tag: "Descriptive Type",
+                title: "Providing an Objective Snapshot",
+                desc: "Descriptive research aims to provide a straightforward description of a phenomenon, behavior, or scenario without trying to find relationships, correlations, or establish cause-and-effect paths.",
+                question: "\"What are the demographic characteristics of participants attending an AI festival?\"",
+                anatomy: "This question describes demographics (e.g., age, occupation, gender) of attendees at an AI festival. There are no comparison variables or predictive lines."
+            },
+            relational: {
+                tag: "Relational Type",
+                title: "Exploring Connections & Correlative Bridges",
+                desc: "Relational research explores statistical relationships, associations, or covariances between two or more variables, determining if changes in one match patterns in another.",
+                question: "\"Is there a relationship between hours of sleep and academic performance among college students?\"",
+                anatomy: "This question links two continuous variables: sleep (hours per night) and performance (GPA). It checks for a pattern of correlation without declaring that sleep directly causes better grades."
+            },
+            causal: {
+                tag: "Causal Type",
+                title: "Evaluating Cause & Effect Relationships",
+                desc: "Causal research investigates cause-and-effect pathways. It attempts to isolate the direct influence of an independent variable on a dependent variable, showing a change in Y is directly caused by X.",
+                question: "\"Does a new teaching method lead to improved test scores among elementary school students?\"",
+                anatomy: "This is a direct cause-and-effect question. It evaluates if introducing an intervention (new teaching method) leads to a significant increase in standard test outcomes."
+            }
+        };
+
+        function setRqType(type) {
+            const data = rqData[type];
+            document.getElementById('rq-category-tag').textContent = data.tag;
+            document.getElementById('rq-category-title').textContent = data.title;
+            document.getElementById('rq-category-desc').textContent = data.desc;
+            document.getElementById('rq-active-question').textContent = data.question;
+            document.getElementById('rq-active-anatomy').textContent = data.anatomy;
+
+            // Highlight button
+            document.querySelectorAll('.rq-filter-btn').forEach(btn => {
+                btn.className = "rq-filter-btn text-xs bg-white border border-[#E2E8F0] text-[#0B1325]/70 px-4 py-2 rounded-lg hover:border-[#D4AF37] transition-all font-sans font-medium";
+            });
+            document.getElementById(`rq-btn-${type}`).className = "rq-filter-btn text-xs bg-[#0B1325] text-white px-4 py-2 rounded-lg transition-all font-sans font-medium";
+        }
+
+        // ----------------- SECTION 6: HYPOTHESIS TESTING STEPS -----------------
+        const hstepData = {
+            1: "State clear predictions: Null (H0) predicts no relationship or difference. Alternative (Ha) predicts a statistically significant difference.",
+            2: "Choose a statistical test (e.g., Independent t-test, ANOVA) and set alpha (e.g., &alpha; = 0.05). Alpha is your threshold for significance.",
+            3: "Gather your data from the field. Compute your statistics and extract the p-value. The p-value indicates the probability of observing these results if H0 were true.",
+            4: "Compare p-value to alpha. If p &le; &alpha;, reject H0 and accept Ha. If p > &alpha;, you fail to reject H0. Clearly report the final statistical values."
+        };
+
+        function selectHypoStep(step) {
+            // Highlight list item
+            document.querySelectorAll('.hstep-card').forEach(card => {
+                card.className = "hstep-card p-3 rounded-xl bg-white border border-[#E2E8F0] cursor-pointer transition-all hover:border-[#D4AF37]";
+            });
+            document.getElementById(`hstep-${step}`).className = "hstep-card p-3 rounded-xl bg-[#E2E8F0]/30 border border-[#D4AF37] cursor-pointer transition-all";
+            
+            // Set details
+            document.getElementById('hypo-step-details').innerHTML = hstepData[step];
+        }
+
+        // ----------------- SECTION 7: VARIABLES & DATA -----------------
+        const dataTypeData = {
+            nominal: {
+                title: "Nominal Data",
+                meta: "Categorical",
+                desc: "Consists of discrete labels or named categories that do not contain any natural order, ranking, or quantitative structure.",
+                examples: "Gender (e.g., Male, Female), Marital Status (e.g., Single, Married, Divorced), Eyecolor (e.g., Blue, Brown)"
+            },
+            ordinal: {
+                title: "Ordinal Data",
+                meta: "Categorical",
+                desc: "Categories containing a meaningful order or rank. However, the exact spacing or intervals between these ranks are not uniform or measurable.",
+                examples: "Educational levels (e.g., High School, College, Graduate School), Satisfaction Ratings (e.g., Poor, Fair, Good, Excellent)"
+            },
+            interval: {
+                title: "Interval Data",
+                meta: "Numerical",
+                desc: "Numerical variables with a standard, measurable scale and equal intervals between points, but lacking a true zero point (i.e., zero does not mean absence).",
+                examples: "Temperature in Celsius or Fahrenheit, IQ Scores, Calendar Years (e.g., 2000, 2010)"
+            },
+            ratio: {
+                title: "Ratio Data",
+                meta: "Numerical",
+                desc: "Numerical values with equal intervals and a true absolute zero point. A value of zero means a complete absence of the measured trait.",
+                examples: "Age in years, Height in centimeters, Income in dollars, Number of items sold"
+            },
+            discrete: {
+                title: "Discrete Data",
+                meta: "Numerical",
+                desc: "Numerical data that can only take on distinct, isolated values, typically counted in whole integers.",
+                examples: "Number of children in a family, Number of customer service representatives, Product defect counts"
+            },
+            continuous: {
+                title: "Continuous Data",
+                meta: "Numerical",
+                desc: "Numerical values that can take on any infinite value within a scale, including fractions and decimals.",
+                examples: "Weight of individuals, Time taken to complete an exam, Chemical concentration levels"
+            },
+            qualitative: {
+                title: "Qualitative Data",
+                meta: "Descriptive",
+                desc: "Non-numeric descriptions of qualities, attributes, or characteristics. Usually analyzed through coding and thematic content analysis.",
+                examples: "Open-ended questionnaire transcripts, Video recording observations, Unstructured focus group reports"
+            },
+            quantitative: {
+                title: "Quantitative Data",
+                meta: "Numerical",
+                desc: "Numerical values that can be counted, measured, and analyzed using mathematical and statistical methods.",
+                examples: "Standard test scores, Likert scale responses (1-5 ratings), Population census figures"
+            }
+        };
+
+        function selectDataType(type) {
+            const data = dataTypeData[type];
+            document.getElementById('dt-active-title').textContent = data.title;
+            document.getElementById('dt-active-class').textContent = data.meta;
+            document.getElementById('dt-active-desc').textContent = data.desc;
+            document.getElementById('dt-active-examples').textContent = data.examples;
+
+            // Update button styles
+            document.querySelectorAll('.dt-btn').forEach(btn => {
+                btn.className = "dt-btn text-[11px] font-sans font-semibold bg-white border border-[#E2E8F0] text-[#0B1325]/70 p-3 rounded-lg hover:border-[#D4AF37] transition-all duration-300";
+            });
+            document.getElementById(`dt-${type}`).className = "dt-btn text-[11px] font-sans font-semibold bg-[#0B1325] text-white p-3 rounded-lg transition-all duration-300";
+        }
+
+        // ----------------- SECTION 8: UNIT OF ANALYSIS -----------------
+        const unitData = {
+            individuals: {
+                title: "Individuals as Unit of Analysis",
+                desc: "If you are studying people and comparing their individual performances, each person is your primary unit of analysis. For example, comparing test scores of students across classes.",
+                contrast: "Comparing individual test scores means the student is the unit. However, if you are studying classroom environmental atmospheres, the classroom itself becomes the unit of analysis since you measure it as a whole group."
+            },
+            groups: {
+                title: "Groups as Unit of Analysis",
+                desc: "Sometimes, your primary research interest is the dynamic or performance of an entire collective (e.g., households, schools, project teams). The data points represent group characteristics as a single score.",
+                contrast: "Evaluating a team's total project productivity focuses on the group. Individuals inside the team may vary, but the group is your unit of analysis."
+            },
+            artifacts: {
+                title: "Artifacts as Unit of Analysis",
+                desc: "Your study may focus on physical or digital products of human activity, such as books, historical photographs, newspaper articles, websites, or software applications.",
+                contrast: "Analyzing the frequency of gender bias in 100 historical children's books makes the individual book the unit of analysis, not the children reading them."
+            },
+            geographical: {
+                title: "Geographical Units of Analysis",
+                desc: "Focuses on locations, territories, or physical spaces (e.g., neighborhoods, cities, federal states, or countries).",
+                contrast: "Comparing average crime rates between the 50 US states makes the state the unit of analysis, rather than the individual citizens committing crimes."
+            },
+            interactions: {
+                title: "Social Interactions as Unit of Analysis",
+                desc: "Focuses on connections, communications, or occurrences between entities rather than the entities themselves (e.g., divorces, medical consultations, arrests, or email threads).",
+                contrast: "Analyzing patterns of communication during a couple's marriage counseling session makes the interaction itself (the session) your unit of analysis."
+            }
+        };
+
+        function selectUnit(unitKey) {
+            const data = unitData[unitKey];
+            document.getElementById('unit-active-title').textContent = data.title;
+            document.getElementById('unit-active-desc').textContent = data.desc;
+            document.getElementById('unit-active-contrast').textContent = data.contrast;
+
+            // Highlight button
+            document.querySelectorAll('.unit-btn').forEach(btn => {
+                btn.className = "unit-btn w-full text-left text-xs bg-white border border-[#E2E8F0] text-[#0B1325]/70 p-3.5 rounded-xl hover:border-[#D4AF37] flex items-center justify-between transition-all duration-300";
+                // Reset icon colors
+                const icon = btn.querySelector('i');
+                if (icon) icon.className = "w-4 h-4 text-[#555555]";
+            });
+
+            const activeBtn = document.getElementById(`unit-btn-${unitKey}`);
+            if (activeBtn) {
+                activeBtn.className = "unit-btn w-full text-left text-xs bg-[#0B1325] text-white p-3.5 rounded-xl flex items-center justify-between transition-all duration-300";
+                const activeIcon = activeBtn.querySelector('i');
+                if (activeIcon) activeIcon.className = "w-4 h-4 text-[#D4AF37]";
+            }
+        }
+
+        // ----------------- SECTION 9: RELATIONSHIPS PATTERNS -----------------
+        const relData = {
+            none: {
+                title: "No Relationship",
+                desc: "Knowing the value of one variable gives no information about the value of another variable. There is zero logical overlap or statistical association.",
+                example: "The relationship between length of the lifeline on your hand and your Grade Point Average (GPA).",
+                dots: [
+                    {x: 20, y: 30}, {x: 40, y: 80}, {x: 60, y: 20}, {x: 80, y: 70},
+                    {x: 30, y: 50}, {x: 50, y: 40}, {x: 70, y: 80}, {x: 90, y: 30}
+                ],
+                isLine: false
+            },
+            positive: {
+                title: "Positive Relationship",
+                desc: "An increase in the value of one variable is associated with a corresponding, predictable increase in the value of the other variable.",
+                example: "The relationship between years of formal education and expected life-time salary outcomes.",
+                dots: [
+                    {x: 10, y: 20}, {x: 25, y: 30}, {x: 40, y: 45}, {x: 55, y: 55},
+                    {x: 70, y: 75}, {x: 80, y: 85}, {x: 90, y: 95}
+                ],
+                isLine: true,
+                lineStyle: "transform: rotate(-35deg); transform-origin: left bottom; width: 110%; bottom: 10px;"
+            },
+            negative: {
+                title: "Negative Relationship",
+                desc: "An increase in the value of one variable is associated with a corresponding, predictable decrease in the value of the other variable.",
+                example: "The relationship between self-esteem and levels of paranoia in psychiatric patients.",
+                dots: [
+                    {x: 10, y: 90}, {x: 25, y: 75}, {x: 40, y: 60}, {x: 55, y: 45},
+                    {x: 70, y: 30}, {x: 85, y: 20}, {x: 95, y: 10}
+                ],
+                isLine: true,
+                lineStyle: "transform: rotate(35deg); transform-origin: left top; width: 110%; top: 10px;"
+            },
+            complex: {
+                title: "Complex Curvilinear Relationship",
+                desc: "The relationship changes direction as the value of the independent variable increases, forming a curve (e.g., U-shaped or inverted U-shaped).",
+                example: "The relationship between medication dosage and severity of illness symptoms (too little has no effect; too much has toxic side effects).",
+                dots: [
+                    {x: 10, y: 80}, {x: 25, y: 45}, {x: 40, y: 20}, {x: 50, y: 15},
+                    {x: 60, y: 25}, {x: 75, y: 50}, {x: 90, y: 85}
+                ],
+                isLine: false
+            },
+            causal: {
+                title: "Causal Relationship",
+                desc: "Changes in the independent variable directly produce changes in the dependent variable. Covariance is not coincidental; a causal path is isolated.",
+                example: "Attending extra tutoring sessions (Variable A) directly causing improvements in standardized test outcomes (Variable B).",
+                dots: [
+                    {x: 15, y: 20}, {x: 30, y: 35}, {x: 45, y: 50}, {x: 60, y: 65},
+                    {x: 75, y: 80}, {x: 90, y: 95}
+                ],
+                isLine: true,
+                lineStyle: "transform: rotate(-40deg); transform-origin: left bottom; width: 110%; bottom: 5px;"
+            }
+        };
+
+        function setRelPattern(patternKey) {
+            const data = relData[patternKey];
+            document.getElementById('rel-active-title').textContent = data.title;
+            document.getElementById('rel-active-desc').textContent = data.desc;
+            document.getElementById('rel-active-example').textContent = data.example;
+
+            // Render chart points
+            const pointsContainer = document.getElementById('rel-chart-points');
+            pointsContainer.innerHTML = '';
+
+            // Draw regression line if needed
+            if (data.isLine) {
+                const line = document.createElement('div');
+                line.className = "absolute bg-[#D4AF37] h-0.5 left-0";
+                line.style = data.lineStyle;
+                pointsContainer.appendChild(line);
+            }
+
+            // Draw scatter dots
+            data.dots.forEach(dot => {
+                const pt = document.createElement('div');
+                pt.className = "absolute w-2.5 h-2.5 rounded-full bg-[#0B1325] border border-[#D4AF37] shadow-sm transition-all duration-300";
+                pt.style.left = `${dot.x}%`;
+                pt.style.bottom = `${dot.y}%`;
+                pointsContainer.appendChild(pt);
+            });
+
+            // Highlight button
+            document.querySelectorAll('.rel-btn').forEach(btn => {
+                btn.className = "rel-btn text-[11px] font-sans font-semibold bg-white border border-[#E2E8F0] text-[#0B1325]/70 px-3 py-2 rounded-lg hover:border-[#D4AF37] transition-all duration-300";
+            });
+            document.getElementById(`rel-btn-${patternKey}`).className = "rel-btn text-[11px] font-sans font-semibold bg-[#0B1325] text-white px-3 py-2 rounded-lg transition-all duration-300";
+        }
+
+        // ----------------- SECTION 10: BOUNDARIES CHECKLISTS -----------------
+        const boundsData = {
+            assumptions: {
+                title: "Assumptions in Research",
+                desc: "Assumptions are beliefs or conditions taken for granted and considered true, even though they may not be explicitly proven. They guide choices of methodology, sampling, and statistics.",
+                meta: "UNDERLYING POSTULATES",
+                checklist: [
+                    { label: "Theoretical Assumptions", desc: "Starting points grounded in established theories." },
+                    { label: "Population Assumptions", desc: "Assuming the sample is representative of a larger population." },
+                    { label: "Assumptions about Variables", desc: "Assuming measures represent the constructs accurately." },
+                    { label: "Assumptions about Data Integrity", desc: "Belief that gathered values are accurate and unbiased." },
+                    { label: "Statistical Assumptions", desc: "Normality, homoscedasticity, or observation independence." },
+                    { label: "Ethical assumptions", desc: "Assuming participants provide honest consent and responses." }
+                ]
+            },
+            limitations: {
+                title: "Limitations in Research",
+                desc: "Limitations are external conditions or weaknesses that could influence the study's results, which are outside of the researcher's direct control.",
+                meta: "EXTERNAL CONSTRAINTS",
+                checklist: [
+                    { label: "Sampling Limitations", desc: "Small sample sizes or geographical limitations." },
+                    { label: "Data Collection Barriers", desc: "Self-report bias or missing responses." },
+                    { label: "Research Design Limits", desc: "Cross-sectional data cannot prove causality over time." },
+                    { label: "Time & Resource Limits", desc: "Restricted budgets or calendar timespans." },
+                    { label: "Instrumentation Quality", desc: "Reliability or validity limits of standardized tests." },
+                    { label: "Confounding Variables", desc: "Uncontrolled external factors influencing outcomes." }
+                ]
+            },
+            delimitations: {
+                title: "Delimitations in Research",
+                desc: "Delimitations are the boundaries intentionally set by the researchers. They define the scope of the study, specifying what will be excluded.",
+                meta: "INTENTIONAL BOUNDARIES",
+                checklist: [
+                    { label: "Scope of Study", desc: "Focusing on a specific sub-topic or theme." },
+                    { label: "Target Population Age", desc: "Delimiting subjects to individuals aged 13-18." },
+                    { label: "Geographical Bounds", desc: "Conducting the study only in a single school district." },
+                    { label: "Selected Measures", desc: "Excluding certain variables to keep the study focused." },
+                    { label: "Time Frame Bounds", desc: "Limiting historical data to the past 5 years." },
+                    { label: "Practical Choice", desc: "Choosing a cross-sectional instead of longitudinal design." }
+                ]
+            }
+        };
+
+        function setBoundType(boundKey) {
+            const data = boundsData[boundKey];
+            document.getElementById('bound-meta-tag').textContent = data.meta;
+            document.getElementById('bound-active-title').textContent = data.title;
+            document.getElementById('bound-active-desc').textContent = data.desc;
+
+            // Load checklist items
+            const listContainer = document.getElementById('bound-list-content');
+            listContainer.innerHTML = '';
+
+            data.checklist.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = "p-3 rounded-xl bg-white border border-[#E2E8F0] hover:border-[#D4AF37] shadow-sm transition-all duration-500 space-y-1";
+                itemDiv.innerHTML = `
+                    <div class="flex items-center space-x-2.5">
+                        <i data-lucide="check" class="w-4 h-4 text-[#D4AF37]"></i>
+                        <span class="font-sans font-semibold text-[#0B1325] text-xs">${item.label}</span>
+                    </div>
+                    <p class="text-[10px] text-[#555555] font-light pl-6.5 leading-relaxed">${item.desc}</p>
+                `;
+                listContainer.appendChild(itemDiv);
+            });
+
+            // Refresh lucide icons for newly appended elements
+            lucide.createIcons();
+
+            // Highlight button
+            document.querySelectorAll('.bound-filter-btn').forEach(btn => {
+                btn.className = "bound-filter-btn text-xs bg-white border border-[#E2E8F0] text-[#0B1325]/70 px-4 py-2 rounded-lg hover:border-[#D4AF37] transition-all font-sans font-medium";
+            });
+            document.getElementById(`bound-btn-${boundKey}`).className = "bound-filter-btn text-xs bg-[#0B1325] text-white px-4 py-2 rounded-lg transition-all font-sans font-medium";
+        }
+    </script>
+</body>
+</html>

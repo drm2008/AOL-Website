@@ -4,10 +4,47 @@ export const MOCK_MODULES: Module[] = [
   {
     id: "m01",
     subject: "Engineering & Science",
-    title: "Research Methods & Applied Statistics Manual",
+    title: "Research Methods & Applied Statistics",
     description: "Learn the fundamentals of research design, data collection, and methodology.",
     content: "Research methods are the strategies, processes or techniques utilized in the collection of data or evidence for analysis in order to uncover new information or create better understanding of a topic.",
     duration: 15,
+    dashboards: [
+      {
+        title: "RMAS: Overview & Outcomes",
+        desc: "Full comprehensive overview of the Research Methods & Applied Statistics learning pathways and milestones.",
+        url: "./dashboards/rmas_overview.html"
+      },
+      {
+        title: "Part 1: Research Foundations & Philosophy",
+        desc: "Explores the philosophical bedrock of scholarly inquiry, distinguishing ways of knowing and reasoning.",
+        url: "./dashboards/part1_research_foundations.html"
+      },
+      {
+        title: "Part 2: Research Design & Planning",
+        desc: "An interactive blueprint guiding you from initial inquiry to rigorous quantitative study methodology.",
+        url: "./dashboards/part2_research_design.html"
+      },
+      {
+        title: "Part 3: Methodology & Data Collection",
+        desc: "Overview of quantitative, qualitative, and mixed-methods research designs and data collection instruments.",
+        url: "./dashboards/part3_methodology.html"
+      },
+      {
+        title: "Part 4: Sampling & Measurement",
+        desc: "Detailed guides for probability/non-probability sampling, validity, reliability, and sample size calculations.",
+        url: "./dashboards/part4_sampling.html"
+      },
+      {
+        title: "Part 5: Data Analysis - Statistical Foundations",
+        desc: "Interactive statistical frameworks covering univariate, bivariate, multivariate, and assumption testing checks.",
+        url: "./dashboards/part5_data_analysis.html"
+      },
+      {
+        title: "Part 6: Research Writing & Dissemination",
+        desc: "Syllabus on structuring a thesis, writing literature reviews, contextualizing findings, and writing tips.",
+        url: "./dashboards/part6_research_writing.html"
+      }
+    ]
   },
   {
     id: "m02",

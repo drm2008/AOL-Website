@@ -3,6 +3,16 @@ import { ArrowLeft } from "lucide-react";
 import { Module, Progress } from "./types";
 import { MOCK_MODULES } from "./data/modules";
 
+const getCorrectUrl = (url: string) => {
+  if (url.startsWith("./")) {
+    const relativePart = url.substring(2); // Remove leading './'
+    const base = (import.meta as any).env.BASE_URL || "/";
+    const cleanBase = base.endsWith("/") ? base : base + "/";
+    return cleanBase + relativePart;
+  }
+  return url;
+};
+
 export default function App() {
   const [modules, setModules] = useState<Module[]>([]);
   const [progress, setProgress] = useState<Progress>({ completedModules: [], totalScore: 0 });
@@ -10,6 +20,7 @@ export default function App() {
   const [activeModule, setActiveModule] = useState<Module | null>(null);
   const [activeTopic, setActiveTopic] = useState<string | null>(null);
   const [showSimulators, setShowSimulators] = useState(false);
+  const [showDashboards, setShowDashboards] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -35,7 +46,7 @@ export default function App() {
       <div className="min-h-screen bg-eml-offwhite flex flex-col items-center py-20 px-6 sm:px-12 font-sans">
         <div className="w-full max-w-5xl bg-white rounded-3xl p-10 sm:p-20 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
           <button
-            onClick={() => { setActiveModule(null); setActiveTopic(null); setShowSimulators(false); }}
+            onClick={() => { setActiveModule(null); setActiveTopic(null); setShowSimulators(false); setShowDashboards(false); }}
             className="flex items-center text-eml-silver hover:text-eml-navy transition-colors mb-16 text-sm font-medium tracking-wide"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
@@ -172,13 +183,16 @@ export default function App() {
                    </div>
                    {activeModule.simulators && activeModule.simulators.length > 0 ? (
                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                       {activeModule.simulators.map(sim => (
-                         <div 
+                                              {activeModule.simulators.map(sim => (
+                         <a 
                            key={sim.title}
-                           className="group flex flex-col justify-between p-8 rounded-2xl bg-eml-offwhite hover:bg-white transition-all duration-500 shadow-sm hover:shadow-[0_10px_40px_rgba(10,25,47,0.08)] border border-transparent hover:border-eml-light-silver min-h-[220px]"
+                           href={getCorrectUrl(sim.url)}
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           className="group flex flex-col justify-between p-8 rounded-2xl bg-white border border-eml-light-silver hover:border-eml-gold hover:-translate-y-1 shadow-sm hover:shadow-[0_12px_36px_rgba(11,19,37,0.06)] transition-all duration-500 cursor-pointer min-h-[220px]"
                          >
                            <div>
-                             <h3 className="text-lg font-serif text-eml-navy mb-3 transition-colors duration-300">
+                             <h3 className="text-lg font-serif text-eml-navy mb-3 transition-colors duration-300 group-hover:text-eml-gold">
                                {sim.title}
                              </h3>
                              <p className="text-sm text-eml-navy/60 leading-relaxed font-light transition-colors duration-300">
@@ -186,23 +200,60 @@ export default function App() {
                              </p>
                            </div>
                            <div className="flex justify-start mt-8">
-                             <a 
-                               href={sim.url}
-                               target="_blank"
-                               rel="noopener noreferrer"
+                             <div 
                                className="text-eml-gold font-semibold text-sm tracking-widest uppercase flex items-center gap-2 group-hover:gap-4 transition-all duration-300"
                              >
                                Launch <span className="text-lg leading-none">→</span>
-                             </a>
+                             </div>
                            </div>
-                         </div>
+                         </a>
                        ))}
                      </div>
                    ) : (
                      <p className="text-eml-navy/50 py-12 font-light italic">No simulators available for this module yet.</p>
                    )}
                  </div>
-                ) : (
+                ) : showDashboards ? (
+                  <div>
+                    <div className="flex items-center justify-between mb-12 border-b border-eml-light-silver pb-4">
+                      <h2 className="text-2xl font-serif text-eml-navy">Interactive Dashboards</h2>
+                      <button onClick={() => setShowDashboards(false)} className="text-xs tracking-wider text-eml-silver hover:text-eml-navy uppercase transition-colors font-medium">
+                        Back
+                      </button>
+                    </div>
+                    {activeModule.dashboards && activeModule.dashboards.length > 0 ? (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {activeModule.dashboards.map(dash => (
+                          <a 
+                            key={dash.title}
+                            href={getCorrectUrl(dash.url)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group flex flex-col justify-between p-8 rounded-2xl bg-white border border-eml-light-silver hover:border-eml-gold hover:-translate-y-1 shadow-sm hover:shadow-[0_12px_36px_rgba(11,19,37,0.06)] transition-all duration-500 cursor-pointer min-h-[220px]"
+                          >
+                            <div>
+                              <h3 className="text-lg font-serif text-eml-navy mb-3 transition-colors duration-300 group-hover:text-eml-gold">
+                                {dash.title}
+                              </h3>
+                              <p className="text-sm text-eml-navy/60 leading-relaxed font-light transition-colors duration-300">
+                                {dash.desc}
+                              </p>
+                            </div>
+                            <div className="flex justify-start mt-8">
+                              <div 
+                                className="text-eml-gold font-semibold text-sm tracking-widest uppercase flex items-center gap-2 group-hover:gap-4 transition-all duration-300"
+                              >
+                                Launch Dashboard <span className="text-lg leading-none">→</span>
+                              </div>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-eml-navy/50 py-12 font-light italic">No dashboards available for this module yet.</p>
+                    )}
+                  </div>
+                 ) : (
                   <>
                     {activeTopic && (
                        <div className="mb-12">
@@ -214,15 +265,22 @@ export default function App() {
                     )}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-12">
                       {[
-                        { title: "Interactive Dashboards", desc: "Explore data sets and visual trends dynamically." },
+                        { title: "Interactive Dashboards", desc: "Explore data sets and visual trends dynamically.", action: "DASHBOARDS" },
                         { title: "Simulations", desc: "Access hands-on computational models and environments.", action: "EXPLORE" }
                       ].map(subMod => (
                       <div 
                         key={subMod.title}
-                        className="group flex flex-col justify-between pt-8 pb-10 border-t border-eml-light-silver hover:border-eml-gold transition-colors duration-500"
+                        onClick={() => {
+                          if (subMod.action === "EXPLORE") {
+                            setShowSimulators(true);
+                          } else if (subMod.action === "DASHBOARDS") {
+                            setShowDashboards(true);
+                          }
+                        }}
+                        className="group flex flex-col justify-between p-8 rounded-2xl bg-white border border-eml-light-silver hover:border-eml-gold hover:-translate-y-1 shadow-sm hover:shadow-[0_12px_36px_rgba(11,19,37,0.06)] transition-all duration-500 cursor-pointer min-h-[240px]"
                       >
                         <div>
-                          <h3 className="text-xl font-serif text-eml-navy mb-4 transition-colors duration-300">
+                          <h3 className="text-xl font-serif text-eml-navy mb-4 transition-colors duration-300 group-hover:text-eml-gold">
                             {subMod.title}
                           </h3>
                           <p className="text-sm text-eml-navy/60 leading-relaxed font-light transition-colors duration-300 pr-4">
@@ -230,18 +288,11 @@ export default function App() {
                           </p>
                         </div>
                         <div className="flex justify-start mt-8">
-                          <button 
-                            onClick={() => {
-                                if (subMod.action === "EXPLORE") {
-                                  setShowSimulators(true);
-                                } else {
-                                  alert("Dashboard feature coming soon.");
-                                }
-                            }}
+                          <div 
                             className="text-eml-navy text-sm font-semibold tracking-[0.2em] uppercase flex items-center gap-2 group-hover:text-eml-gold group-hover:gap-4 transition-all duration-300"
                           >
-                            Explore <span className="text-lg leading-none">→</span>
-                          </button>
+                            Explore <span className="text-lg leading-none font-normal transition-transform duration-300 group-hover:translate-x-1">→</span>
+                          </div>
                         </div>
                       </div>
                       ))}

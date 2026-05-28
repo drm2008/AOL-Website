@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Methods: Executive Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .active-tab { border-bottom: 2px solid #D4AF37 !important; color: #D4AF37 !important; }
+        .card { 
+            background: #FFFFFF; 
+            border-radius: 1rem; 
+            border: 1px solid #E2E8F0; 
+            padding: 2rem; 
+            transition: all 500ms ease; 
+        }
+        .card:hover { border-color: #D4AF37; transform: translateY(-4px); }
+    </style>
+</head>
+<body class="bg-[#FFFFFF] text-[#0B1325] font-sans antialiased">
+
+    <div class="max-w-5xl mx-auto p-12">
+        <header class="mb-16">
+            <h1 class="font-serif text-5xl text-[#0B1325] tracking-tight mb-4 font-normal">PART 4: Sampling & Measurement</h1>
+        </header>
+
+        <nav class="flex space-x-8 border-b border-[#E2E8F0] mb-12">
+            <button onclick="showTab('sampling')" id="btn-sampling" class="pb-4 font-medium text-[#555555]">Sampling</button>
+            <button onclick="showTab('validity')" id="btn-validity" class="pb-4 font-medium text-[#555555]">Validity & Reliability</button>
+            <button onclick="showTab('design_interviews')" id="btn-design_interviews" class="pb-4 font-medium text-[#555555]">Design & Interviews</button>
+            <button onclick="showTab('calculator')" id="btn-calculator" class="pb-4 font-medium text-[#555555] active-tab">Calculator</button>
+        </nav>
+
+        <div id="content-container" class="min-h-[400px]">
+            <!-- Content rendered via JS -->
+        </div>
+    </div>
+
+    <script>
+        const content = {
+            calculator: `
+                <div class="card">
+                    <h2 class="font-serif text-3xl mb-8">Sample Size Calculator</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <div><label class="text-sm text-[#555555]">Population Size (N - Leave blank if unknown)</label><input type="number" id="popSize" placeholder="Infinite" class="w-full p-3 border border-[#E2E8F0] rounded-lg mt-1 outline-none focus:border-[#D4AF37]"></div>
+                        <div><label class="text-sm text-[#555555]">Confidence Level</label><select id="confLevel" class="w-full p-3 border border-[#E2E8F0] rounded-lg mt-1 outline-none"><option value="1.645">90% (Z=1.645)</option><option value="1.96" selected>95% (Z=1.96)</option><option value="2.576">99% (Z=2.576)</option></select></div>
+                        <div><label class="text-sm text-[#555555]">Margin of Error (E)</label><input type="number" id="marginOfError" value="0.05" step="0.01" class="w-full p-3 border border-[#E2E8F0] rounded-lg mt-1 outline-none focus:border-[#D4AF37]"></div>
+                        <div><label class="text-sm text-[#555555]">Estimated Proportion (p)</label><input type="number" id="propP" value="0.5" step="0.01" class="w-full p-3 border border-[#E2E8F0] rounded-lg mt-1 outline-none focus:border-[#D4AF37]"></div>
+                    </div>
+                    <button onclick="calculateSample()" class="bg-[#0B1325] text-[#D4AF37] px-8 py-3 rounded-lg hover:bg-[#D4AF37] hover:text-[#0B1325] transition-colors">Calculate</button>
+                    <div id="calcResult" class="mt-8 p-6 bg-gray-50 rounded-lg text-[#0B1325] font-serif text-xl">Result: Waiting for input...</div>
+                </div>
+            `,
+            sampling: `
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="card"><h2 class="font-serif text-2xl mb-4 text-[#0B1325]">Probability</h2><p class="text-[#0B1325]/80 font-light mb-4">Probability sampling is a sampling method in which each member of the population has a known, non-zero chance of being selected for the sample. This ensures that the sample is representative of the population, making it a fundamental technique in survey research. The goal is to draw valid and reliable conclusions about the entire population based on the characteristics of the sample.</p><p class="text-[#0B1325]">Examples: Simple Random, Systematic, Stratified, Cluster</p></div>
+                    <div class="card"><h2 class="font-serif text-2xl mb-4 text-[#0B1325]">Non-Probability</h2><p class="text-[#0B1325]/80 font-light mb-4">Non-probability sampling selects participants without known selection probabilities, often based on judgment or convenience. It doesn’t ensure a representative sample and may introduce bias, making it less reliable for generalizing results. It's typically used when time, budget, or access limit the feasibility of probability sampling, but its limitations must be recognized.</p><p class="text-[#0B1325]">Examples: Convenience, Purposive, Quota, Snowball</p></div>
+                </div>
+            `,
+            validity: `
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="card">
+                        <h2 class="font-serif text-2xl mb-4 text-[#0B1325]">Validity</h2>
+                        <p class="text-[#555555] font-light mb-4">Validity in research refers to the extent to which a study accurately measures or reflects the concept or phenomenon it is intended to study. There are several types of validity in research, each addressing a different aspect of research quality.</p>
+                        <p class="text-[#0B1325] mt-2">Types: Face, Content, Construct, Criterion, Internal, External.</p>
+                    </div>
+                    <div class="card">
+                        <h2 class="font-serif text-2xl mb-4 text-[#0B1325]">Reliability</h2>
+                        <p class="text-[#555555] font-light mb-4">Reliability in research refers to the consistency and stability of measurements or data over time, among different observers, or under varying conditions. It is a crucial aspect of research quality because it ensures that the results obtained are dependable and not due to random variation.</p>
+                        <p class="text-[#0B1325] mt-2">Types: Test-Retest, Inter-Rater, Internal Consistency, Stability.</p>
+                    </div>
+                </div>
+            `,
+            design_interviews: `
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="card">
+                        <h2 class="font-serif text-3xl mb-6">Questionnaire Architecture</h2>
+                        <ul class="text-[#0B1325]/80 font-light space-y-4"><li>• Clearly defined objectives and target audience.</li><li>• Strategic mix of closed and open-ended items.</li><li>• Avoidance of leading or double-barreled phrasing.</li><li>• Logical flow from demographic to specific queries.</li></ul>
+                    </div>
+                    <div class="card">
+                        <h2 class="font-serif text-3xl mb-6">Interview Methodologies</h2>
+                        <ul class="text-[#0B1325]/80 font-light space-y-3">
+                            <li>• Structured (Standardized)</li>
+                            <li>• Semi-Structured (Core/Follow-up)</li>
+                            <li>• Unstructured (Free-flowing)</li>
+                            <li>• Focus Groups (Group dynamics)</li>
+                            <li>• Narrative (Story-based)</li>
+                            <li>• In-Depth/Expert Interviews</li>
+                        </ul>
+                    </div>
+                </div>
+            `
+        };
+
+        function showTab(tabId) {
+            document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active-tab'));
+            document.getElementById('btn-' + tabId).classList.add('active-tab');
+            document.getElementById('content-container').innerHTML = content[tabId];
+        }
+
+        function calculateSample() {
+            const N = parseFloat(document.getElementById('popSize').value);
+            const Z = parseFloat(document.getElementById('confLevel').value);
+            const E = parseFloat(document.getElementById('marginOfError').value);
+            const p = parseFloat(document.getElementById('propP').value);
+            let n;
+
+            if (N > 0) {
+                const numerator = N * Math.pow(Z, 2) * p * (1 - p);
+                const denominator = ((N - 1) * Math.pow(E, 2)) + (Math.pow(Z, 2) * p * (1 - p));
+                n = numerator / denominator;
+            } else {
+                n = (Math.pow(Z, 2) * p * (1 - p)) / Math.pow(E, 2);
+            }
+            
+            document.getElementById('calcResult').innerText = "Suggested Sample Size: " + Math.ceil(n);
+        }
+
+        window.onload = () => showTab('calculator');
+    </script>
+</body>
+</html>

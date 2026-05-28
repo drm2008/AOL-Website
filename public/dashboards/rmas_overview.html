@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RMAS Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .pillar-card.active-pillar {
+            border-color: #D4AF37;
+        }
+    </style>
+</head>
+<body class="bg-white p-8 md:p-16">
+
+    <header class="max-w-6xl mx-auto mb-16 flex items-center gap-6">
+        <div class="w-40 h-40 rounded-full bg-[#0B1325] flex items-center justify-center shadow-lg shrink-0">
+            <span class="text-4xl font-bold tracking-widest font-serif">
+                <span class="text-[#D4AF37]">RM</span><span class="text-[#C0C0C0]">AS</span>
+            </span>
+        </div>
+        <div>
+            <h1 class="text-4xl md:text-5xl text-[#0B1325] tracking-tight font-normal">Research Methods & Applied Statistics</h1>
+            <p class="text-[#555555] text-lg font-light mt-1 tracking-widest">AN OVERVIEW & LEARNING OUTCOMES</p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+        
+        <div id="pillar-1" class="pillar-card border border-[#E2E8F0] rounded-2xl p-8 transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-2 cursor-pointer bg-white">
+            <h3 class="text-2xl font-semibold mb-4 text-[#0B1325]">Research Foundations & Philosophy</h3>
+            <p class="text-[#555555]/80 text-sm leading-relaxed">Explores the philosophical bedrock of scholarly inquiry, distinguishing between deductive and inductive reasoning and the "Hourglass Notion."</p>
+        </div>
+
+        <div id="pillar-2" class="pillar-card border border-[#E2E8F0] rounded-2xl p-8 transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-2 cursor-pointer bg-white">
+            <h3 class="text-2xl font-semibold mb-4 text-[#0B1325]">Research Methods</h3>
+            <p class="text-[#555555]/80 text-sm leading-relaxed">Covers techniques for qualitative, quantitative, and mixed-methods designs, including ethical considerations and methodology selection.</p>
+        </div>
+
+        <div id="pillar-3" class="pillar-card border border-[#E2E8F0] rounded-2xl p-8 transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-2 cursor-pointer bg-white">
+            <h3 class="text-2xl font-semibold mb-4 text-[#0B1325]">Proposal and Thesis Writing</h3>
+            <p class="text-[#555555]/80 text-sm leading-relaxed">Focuses on articulating research problems, academic writing styles, citing sources, and defining study boundaries through assumptions and limitations.</p>
+        </div>
+
+        <div id="pillar-4" class="pillar-card border border-[#E2E8F0] rounded-2xl p-8 transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-2 cursor-pointer bg-white">
+            <h3 class="text-2xl font-semibold mb-4 text-[#0B1325]">Applied Statistics</h3>
+            <p class="text-[#555555]/80 text-sm leading-relaxed">Application of statistical techniques to real-world data, including descriptive and inferential statistics for informed decision-making.</p>
+        </div>
+
+        <div id="pillar-5" class="pillar-card border border-[#E2E8F0] rounded-2xl p-8 transition-all duration-500 hover:border-[#D4AF37] hover:-translate-y-2 cursor-pointer bg-white">
+            <h3 class="text-2xl font-semibold mb-4 text-[#0B1325]">SPSS Training</h3>
+            <p class="text-[#555555]/80 text-sm leading-relaxed">Comprehensive training on SPSS for data management, running procedures, and interpreting complex graphical data representations.</p>
+        </div>
+    </main>
+
+    <section class="max-w-4xl mx-auto border-t border-[#E2E8F0] pt-12">
+        <h2 class="text-3xl mb-8 font-serif text-[#0B1325]">Learning Outcomes</h2>
+        <div id="outcomes-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-4 border-l-2 border-[#D4AF37] bg-[#F8FAFC] text-[#555555]">Apply Research Foundations</div>
+            <div class="p-4 border-l-2 border-[#D4AF37] bg-[#F8FAFC] text-[#555555]">Execute the Research Journey</div>
+            <div class="p-4 border-l-2 border-[#D4AF37] bg-[#F8FAFC] text-[#555555]">Define Study Boundaries</div>
+            <div class="p-4 border-l-2 border-[#D4AF37] bg-[#F8FAFC] text-[#555555]">Craft Research Proposals</div>
+            <div class="p-4 border-l-2 border-[#D4AF37] bg-[#F8FAFC] text-[#555555]">Write Effective Theses</div>
+            <div class="p-4 border-l-2 border-[#D4AF37] bg-[#F8FAFC] text-[#555555]">Analyze Data Using Statistics</div>
+            <div class="p-4 border-l-2 border-[#D4AF37] bg-[#F8FAFC] text-[#555555]">Master SPSS Software</div>
+            <div class="p-4 border-l-2 border-[#D4AF37] bg-[#F8FAFC] text-[#555555]">Integrate Statistical Insights</div>
+        </div>
+    </section>
+
+    <script>
+        document.querySelectorAll('.pillar-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.pillar-card').forEach(c => c.classList.remove('active-pillar'));
+                card.classList.add('active-pillar');
+            });
+        });
+    </script>
+</body>
+</html>

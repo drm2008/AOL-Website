@@ -6,6 +6,7 @@ export interface Module {
   content: string;
   duration: number; // in minutes
   simulators?: { title: string; desc: string; url: string; }[]; // List of interactive HTML simulators
+  dashboards?: { title: string; desc: string; url: string; }[]; // List of interactive HTML dashboards
 }
 
 export interface Progress {
